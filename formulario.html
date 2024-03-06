@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição do curso</title>
+    <style>
+        input {
+            margin: 4px;
+        }
+        body {
+            background-color: bisque;
+        }
+        form {
+            width: 900px;
+            background-color: white;
+            margin: auto;
+            padding: 20px; 
+            box-shadow: 0px 0px 1px 1px black;
+        }
+        select {
+            margin-bottom: 20px;
+        }
+        #telefone {
+            margin-bottom: 20px;
+        }
+        #nascimento {
+            margin-bottom: 20px;
+        }
+        #nome {
+            width: 300px;
+        }
+        #email {
+            width: 250px;
+        }
+        #genero,
+        #preferencia {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 30px;
+        }
+        #preferencia {
+            margin-left: 10px;
+        }
+        #horario,
+        #nivel,
+        #conhecimento {
+            display: inline-block;
+            vertical-align: top;
+            margin: 20px;
+        }
+        .opcoes {
+            margin: 0;
+            margin-left: 0;
+        }
+        #cpf {
+            margin-bottom: 15px;
+        }
+        #endereco {
+            margin-bottom: 15px;
+            width: 270px;
+        }
+        .opcao1 {
+            text-align: left;
+        }
+        .opcao {
+            margin: 0;
+        }
+
+        /* Removendo centralização das divs com a classe "perguntas" */
+        .perguntas {
+            text-align: left;
+        }
+        p{
+            margin-bottom: 25px;
+        }
+        #cep{
+            margin-bottom: 15px;
+        }
+        div#folha{
+            padding-left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <form action="enviar">
+        <div id="folha">
+            <h1>Inscrição do curso de idiomas gratuito</h1>
+            <p>Este curso é do básico ao fluente nos sete idiomas descritos.</p>
+            <label for="nome">Digite seu nome: </label>
+            <input type="text" name="nome" id="nome">
+            <br>
+            <label for="email">Seu email: </label>
+            <input type="email" name="email" id="email">
+            <br>
+            <label for="telefone">Seu telefone: </label>
+            <input type="tel" name="telefone" id="telefone">
+            <br>
+            <label for="nascimento">Data de nascimento: </label>
+            <input type="date" name="nascimento" id="nascimento">
+            <br>
+            <label for="cpf">Seu CPF: </label>
+            <input type="text" id="cpf">
+            <br>
+            <label for="endereco">Seu endereço: </label>
+            <input type="text" id="endereco">
+            <br>
+            <label for="cep">Seu CEP: </label>
+            <input type="text" id="cep">
+            <br>
+            <div id="genero">
+                <label for="genero">Gênero: </label>
+                <br>
+                <label for="masculino">Masculino</label>
+                <input type="radio" name="genero" id="masculino" class="opcoes">
+                <label for="feminino">Feminino</label>
+                <input type="radio" name="genero" id="feminino" class="opcoes">
+            </div>
+            <div id="preferencia" class="perguntas">
+                <label for="preferencia">Escolha o curso: </label>
+                <br>
+                <select name="cursos" id="cursos">
+                    <option value="espanhol">Espanhol</option>
+                    <option value="ingles">Inglês</option>
+                    <option value="mandarim">Mandarim</option>
+                <option value="italiano">Italiano</option>
+                <option value="alemao">Alemão</option>
+                <option value="frances">Francês</option>
+                <option value="japones">Japonês</option>
+                </select>
+            </div>
+            <br>
+            <div id="horario" class="perguntas">
+                <label for="horario">Escolha o horário: </label>
+                <br>
+                <input type="radio" name="horario" id="manha" value="Manhã" class="opcao">
+                <label for="manha" class="opcao1">Manhã</label>
+                <br>
+                <input type="radio" name="horario" id="tarde" value="tarde" class="opcao">
+                <label for="tarde" class="opcao1">Tarde</label>
+                <br>
+                <input type="radio" name="horario" id="noite" value="noite" class="opcao">
+                <label for="noite" class="opcao1">Noite</label>
+            </div>
+            <div id="nivel" class="perguntas">
+                <label for="nivel">Nível de proficiência no idioma: </label>
+                <br>
+                <input type="radio" name="nivel" id="basico" class="opcao">
+                <label for="basico">Básico</label>
+                <br>
+                <input type="radio" name="nivel" id="intermediario" class="opcao">
+                <label for="intermediario">Intermediário</label>
+                <br>
+                <input type="radio" name="nivel" id="avancado" class="opcao">
+                <label for="avancado">Avançado</label>
+            </div>
+            <br>
+            <div id="conhecimento" class="perguntas">
+                <label for="conhecimento">Como você soube do curso? </label>
+                <br>
+                <input type="radio" name="conhecimento" id="indicacao" value="Indicação" class="opcao">
+                <label for="indicacao">Indicação de amigos</label>
+                <br>
+                <input type="radio" name="conhecimento" id="publicidade" value="publicidade" class="opcao">
+                <label for="publicidade">Publicidade</label>
+                <br>
+                <input type="radio" name="conhecimento" id="midias" value="midias" class="opcao">
+                <label for="midias">Redes sociais</label>
+                <br>
+                <input type="radio" name="conhecimento" id="outros" value="outros" class="opcao">
+                <label for="outros">Outros</label>
+            </div>
+            <br>
+            <input type="submit" value="Enviar">
+        </div>
+    </form>
+</body>
+</html>
