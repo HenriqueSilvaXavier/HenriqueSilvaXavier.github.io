@@ -1,0 +1,125 @@
+img#foto {
+    width: 275px;
+    padding: 0;
+    float: left;
+    margin-right: 100px;
+}
+
+div#titulo {
+    background-color: grey;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+body {
+    background-color: darkblue;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+nav {
+    background-color: black;
+    padding: 4px;
+}
+
+a.menu {
+    margin: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 30px;
+}
+
+div#cabecalho {
+    background-color: rgb(34, 139, 34);
+    margin: 0;
+    padding: 5px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+div#conteudo {
+    background-color: rgb(118, 185, 115);
+    margin: 0;
+    padding: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow: hidden; 
+}
+
+main {
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+h2 {
+    margin: 0;
+    margin-left: 14px;
+}
+h3.tipos{
+    text-align:center;
+}
+h3#nome{
+    margin-left: 47vw
+}
+
+p {
+    text-align: center;
+}
+
+a#primeiro {
+    margin-left: 80px;
+}
+
+img.icone {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+a.redesSociais{
+    text-decoration: none;
+    display: flex; 
+    align-items: center; 
+    max-width: 200px; 
+    margin-bottom: 5px;
+    margin-top:5px;
+    margin-left: 46.5vw;
+}
+
+p.endereco {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.telefone-container {
+display: flex;
+margin-left: 46.5vw;
+}
+
+.telefone {
+margin:0;
+width: 20px;
+height: 20px;
+}
+
+.telefone-container p {
+display: flex;
+align-items: center;
+justify-content: center; 
+margin-top:0;
+margin-bottom:0;
+white-space: nowrap;
+}
+div#conteudo>p#projetos{
+    margin-bottom: 30px;
+}
+#objetivo{
+    margin-bottom: 40px;
+}
