@@ -127,6 +127,6 @@ white-space: nowrap;
 }
 @media(min-width: 401px) and (max-width:493px){
     img#foto{
-        width: 150px;
+        width: 180px;
     }
 }
