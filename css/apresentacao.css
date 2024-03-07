@@ -129,4 +129,7 @@ white-space: nowrap;
     img#foto{
         width: 200px;
     }
+    p#email{
+        width: 20px;
+    }
 }
