@@ -125,7 +125,7 @@ white-space: nowrap;
         width: 220px;
     }
 }
-@media(min-width: 401px) and (max-width:493px){
+@media(min-width: 400px) and (max-width:493px){
     img#foto{
         width: 200px;
     }
