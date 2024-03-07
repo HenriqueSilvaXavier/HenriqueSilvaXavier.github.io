@@ -120,8 +120,13 @@ margin-top:0;
 margin-bottom:0;
 white-space: nowrap;
 }
-@media(min-width: 400px) and (max-width:530px){
+@media(min-width: 493px) and (max-width:600px){
     img#foto{
         width: 220px;
+    }
+}
+@media(min-width: 401px) and (max-width:493px){
+    img#foto{
+        width: 150px;
     }
 }
