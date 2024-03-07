@@ -124,6 +124,10 @@ div#informacoes-container{
     flex: 1;
     width: 100%;
 }
+img#menu-hamburguer{
+    width:40px;
+    display:none;
+}
 
 @media(min-width: 508px) and (max-width:606px){
     img#foto{
@@ -151,4 +155,40 @@ div#informacoes-container{
     div#informacoes{
         margin: 0;
     }
+}
+@media(max-width: 458px){
+    a.menu{
+        display:none;
+    }
+    img#menu-hamburguer{
+        display:block;
+        margin:auto;
+    }
+}
+@media(min-width: 459px){
+    ul.menu-lista li {
+    display:none;
+    }
+}
+.menu.menu-aberto {
+    display: block;
+    flex-direction: column;
+}
+ul.menu-lista {
+    list-style-type: none;
+    padding: 0;
+    display: none;
+    text-decoration:none;
+    }
+ul.menu-lista li {
+    margin: 10px 0;
+    text-align: center;
+    text-decoration: none;
+}
+ul.menu-lista>li>a{
+    color: white;
+    text-decoration: none;
+}
+ul.menu-lista.visivel {
+    display: block;
 }
