@@ -1,0 +1,154 @@
+img#foto {
+    width: 275px;
+    padding: 0;
+    float: left;
+    margin-right: 10px;
+}
+
+div#titulo {
+    background-color: grey;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+body {
+    background-color: darkblue;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+nav {
+    background-color: black;
+    padding: 4px;
+}
+
+a.menu {
+    margin: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 30px;
+}
+
+div#cabecalho {
+    background-color: rgb(34, 139, 34);
+    margin: 0;
+    padding: 5px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+div#conteudo {
+    background-color: rgb(118, 185, 115);
+    margin: 0;
+    padding: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow: hidden; 
+    display: flex;
+}
+
+main{
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin: 0;
+    margin-left: 14px;
+}
+h3.tipos{
+    text-align:center;
+}
+h3#nome{
+    margin-left: 0
+}
+
+a#primeiro {
+    margin-left: 80px;
+}
+
+img.icone {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+a.redesSociais{
+    text-decoration: none;
+    display: flex; 
+    align-items: center; 
+    max-width: 200px; 
+    margin-bottom: 5px;
+    margin-top:5px;
+    margin-left: 0;
+}
+
+p.endereco {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.telefone-container {
+display: flex;
+margin-left: 0;
+}
+
+.telefone {
+margin:0;
+width: 20px;
+height: 20px;
+}
+
+
+.telefone-container p {
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top:0;
+margin-bottom:0;
+white-space: nowrap;
+}
+div#informacoes{
+    margin-left: auto;
+    width: 40vw;
+}
+div#informacoes-container{
+    flex: 1;
+    width: 100%;
+}
+
+@media(min-width: 508px) and (max-width:606px){
+    img#foto{
+        width: 230px;
+        height: 256.62px;
+    }
+}
+@media(min-width: 0px) and (max-width:508px){
+    img#foto{
+        width: 200px;
+        height: 223.15px;
+    }
+}
+@media(min-width: 428px) and (max-width:508px){
+    img#foto{
+        width: 170px;
+        height: 189.68px;
+    }
+}
+@media(min-width: 0px) and (max-width:428px){
+    img#foto{
+        width: 140px;
+        height: 156.21px;
+    }
+    div#informacoes{
+        margin: 0;
+    }
+}
