@@ -123,3 +123,43 @@ div#conteudo>p#projetos{
 #objetivo{
     margin-bottom: 40px;
 }
+img#menu-hamburguer{
+    width:40px;
+    display:none;
+}
+@media(max-width: 458px){
+    a.menu{
+        display:none;
+    }
+    img#menu-hamburguer{
+        display:block;
+        margin:auto;
+    }
+}
+@media(min-width: 459px){
+    ul.menu-lista li {
+    display:none;
+    }
+}
+.menu.menu-aberto {
+    display: block;
+    flex-direction: column;
+}
+ul.menu-lista {
+    list-style-type: none;
+    padding: 0;
+    display: none;
+    text-decoration:none;
+    }
+ul.menu-lista li {
+    margin: 10px 0;
+    text-align: center;
+    text-decoration: none;
+}
+ul.menu-lista>li>a{
+    color: white;
+    text-decoration: none;
+}
+ul.menu-lista.visivel {
+    display: block;
+}
