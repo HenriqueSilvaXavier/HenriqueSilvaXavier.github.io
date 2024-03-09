@@ -111,6 +111,12 @@
         input[type="submit"]{
             width:60px;
         }
+        div#enviar{
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Opcional: centraliza verticalmente */
+        }
     </style>
 </head>
 <body>
@@ -202,7 +208,7 @@
                 <label for="outros">Outros</label>
             </div>
             <br>
-            <input type="submit" value="Enviar">
+            <div id="enviar"><input type="submit" value="Enviar"></div>
         </div>
     </form>
 </body>
