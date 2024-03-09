@@ -12,7 +12,7 @@
             background-color: bisque;
         }
         form {
-            width: 900px;
+            width: 70%;
             background-color: white;
             margin: auto;
             padding: 20px; 
@@ -66,8 +66,6 @@
         .opcao {
             margin: 0;
         }
-
-        /* Removendo centralização das divs com a classe "perguntas" */
         .perguntas {
             text-align: left;
         }
@@ -78,8 +76,34 @@
             margin-bottom: 15px;
         }
         div#folha{
-            padding-left: 200px;
+            display: block;
+            margin: auto;
+            width: 350px;
         }
+        @media (max-width: 493px){
+            div#folha{
+                width: 100%;
+            }
+            input{
+                width: 100%;
+            }
+            input#nome{
+                width: 100%;
+            }
+            input#email{
+                width: 100%;
+            }
+            input#endereco{
+                width: 100%;
+            }
+            input[type="radio"]{
+                width: 20px;
+            }
+            div#genero{
+                margin-bottom: 20px;
+            }
+        }
+        
     </style>
 </head>
 <body>
