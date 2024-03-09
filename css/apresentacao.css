@@ -1,3 +1,6 @@
+:root{
+    --roxo: #550680;
+}
 img#foto {
     width: 275px;
     padding: 0;
@@ -5,7 +8,7 @@ img#foto {
     margin-right: 10px;
 }
 
-div#titulo {
+header{
     background-color: grey;
     padding-top: 0;
     margin-top: 0;
@@ -133,6 +136,16 @@ img#menu-hamburguer{
     img#foto{
         width: 230px;
         height: 256.62px;
+        display:block;
+        margin:auto;
+        float:none;
+    }
+    div#informacoes{
+        margin: 0 auto;
+        width: 220px;
+    }
+    div#conteudo{
+        display: block;
     }
 }
 @media(min-width: 0px) and (max-width:508px){
@@ -145,15 +158,32 @@ img#menu-hamburguer{
     img#foto{
         width: 170px;
         height: 189.68px;
+        display:block;
+        margin:auto;
+        float:none;
+    }
+    div#informacoes{
+        margin: 0 auto;
+        width: 220px;
+    }
+    div#conteudo{
+        display: block;
     }
 }
 @media(min-width: 0px) and (max-width:428px){
     img#foto{
         width: 140px;
         height: 156.21px;
+        display:block;
+        margin:auto;
+        float:none;
     }
     div#informacoes{
-        margin: 0;
+        margin: 0 auto;
+        width: 220px;
+    }
+    div#conteudo{
+        display: block;
     }
 }
 @media(max-width: 458px){
