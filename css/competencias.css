@@ -69,6 +69,34 @@ img#menu-hamburguer{
     width:40px;
     display:none;
 }
+
+@media(min-width: 508px) and (max-width:606px){
+    img#foto{
+        width: 230px;
+        height: 256.62px;
+    }
+}
+@media(min-width: 0px) and (max-width:508px){
+    img#foto{
+        width: 200px;
+        height: 223.15px;
+    }
+}
+@media(min-width: 428px) and (max-width:508px){
+    img#foto{
+        width: 170px;
+        height: 189.68px;
+    }
+}
+@media(min-width: 0px) and (max-width:428px){
+    img#foto{
+        width: 140px;
+        height: 156.21px;
+    }
+    div#informacoes{
+        margin: 0;
+    }
+}
 @media(max-width: 458px){
     a.menu{
         display:none;
@@ -104,4 +132,8 @@ ul.menu-lista>li>a{
 }
 ul.menu-lista.visivel {
     display: block;
+}
+.grafico-container{
+    width: 50%;
+    margin:auto;
 }
