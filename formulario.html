@@ -78,22 +78,10 @@
         div#folha{
             display: block;
             margin: auto;
-            width: 350px;
+            width: 66%
         }
         @media (max-width: 467px){
             div#folha{
-                width: 100%;
-            }
-            input{
-                width: 100%;
-            }
-            input#nome{
-                width: 100%;
-            }
-            input#email{
-                width: 100%;
-            }
-            input#endereco{
                 width: 100%;
             }
             input[type="radio"]{
@@ -103,9 +91,9 @@
                 margin-bottom: 20px;
             }
         }
-        @media (max-width: 493px){
+        @media (max-width: 530px){
             form{
-                width: 80%
+                width: 80%;
             }
         }
         input[type="submit"]{
@@ -114,8 +102,10 @@
         div#enviar{
             width: 100%;
             display: flex;
-            justify-content: center; /* Centraliza horizontalmente */
-            align-items: center; /* Opcional: centraliza verticalmente */
+            justify-content: center;
+        }
+        input{
+            max-width: 100%;
         }
     </style>
 </head>
