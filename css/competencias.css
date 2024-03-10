@@ -137,6 +137,7 @@ ul.menu-lista.visivel {
     width: 600px;
     max-width: 100%;
     margin:auto;
+    background-color: white;
 }
 h3#idiomas{
     margin-top: 90px;
