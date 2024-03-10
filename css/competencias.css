@@ -54,7 +54,7 @@ h2{
     margin-left:14px;
 }
 h3{
-    text-align: center
+    text-align: center;
 }
 p{
     text-align: center;
@@ -134,6 +134,10 @@ ul.menu-lista.visivel {
     display: block;
 }
 .grafico-container{
-    width: 50%;
+    width: 600px;
+    max-width: 100%;
     margin:auto;
+}
+h3#idiomas{
+    margin-top: 90px;
 }
