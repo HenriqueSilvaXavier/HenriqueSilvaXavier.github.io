@@ -31,17 +31,11 @@
         <div id="cabecalho">
             <h2>Competências</h2>
         </div>
-        <div id="conteudo">
-            <h3 class="tipos">Linguagens</h3>
-            <ul>
-                <li>Python</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript(Básico)</li>
-                <li>SQL(Básico)</li>
-                <li>C(Básico)</li>
-                <li>Java(Básico)</li>
-            </ul>
+        <div id="conteudo">   
+            <section class="grafico-container">
+                <h3 class="tipos">Linguagens</h3>
+                <canvas id="grafico1"></canvas>
+            </section>
             <h3 class="tipos">
                 Idiomas
             </h3>
@@ -59,6 +53,30 @@
         </div>
     </main>
 </body>
-    <script src="apresentacao.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx1 = document.getElementById('grafico1').getContext('2d');
+    const chart1= new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['HTML', 'Python', 'CSS', 'JavaScript', 'SQL', 'Java', "C"],
+        datasets: [{
+          label: 'Nível de Habilidade',
+          data: [75, 68, 60, 45, 40, 31, 29],
+          backgroundColor: 'rgba(75, 192, 192, 1)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+<script src="..\js\apresentacao.js"></script>
 </html>
