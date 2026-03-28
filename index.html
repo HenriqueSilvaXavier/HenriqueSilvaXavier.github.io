@@ -551,6 +551,40 @@ section{
 }
 
 .progresso.b1{ width:55%; }
+
+@media (max-width:500px){
+  .profile-card{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .profile-contacts{
+    justify-content:center;
+  }
+
+  .linha{
+    justify-content:center;
+  }
+}
+
+@media (max-width:445px){
+  .stations{
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    /* trilho vertical único */
+    background: linear-gradient(
+      to bottom,
+      var(--line-color),
+      var(--line-color)
+    );
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 6px 100%;
+  }
+}
+
 </style>
 </head>
 
