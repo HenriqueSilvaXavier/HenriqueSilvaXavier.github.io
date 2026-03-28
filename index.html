@@ -585,6 +585,46 @@ section{
   }
 }
 
+@media (max-width: 674px){
+
+  /* remove a linha central */
+  .timeline::before {
+    left: 20px;
+    transform: none;
+  }
+
+  /* cada item ocupa 100% */
+  .timeline-item{
+    width: 100%;
+    padding: 20px 20px 20px 60px;
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+
+  /* remove zig-zag */
+  .timeline-item.left,
+  .timeline-item.right{
+    margin-left: 0;
+    text-align: left;
+  }
+
+  /* posiciona o ponto à esquerda */
+  .timeline-dot{
+    left: 12px !important;
+    right: auto !important;
+  }
+
+  /* stacks alinhados à esquerda */
+  .timeline-item.left .stacks{
+    justify-content: flex-start;
+  }
+
+  /* imagens ocupando melhor a tela */
+  .img-projeto,
+  .img-projeto-mobile{
+    width: 100%;
+  }
+}
 </style>
 </head>
 
@@ -987,9 +1027,9 @@ section{
     <div class="timeline-item" data-tags="frontend">
       <div class="timeline-dot"></div>
       <div class="timeline-card">
-        <h3>ZipDistance</h3>
-        <img src="CEPDistância.png" class="img-projeto" alt="ZipDistance Project">
-        <p>The website uses the ViaCEP API to calculate the distance between two zip codes entered by the user. The background is a world map.</p>
+        <h3>CEPDistância</h3>
+        <img src="CEPDistância.png" class="img-projeto" alt="CEPDistance Project">
+        <p>The website uses the ViaCEP API to calculate the distance between two CEP codes entered by the user. The background is a world map.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
@@ -1059,8 +1099,8 @@ section{
     <div class="timeline-item" data-tags="data">
       <div class="timeline-dot"></div>
       <div class="timeline-card">
-        <h3>Energy Consumption</h3>
-        <img src="consumoenergetico.png" class="img-projeto" alt="Energy Consumption Project">
+        <h3>Consumo Energetico</h3>
+        <img src="consumoenergetico.png" class="img-projeto" alt="Consumo Energetico Project">
         <p>This site was built with Gradio and Pandas, using Pyotp and QRcode to implement sign-in and sign-up with MFA (Multi-Factor Authentication). The objective is to show predictions from AI Scikit-Learn models and Matplotlib charts.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
@@ -1125,7 +1165,7 @@ section{
     <div class="timeline-item" data-tags="frontend backend">
       <div class="timeline-dot"></div>
       <div class="timeline-card">
-        <h3>Henri Store</h3>
+        <h3>Lojas Henri</h3>
         <img src="lojashenri 1.png" class="img-projeto" alt="Henri Store Project">
         <p>The "Henri Store" project is an e-commerce platform that allows users to explore various product categories, such as home appliances, furniture, pet supplies, and more. The site offers features such as search, favorites, and shopping cart, as well as displaying promotions and product reviews.</p>
         <div class="stacks">
