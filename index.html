@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Currículo & Portfólio</title>
+<title>Resume & Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,7 +151,7 @@ section{
   position:relative;
 }
 
-/* Linha vertical central */
+/* Central vertical line */
 .timeline::before {
   content: "";
   position: absolute;
@@ -164,7 +164,7 @@ section{
   z-index: 1;
 }
 
-/* ===== ANO NA LINHA ===== */
+/* ===== YEAR ON THE LINE ===== */
 .timeline-year {
   position: relative;
   display: flex;
@@ -189,20 +189,20 @@ section{
   box-shadow: 0 0 16px rgba(34,211,238,.35);
 }
 
-/* ===== ZIG-ZAG — controlado por classes JS ===== */
+/* ===== ZIG-ZAG — controlled by JS classes ===== */
 .timeline-item{
   position: relative;
   width: 50%;
   padding: 20px 40px;
 }
 
-/* LEFT = lado esquerdo da linha (texto alinhado à direita) */
+/* LEFT = left side of the line (right-aligned text) */
 .timeline-item.left{
   margin-left: 0;
   text-align: right;
 }
 
-/* RIGHT = lado direito da linha (texto alinhado à esquerda) */
+/* RIGHT = right side of the line (left-aligned text) */
 .timeline-item.right{
   margin-left: 50%;
   text-align: left;
@@ -317,7 +317,7 @@ section{
   border:1px solid rgba(255,255,255,.08);
 }
 
-/* ===== FORMAÇÃO — TIMELINE SIMPLES ===== */
+/* ===== EDUCATION — SIMPLE TIMELINE ===== */
 .edu-timeline{
   position:relative;
   padding-left:40px;
@@ -362,13 +362,13 @@ section{
   font-size:.9rem;
 }
 
-/* ===== CERTIFICADOS ===== */
+/* ===== CERTIFICATES ===== */
 .cert-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:22px;
 }
-#certificados{
+#certificates{
   max-width:400px;
 }
 
@@ -416,7 +416,7 @@ section{
   font-size:.85rem;
 }
 
-/* ===== HEADER / PERFIL ===== */
+/* ===== HEADER / PROFILE ===== */
 .profile{
   max-width:1000px;
   margin:60px auto 20px;
@@ -488,7 +488,7 @@ section{
   border-radius: 100%;
 }
 
-/* ===== IDIOMAS ===== */
+/* ===== LANGUAGES ===== */
 .idioma-card{
   display:flex;
   flex-direction:column;
@@ -555,16 +555,18 @@ section{
 </head>
 
 <body>
-<!-- ================= PERFIL ================= -->
+<!-- ================= PROFILE ================= -->
 <section class="profile">
   <div class="profile-card">
-    <img src="eu.jpg" alt="Foto de Henrique Silva Xavier" class="profile-photo">
+    <img src="eu.jpg" alt="Photo of Henrique Silva Xavier" class="profile-photo">
     <div class="profile-info">
       <h1>Henrique Silva Xavier</h1>
-      <div class="profile-role">Desenvolvedor Full Stack Júnior • Em busca de uma oportunidade profissional</div>
+      <div class="profile-role">Junior Full Stack Developer • Looking for a professional opportunity</div>
       <p class="profile-desc">
-        Desenvolvedor Full Stack com foco em aplicações web, IA e dados. Experiência prática em projetos com React, Node, Python e Spring Boot, criando sistemas completos com front-end, back-end e banco de dados. Interesse em soluções de impacto usando Inteligência Artificial.
+        Full Stack Developer focused on web applications, AI, and data. Hands-on experience in projects with React, Node, Python, and Spring Boot, building complete systems with front-end, back-end, and database. Interested in high-impact solutions using Artificial Intelligence.
       </p>
+      <p>Localization: Recife, Pernambuco, Brazil</p>
+      <br>
       <div class="profile-contacts">
         <span class="linha"><img src="whatsapp 1.png">(81) 98552-1110</span>
         <span class="linha">
@@ -578,72 +580,72 @@ section{
   </div>
 </section>
 
-<!-- ================= FORMAÇÃO ================= -->
-<section id="formacao">
-  <h2 class="section-title">🎓 Formação</h2>
+<!-- ================= EDUCATION ================= -->
+<section id="education">
+  <h2 class="section-title">🎓 Education</h2>
   <div class="card">
     <div class="edu-timeline">
       <div class="edu-item">
         <div class="edu-dot"></div>
         <div class="edu-content">
-          <h3>Análise e Desenvolvimento de Sistemas</h3>
+          <h3>Systems Analysis and Development</h3>
           <p><strong>SENAC</strong></p>
-          <p class="edu-meta">Graduação • Concluído</p>
-          <p class="edu-meta">Ago/2023 — Dez/2025</p>
+          <p class="edu-meta">Undergraduate Degree • Completed</p>
+          <p class="edu-meta">Aug/2023 — Dec/2025</p>
         </div>
       </div>
       <div class="edu-item">
         <div class="edu-dot"></div>
         <div class="edu-content">
-          <h3>Ensino Médio</h3>
+          <h3>High School</h3>
           <p><strong>CODAI</strong></p>
-          <p claass="edu-meta">2020 — 2022</p>
+          <p class="edu-meta">2020 — 2022</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= CERTIFICADOS ================= -->
-<section id="certificados">
-  <h2 class="section-title">🏅 Certificados & Conquistas</h2>
+<!-- ================= CERTIFICATES ================= -->
+<section id="certificates">
+  <h2 class="section-title">🏅 Certificates & Achievements</h2>
 
-  <!-- Medalha -->
+  <!-- Medal -->
   <div class="cert-card" style="display:flex; flex-direction:column; gap:18px;">
     <div style="display:flex; align-items:center; gap:12px;">
       <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;">
         🥉
       </div>
       <div>
-        <p style="font-weight:600;">Medalha de Bronze — OBMEP</p>
-        <p style="color:var(--muted); font-size:.9rem;">Olimpíada Brasileira de Matemática das Escolas Públicas</p>
+        <p style="font-weight:600;">Bronze Medal — OBMEP</p>
+        <p style="color:var(--muted); font-size:.9rem;">Brazilian Mathematical Olympiad for Public Schools</p>
       </div>
     </div>
   </div>
 
-  <!-- Voluntariado -->
+  <!-- Volunteering -->
   <div class="cert-card">
-    <img src="voluntariado recnplay.png" class="cert-img" alt="Voluntariado do Rec'N'Play">
+    <img src="voluntariado recnplay.png" class="cert-img" alt="Rec'N'Play Volunteering">
     <div class="cert-content">
-      <div class="cert-title">Voluntariado do Rec'N'Play</div>
+      <div class="cert-title">Rec'N'Play Volunteering</div>
       <div class="cert-org">Rec'N'Play</div>
     </div>
   </div>
 
-  <!-- Análise de Dados -->
+  <!-- Data Analysis -->
   <div class="cert-card">
-    <img src="analise de dados.png" class="cert-img" alt="Intensivão de análise de dados">
+    <img src="analise de dados.png" class="cert-img" alt="Data Analysis Intensive">
     <div class="cert-content">
-      <div class="cert-title">Intensivão de Análise de Dados</div>
+      <div class="cert-title">Data Analysis Intensive</div>
       <div class="cert-org">Hashtag Treinamentos</div>
     </div>
   </div>
 
-  <!-- Jornada Python -->
+  <!-- Python Journey -->
   <div class="cert-card">
-    <img src="hashtag python.png" class="cert-img" alt="Jornada Python">
+    <img src="hashtag python.png" class="cert-img" alt="Python Journey">
     <div class="cert-content">
-      <div class="cert-title">Jornada Python</div>
+      <div class="cert-title">Python Journey</div>
       <div class="cert-org">Hashtag Treinamentos</div>
     </div>
   </div>
@@ -652,7 +654,7 @@ section{
   <div class="cert-card">
     <img src="rocketseat 1.png" class="cert-img" alt="Rocketseat">
     <div class="cert-content">
-      <div class="cert-title">Trilha de Conhecimento da Rocketseat</div>
+      <div class="cert-title">Rocketseat Knowledge Trail</div>
       <div class="cert-org">Rocketseat</div>
     </div>
   </div>
@@ -660,20 +662,20 @@ section{
   <div class="cert-card">
     <img src="certificado deloitte bootcamp java.png" class="cert-img" alt="Deloitte Bootcamp Java">
     <div class="cert-content">
-      <div class="cert-title">Bootcamp Java</div>
+      <div class="cert-title">Java Bootcamp</div>
       <div class="cert-org">Deloitte</div>
     </div>
   </div>
 </section>
 
-<section id="habilidades">
-<h2 class="section-title">🚀 Habilidades</h2>
+<section id="skills">
+<h2 class="section-title">🚀 Skills</h2>
 <div class="card">
 <div class="skills-map-wrapper">
 <div class="metro-map">
 
 <div class="metro-line" style="--line-color:#8b5cf6">
-  <div class="line-label">INTELIGÊNCIA ARTIFICIAL</div>
+  <div class="line-label">ARTIFICIAL INTELLIGENCE</div>
   <div class="stations">
     <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=py" width="26"></div><span class="station-label">Python</span></div>
     <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=tensorflow" width="26"></div><span class="station-label">TensorFlow</span></div>
@@ -768,7 +770,7 @@ section{
 </div>
 
 <div class="metro-line" style="--line-color:#ef4444">
-  <div class="line-label">TESTES</div>
+  <div class="line-label">TESTING</div>
   <div class="stations">
     <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=jest" width="26"></div><span class="station-label">Jest</span></div>
     <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=selenium" width="26"></div><span class="station-label">Selenium</span></div>
@@ -788,81 +790,81 @@ section{
 
     <div class="station">
       <div class="station-icon">
-        <!-- Adaptabilidade -->
+        <!-- Adaptability -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <path d="M12 3v6l4-4M12 21v-6l-4 4" stroke="currentColor" stroke-width="2"/>
           <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
         </svg>
       </div>
-      <span class="station-label">Adaptabilidade</span>
+      <span class="station-label">Adaptability</span>
     </div>
 
     <div class="station">
       <div class="station-icon">
-        <!-- Persistência -->
+        <!-- Persistence -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <path d="M21 12a9 9 0 11-3-6.7" stroke="currentColor" stroke-width="2"/>
           <path d="M21 3v6h-6" stroke="currentColor" stroke-width="2"/>
         </svg>
       </div>
-      <span class="station-label">Persistência</span>
+      <span class="station-label">Persistence</span>
     </div>
 
     <div class="station">
       <div class="station-icon">
-        <!-- Trabalho em equipe -->
+        <!-- Teamwork -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <path d="M17 20a4 4 0 10-8 0" stroke="currentColor" stroke-width="2"/>
           <circle cx="12" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
           <path d="M23 20a4 4 0 00-6-3.46M1 20a4 4 0 016-3.46" stroke="currentColor" stroke-width="2"/>
         </svg>
       </div>
-      <span class="station-label">Trabalho em equipe</span>
+      <span class="station-label">Teamwork</span>
     </div>
 
     <div class="station">
       <div class="station-icon">
-        <!-- Foco em resultados -->
+        <!-- Results-oriented -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
           <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
           <circle cx="12" cy="12" r="1" fill="currentColor"/>
         </svg>
       </div>
-      <span class="station-label">Foco em resultados</span>
+      <span class="station-label">Results-oriented</span>
     </div>
 
     <div class="station">
       <div class="station-icon">
-        <!-- Resolução de problemas -->
+        <!-- Problem Solving -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
           <path d="M9.09 9a3 3 0 115.82 1c0 2-3 2-3 4" stroke="currentColor" stroke-width="2"/>
           <circle cx="12" cy="17" r="1" fill="currentColor"/>
         </svg>
       </div>
-      <span class="station-label">Resolução de problemas</span>
+      <span class="station-label">Problem Solving</span>
     </div>
 
     <div class="station">
       <div class="station-icon">
-        <!-- Aprendizado contínuo -->
+        <!-- Continuous Learning -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2"/>
           <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
         </svg>
       </div>
-      <span class="station-label">Aprendizado contínuo</span>
+      <span class="station-label">Continuous Learning</span>
     </div>
 
     <div class="station">
       <div class="station-icon">
-        <!-- Pensamento analítico -->
+        <!-- Analytical Thinking -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <path d="M4 19h16M4 15l4-4 4 4 8-8" stroke="currentColor" stroke-width="2"/>
         </svg>
       </div>
-      <span class="station-label">Pensamento analítico</span>
+      <span class="station-label">Analytical Thinking</span>
     </div>
 
   </div>
@@ -872,14 +874,14 @@ section{
 </div>
 
 <div class="map-legend">
-  Mapa de metrô de competências • Cada linha é uma área • Estações conectam stacks entre áreas
+  Skills Metro Map • Each line is an area • Stations connect stacks across areas
 </div>
 
 </section>
 
-<!-- ================= INGLÊS ================= -->
-<section id="idiomas">
-  <h2 class="section-title">🌍 Inglês — Proficiência</h2>
+<!-- ================= ENGLISH PROFICIENCY ================= -->
+<section id="languages">
+  <h2 class="section-title">🌍 English — Proficiency</h2>
   <div class="card idioma-card">
     <div class="idioma-item">
       <div class="idioma-top">
@@ -912,10 +914,10 @@ section{
   </div>
 </section>
 
-<h2 class="section-title" style="max-width:1000px;margin:60px auto 20px;padding:0 20px;">🗂️ Projetos</h2>
+<h2 class="section-title" style="max-width:1000px;margin:60px auto 20px;padding:0 20px;">🗂️ Projects</h2>
 
 <div class="filters">
-  <button class="filter-btn active" data-filter="all">Todos</button>
+  <button class="filter-btn active" data-filter="all">All</button>
   <button class="filter-btn" data-filter="frontend">Front-end</button>
   <button class="filter-btn" data-filter="backend">Back-end</button>
   <button class="filter-btn" data-filter="data">Data Science</button>
@@ -929,8 +931,8 @@ section{
     <div class="timeline-item" data-tags="frontend">
       <div class="timeline-dot"></div>
       <div class="timeline-card">
-        <h3>Dicionário Nebelfeld</h3>
-        <img src="Nebelfeld.png" class="img-projeto" alt="Projeto Dashboard Nebelfeld">
+        <h3>Nebelfeld Dictionary</h3>
+        <img src="Nebelfeld.png" class="img-projeto" alt="Nebelfeld Dashboard Project">
         <p>The Nebelfeld Dictionary is a multilingual website that allows you to search for words in different languages, displaying definitions, synonyms and example phrases. It includes spelling correction, pronunciation in different accents and a section with highlighted words.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -939,11 +941,10 @@ section{
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a href="https://github.com/HenriqueSilvaXavier/dicionarioNebelfeld.github.io" class="btn-github">
-            Ver no GitHub
+            View on GitHub
           </a>
-
           <a href="https://henriquesilvaxavier.github.io/dicionarioNebelfeld.github.io/" target="_blank" class="btn-github">
-            Ver Deploy
+            View Deploy
           </a>
         </div>
       </div>
@@ -952,9 +953,9 @@ section{
     <div class="timeline-item" data-tags="frontend">
       <div class="timeline-dot"></div>
       <div class="timeline-card">
-        <h3>CEPDistância</h3>
-        <img src="CEPDistância.png" class="img-projeto" alt="Projeto CEPDistância">
-        <p>The website uses a ViaCEP API to calculate the distance between two zip codes entered by the user. The background is a world map.</p>
+        <h3>ZipDistance</h3>
+        <img src="CEPDistância.png" class="img-projeto" alt="ZipDistance Project">
+        <p>The website uses the ViaCEP API to calculate the distance between two zip codes entered by the user. The background is a world map.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
@@ -962,11 +963,10 @@ section{
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a href="https://github.com/HenriqueSilvaXavier/CEPDistancia.github.io" class="btn-github">
-            Ver no GitHub
+            View on GitHub
           </a>
-
           <a href="https://henriquesilvaxavier.github.io/CEPDistancia.github.io/" target="_blank" class="btn-github">
-            Ver Deploy
+            View Deploy
           </a>
         </div>
       </div>
@@ -976,15 +976,15 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Notex App</h3>
-        <img src="notex.png" class="img-projeto-mobile" alt="Projeto Notex App">
-        <p>The project serves as an app for Mediotec students to see their concepts, subjects and their respective teachers, schedules, reports and the academic calendar.</p>
+        <img src="notex.png" class="img-projeto-mobile" alt="Notex App Project">
+        <p>The project serves as an app for Mediotec students to see their grades, subjects and their respective teachers, schedules, reports and the academic calendar.</p>
         <div class="stacks">
           <img src="https://cms-assets.tutsplus.com/uploads/users/1125/posts/29791/preview_image/RN.jpg" title="React Native">
           <img src="https://skillicons.dev/icons?i=typescript" title="TypeScript" alt="TypeScript">
           <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
           <img src="https://skillicons.dev/icons?i=prisma" title="Prisma" alt="Prisma">
         </div>
-        <a href="https://github.com/HenriqueSilvaXavier/Notex-Mobile-PI" class="btn-github">Ver no GitHub</a>
+        <a href="https://github.com/HenriqueSilvaXavier/Notex-Mobile-PI" class="btn-github">View on GitHub</a>
       </div>
     </div>
 
@@ -992,15 +992,15 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Vitae.ai</h3>
-        <img src="Vitae.png" class="img-projeto" alt="Projeto Vitae.ai">
-        <p>A front-end that communicates with an AI that analyzes resumes sent by the user, gives suggestions on how to improve and evaluates them.</p>
+        <img src="Vitae.png" class="img-projeto" alt="Vitae.ai Project">
+        <p>A front-end that communicates with an AI that analyzes resumes sent by the user, gives improvement suggestions and evaluates them.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=react" title="React" alt="React">
           <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
           <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
           <img src="https://skillicons.dev/icons?i=flask" title="Flask" alt="Flask">
         </div>
-        <a href="https://github.com/HenriqueSilvaXavier/Vitae.ai-Residencia" class="btn-github">Ver no GitHub</a>
+        <a href="https://github.com/HenriqueSilvaXavier/Vitae.ai-Residencia" class="btn-github">View on GitHub</a>
       </div>
     </div>
 
@@ -1010,24 +1010,24 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>ToDoList</h3>
-        <img src="todo.png" class="img-projeto" alt="Projeto ToDoList">
-        <p>A Django project to create, edit, read, delete tasks, with the categories: Em andamento, Concluída and Não Feita and move them to the others categories.</p>
+        <img src="todo.png" class="img-projeto" alt="ToDoList Project">
+        <p>A Django project to create, edit, read, and delete tasks, with the categories: In Progress, Completed, and Not Done — and the ability to move tasks between categories.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
           <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
           <img src="https://skillicons.dev/icons?i=django" title="Django" alt="Django">
         </div>
-        <a href="https://github.com/Elias969/Django_Tarefas.github.io" class="btn-github">Ver no GitHub</a>
+        <a href="https://github.com/Elias969/Django_Tarefas.github.io" class="btn-github">View on GitHub</a>
       </div>
     </div>
 
     <div class="timeline-item" data-tags="data">
       <div class="timeline-dot"></div>
       <div class="timeline-card">
-        <h3>Consumo Energético</h3>
-        <img src="consumoenergetico.png" class="img-projeto" alt="Projeto Consumo Energético">
-        <p>This site was made in Gradio and Pandas, using Pyotp and QRcode to make a sign-in and sign-up with MFA(Multi-Factorial Authentication). The objective is to show predictions by AI Scikit-Learn models and MatPlotLib grafics.</p>
+        <h3>Energy Consumption</h3>
+        <img src="consumoenergetico.png" class="img-projeto" alt="Energy Consumption Project">
+        <p>This site was built with Gradio and Pandas, using Pyotp and QRcode to implement sign-in and sign-up with MFA (Multi-Factor Authentication). The objective is to show predictions from AI Scikit-Learn models and Matplotlib charts.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGmhRoEHG6jt0ZCtTf39On6QihNKVDYKGCdw&s" title="Gradio" alt="Gradio">
@@ -1039,11 +1039,10 @@ section{
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a href="https://github.com/HenriqueSilvaXavier/consumo_energetico" class="btn-github">
-            Ver no GitHub
+            View on GitHub
           </a>
-
           <a href="https://consumo-energetico2-6.onrender.com/" target="_blank" class="btn-github">
-            Ver Deploy
+            View Deploy
           </a>
         </div>
       </div>
@@ -1053,8 +1052,8 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>CodeStore</h3>
-        <img src="codestore.png" class="img-projeto" alt="Projeto CodeStore">
-        <p>This project is a e-commerce web application for IT, gamers and design public. Products range from peripherals, devices, cables, etc. Built with JavaScript, HTML, and TailwindCSS, it connects to a backend API to fetch available products.</p>
+        <img src="codestore.png" class="img-projeto" alt="CodeStore Project">
+        <p>This project is an e-commerce web application for IT, gamer and design audiences. Products range from peripherals, devices, cables, and more. Built with JavaScript, HTML, and TailwindCSS, it connects to a backend API to fetch available products.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
@@ -1062,7 +1061,7 @@ section{
           <img src="https://skillicons.dev/icons?i=tailwind" title="TailwindCSS" alt="TailwindCSS">
           <img src="https://skillicons.dev/icons?i=nodejs" title="Node.js" alt="Node.js">
         </div>
-        <a href="https://github.com/HenriqueSilvaXavier/CodeStore" class="btn-github">Ver no GitHub</a>
+        <a href="https://github.com/HenriqueSilvaXavier/CodeStore" class="btn-github">View on GitHub</a>
       </div>
     </div>
 
@@ -1070,7 +1069,7 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Decimal Division Anatomy</h3>
-        <img src="decimalDivisionAnatomy.png" class="img-projeto" alt="Projeto Decimal Division Anatomy">
+        <img src="decimalDivisionAnatomy.png" class="img-projeto" alt="Decimal Division Anatomy Project">
         <p>The Decimal Division Anatomy project visually explains decimal division steps, simulating manual long division for non-integer decimals using HTML, CSS, and JavaScript. It also allows exporting the results as an image with html2canvas, serving as an interactive educational tool.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -1080,11 +1079,10 @@ section{
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a href="https://github.com/HenriqueSilvaXavier/Decimal-Division-Anatomy" class="btn-github">
-            Ver no GitHub
+            View on GitHub
           </a>
-
           <a href="https://henriquesilvaxavier.github.io/Decimal-Division-Anatomy.github.io/" target="_blank" class="btn-github">
-            Ver Deploy
+            View Deploy
           </a>
         </div>
       </div>
@@ -1093,9 +1091,9 @@ section{
     <div class="timeline-item" data-tags="frontend backend">
       <div class="timeline-dot"></div>
       <div class="timeline-card">
-        <h3>Lojas Henri</h3>
-        <img src="lojashenri 1.png" class="img-projeto" alt="Projeto Lojas Henri">
-        <p>The "Lojas Henri" project is an e-commerce platform that allows users to explore various product categories, such as home appliances, furniture, pet supplies and more. The site offers features such as search, favorites and shopping cart, as well as displaying promotions and product reviews.</p>
+        <h3>Henri Store</h3>
+        <img src="lojashenri 1.png" class="img-projeto" alt="Henri Store Project">
+        <p>The "Henri Store" project is an e-commerce platform that allows users to explore various product categories, such as home appliances, furniture, pet supplies, and more. The site offers features such as search, favorites, and shopping cart, as well as displaying promotions and product reviews.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
@@ -1110,7 +1108,7 @@ section{
           <img src="https://skillicons.dev/icons?i=tailwind" title="Tailwind CSS" alt="Tailwind CSS">
           <img src="https://skillicons.dev/icons?i=bootstrap" title="Bootstrap" alt="Bootstrap">
         </div>
-        <a href="https://github.com/HenriqueSilvaXavier/LojasHenri-Laravel" class="btn-github">Ver no GitHub</a>
+        <a href="https://github.com/HenriqueSilvaXavier/LojasHenri-Laravel" class="btn-github">View on GitHub</a>
       </div>
     </div>
 
@@ -1118,8 +1116,8 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Monitor RJ</h3>
-        <img src="monitorrj.png" class="img-projeto" alt="Projeto Monitor RJ">
-        <p>This project allows the users to see insights and dashboards about crimes in the state of Rio de Janeiro. With the columns mcirc(city), cisp, aisp and risp, it's possible to monitorate more closely the more violent localities. Also, it has a AI machine learning model to predict the next value to letalidade_violenta according to the data.</p>
+        <img src="monitorrj.png" class="img-projeto" alt="Monitor RJ Project">
+        <p>This project allows users to see insights and dashboards about crimes in the state of Rio de Janeiro. With columns like mcirc (city), cisp, aisp, and risp, it's possible to monitor more closely the most violent localities. It also includes an AI machine learning model to predict the next value of violent lethality based on the data.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -1133,17 +1131,16 @@ section{
           <img src="https://geopandas.org/en/v0.14.3/_images/geopandas_icon_green.png" title="GeoPandas" alt="GeoPandas">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/250px-Matplotlib_icon.svg.png" title="Matplotlib" alt="Matplotlib">
           <img src="https://pbs.twimg.com/profile_images/758905296416681984/_GD1-XrU_400x400.jpg" title="ChartJS" alt="ChartJS">
-          <img src="https://avatars.githubusercontent.com/u/139423088?s=280&v=4" title="OpenRouter" alt="Openrouter">
+          <img src="https://avatars.githubusercontent.com/u/139423088?s=280&v=4" title="OpenRouter" alt="OpenRouter">
           <img src="https://skillicons.dev/icons?i=selenium" title="Selenium" alt="Selenium">
           <img src="https://skillicons.dev/icons?i=jest" title="Jest" alt="Jest">
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a href="https://github.com/gabrielamaiia01/IA_PI" class="btn-github">
-            Ver no GitHub
+            View on GitHub
           </a>
-
           <a href="https://hub.docker.com/r/henriquesilvaxavier/monitor_rj" target="_blank" class="btn-github">
-            Ver no Dockerhub
+            View on Dockerhub
           </a>
         </div>
       </div>
@@ -1155,8 +1152,8 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>FicLibris</h3>
-        <img src="ficlibris.png" class="img-projeto" alt="Projeto FicLibris">
-        <p>This project allows the users to see insights and dashboards about crimes in the state of Rio de Janeiro. With the columns mcirc(city), cisp, aisp and risp, it's possible to monitorate more closely the more violent localities. Also, it has a AI machine learning model to predict the next value to letalidade_violenta according to the data.</p>
+        <img src="ficlibris.png" class="img-projeto" alt="FicLibris Project">
+        <p>A virtual library of movies, books, manga, anime, and series that recommends content based on keywords and works the user has already seen and selected as a base reference. To generate recommendations, the system analyzes the similarity between works by comparing shared words in their synopsis, keywords, and genre.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
@@ -1165,7 +1162,7 @@ section{
           <img src="https://skillicons.dev/icons?i=react" title="React" alt="React">
           <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
         </div>
-        <a href="https://github.com/HenriqueSilvaXavier/FicLibris" class="btn-github">Ver no GitHub</a>
+        <a href="https://github.com/HenriqueSilvaXavier/FicLibris" class="btn-github">View on GitHub</a>
       </div>
     </div>
 
@@ -1173,8 +1170,8 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Bootcamp-films</h3>
-        <img src="bootcamp.png" class="img-projeto" alt="Projeto Bootcamp-films">
-        <p>This project allows the users to see insights and dashboards about crimes in the state of Rio de Janeiro. With the columns mcirc(city), cisp, aisp and risp, it's possible to monitorate more closely the more violent localities. Also, it has a AI machine learning model to predict the next value to letalidade_violenta according to the data.</p>
+        <img src="bootcamp.png" class="img-projeto" alt="Bootcamp-films Project">
+        <p>A film management web application built during a Java bootcamp. It allows users to browse, register, and manage movie entries through a full-stack interface powered by Spring Boot on the backend.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
@@ -1184,7 +1181,7 @@ section{
           <img src="https://skillicons.dev/icons?i=bootstrap" title="Bootstrap" alt="Bootstrap">
           <img src="https://marcphilipp.de/img/junit5-logo.png" title="JUnit" alt="JUnit">
         </div>
-        <a href="https://github.com/HenriqueSilvaXavier/bootcamp" class="btn-github">Ver no GitHub</a>
+        <a href="https://github.com/HenriqueSilvaXavier/bootcamp" class="btn-github">View on GitHub</a>
       </div>
     </div>
 
@@ -1193,11 +1190,11 @@ section{
 
 <script>
 // =============================================
-// ATRIBUIÇÃO DE LADOS — ignora .timeline-year
+// SIDE ASSIGNMENT — ignores .timeline-year
 // =============================================
-// Seleciona SOMENTE os .timeline-item (não os .timeline-year)
-// e alterna left/right em ordem global contínua,
-// sem que a virada de ano quebre o ritmo.
+// Selects ONLY .timeline-item elements (not .timeline-year)
+// and alternates left/right in continuous global order,
+// so year breaks don't disrupt the rhythm.
 (function assignSides() {
   const items = document.querySelectorAll('.timeline-item');
   items.forEach((item, index) => {
@@ -1206,7 +1203,7 @@ section{
 })();
 
 // =============================================
-// FILTROS
+// FILTERS
 // =============================================
 const buttons = document.querySelectorAll('.filter-btn');
 const items   = document.querySelectorAll('.timeline-item');
@@ -1226,14 +1223,14 @@ buttons.forEach(btn => {
       item.style.display = tags.includes(filter) ? 'block' : 'none';
     });
 
-    // Re-alterna os lados dos itens VISÍVEIS após filtro
+    // Re-alternate sides of VISIBLE items after filtering
     const visibleItems = [...items].filter(i => i.style.display !== 'none');
     visibleItems.forEach((item, index) => {
       item.classList.remove('left', 'right');
       item.classList.add(index % 2 === 0 ? 'left' : 'right');
     });
 
-    // Esconde o ano se todos os itens do grupo estiverem ocultos
+    // Hide year if all items in its group are hidden
     document.querySelectorAll('.timeline-year').forEach(yearEl => {
       let next = yearEl.nextElementSibling;
       let hasVisible = false;
