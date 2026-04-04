@@ -17,8 +17,6 @@
   --secondary:#a78bfa;
   --text:#e5e7eb;
   --muted:#94a3b8;
-
-  /* ÁREAS */
   --ai:#8b5cf6;
   --data:#06b6d4;
   --backend:#14532d;
@@ -56,1166 +54,369 @@ section{
   padding:24px;
 }
 
-/* ===== ORBIT SYSTEM ===== */
-.skills-orbit-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 0 60px;
-}
-
-.skills-orbit-section h2 {
-  margin-bottom: 10px;
-  font-size: 1.3rem;
-  text-align: center;
-}
-
-.subtitle {
-  font-size: .78rem;
-  color: var(--muted);
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.skills-orbit-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.orbit-system {
-  overflow: visible;
-  position: relative;
-  width: 760px;
-  height: 760px;
-  max-width: 95vw;
-  max-height: 95vw;
-}
-
-.orbit-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #000;
-  z-index: 10;
-  font-size: .9rem;
-}
-
-.orbit-system.paused .orbit-ring {
-  animation-play-state: paused !important;
-}
-
-.orbit-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.08);
-  animation: spin 40s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes spin {
-  from { transform: translate(-50%,-50%) rotate(0deg) }
-  to   { transform: translate(-50%,-50%) rotate(360deg) }
-}
-
-.skill-icon {
-  z-index: 1;
-  pointer-events: all;
-  position: absolute;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #0b1220;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: transform .2s;
-}
-
-.skill-icon:hover {
-  z-index: 1000;
-  transform: scale(1.2);
-}
-
-.skill-icon img {
-  width: 26px;
-}
-
-.skill-icon svg {
-  width: 24px;
-  height: 24px;
-  stroke: #fff;
-  fill: none;
-}
-
-.skill-label {
-  z-index: 2000;
-  position: absolute;
-  top: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: .62rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: .2s;
-  white-space: nowrap;
-  background: rgba(11,18,32,.95);
-  padding: 3px 8px;
-  border-radius: 4px;
-  pointer-events: none;
-  border: 1px solid rgba(255,255,255,.1);
-}
-
-.skill-icon:hover .skill-label {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Colored borders per category */
-.ai       { border-color: var(--ai); }
-.data     { border-color: var(--data); }
-.backend  { border-color: var(--backend); }
-.frontend { border-color: var(--frontend); }
-.database { border-color: var(--database); }
-.devops   { border-color: var(--devops); }
-.testing  { border-color: var(--testing); }
-.soft     { border-color: var(--soft); }
-.mobile   { border-color: var(--mobile); }
-.ux       { border-color: var(--ux); }
-
-/* use-angle positioning */
-.orbit-ring {
-  --radius: 0px;
-}
-
-.orbit-ring.use-angle .skill-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform:
-    translate(-50%, -50%)
-    rotate(var(--angle))
-    translate(var(--radius))
-    rotate(calc(-1 * var(--angle)));
-}
-
-/* LEGEND */
-.legend {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 18px;
-  margin-top: 28px;
-  max-width: 680px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .7rem;
-  color: var(--muted);
-}
-
-.legend-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid;
-}
-
-/* ===== TIMELINE ===== */
-.timeline {
-  position: relative;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 100%;
-  background: linear-gradient(var(--primary), var(--secondary));
-  z-index: 1;
-}
-
-.timeline-year {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 40px 0;
-  z-index: 3;
-  clear: both;
-}
-
-.timeline-year span {
-  position: relative;
-  z-index: 4;
-  background: var(--bg);
-  border: 2px solid var(--primary);
-  color: var(--text);
-  padding: 6px 18px;
-  border-radius: 999px;
-  font-size: .8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  box-shadow: 0 0 16px rgba(34,211,238,.35);
-}
-
-.timeline-item {
-  position: relative;
-  width: 50%;
-  padding: 20px 40px;
-}
-
-.timeline-item.left {
-  margin-left: 0;
-  text-align: right;
-}
-
-.timeline-item.right {
-  margin-left: 50%;
-  text-align: left;
-}
-
-.timeline-dot {
-  position: absolute;
-  top: 28px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,var(--primary),var(--secondary));
-  box-shadow: 0 0 12px rgba(34,211,238,.6);
-  z-index: 2;
-}
-
-.timeline-item.left  .timeline-dot { right: -8px; }
-.timeline-item.right .timeline-dot { left: -8px; }
-
-.timeline-card {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 16px;
-  padding: 22px;
-  transition: .3s;
-}
-
-.timeline-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(34,211,238,.4);
-  box-shadow: 0 12px 30px rgba(0,0,0,.25);
-}
-
-.stacks {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 14px 0 18px;
-}
-
-.timeline-item.left .stacks {
-  justify-content: flex-end;
-}
-
-.stacks img {
-  width: 28px;
-  height: 28px;
-  background: #0b1220;
-  padding: 4px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,.08);
-  transition: .2s;
-}
-
-.stacks img:hover {
-  transform: scale(1.15);
-  border-color: var(--primary);
-}
-
-.btn-github {
-  display: inline-block;
-  font-size: .8rem;
-  padding: 8px 14px;
-  border-radius: 999px;
-  text-decoration: none;
-  background: linear-gradient(90deg,var(--primary),var(--secondary));
-  color: #0b1220;
-  font-weight: 600;
-}
-
-/* ===== FILTERS ===== */
-.filters {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px;
-}
-
-.filter-btn {
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  font-size: .8rem;
-  transition: .25s;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-  background: linear-gradient(90deg,var(--primary),var(--secondary));
-  color: #0b1220;
-  border-color: transparent;
-}
-
-.img-projeto {
-  width: 80%;
-  margin: 14px 0;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.08);
-}
-
-.img-projeto-mobile {
-  width: 40%;
-  margin: 14px 0;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.08);
-}
-
-/* ===== EDUCATION ===== */
-.edu-timeline {
-  position: relative;
-  padding-left: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
-}
-
-.edu-timeline::before {
-  content: "";
-  position: absolute;
-  left: 11px;
-  top: 4px;
-  bottom: 4px;
-  width: 3px;
-  background: linear-gradient(var(--primary),var(--secondary));
-}
-
-.edu-item { position: relative; }
-
-.edu-dot {
-  position: absolute;
-  left: -36px;
-  top: 6px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,var(--primary),var(--secondary));
-  box-shadow: 0 0 14px rgba(34,211,238,.6);
-}
-
-.edu-content h3 {
-  color: var(--primary);
-  font-size: 1.05rem;
-  margin-bottom: 6px;
-}
-
-.edu-meta {
-  color: var(--muted);
-  font-size: .9rem;
-}
-
-.cert-card {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: .3s;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.cert-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(34,211,238,.5);
-  box-shadow: 0 14px 34px rgba(0,0,0,.35);
-}
-
-.cert-img {
-  width: 100%;
-  height: 150px;
-  background: #0b1220;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  object-fit: cover;
-}
-
-.cert-content { padding: 16px; }
-.cert-title { font-weight: 700; margin-bottom: 6px; }
-.cert-org { color: var(--primary); font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
-.cert-meta { color: var(--muted); font-size: .85rem; }
-
-/* ===== PROFILE ===== */
-.profile {
-  max-width: 1000px;
-  margin: 60px auto 20px;
-  padding: 0 20px;
-}
-
-.profile-card {
-  background: var(--card);
-  border-radius: 20px;
-  padding: 32px;
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  border: 1px solid rgba(255,255,255,.06);
-}
-
-.profile-photo {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--primary);
-  box-shadow: 0 0 24px rgba(34,211,238,.35);
-}
-
-.profile-info h1 { font-size: 2rem; margin-bottom: 6px; }
-
-.profile-role {
-  color: var(--primary);
-  font-weight: 600;
-  margin-bottom: 14px;
-}
-
-.profile-desc { color: var(--muted); margin-bottom: 18px; }
-
-.profile-contacts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 24px;
-  font-size: .95rem;
-}
-
-.profile-contacts a {
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(255,255,255,.2);
-}
-
-.profile-contacts a:hover {
-  color: var(--primary);
-  border-color: var(--primary);
-}
-
-.linha { display: flex; align-items: center; gap: 6px; }
-
-.rede-social-img {
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-}
-
-/* ===== LANGUAGES ===== */
-.idioma-card { display: flex; flex-direction: column; gap: 22px; }
-.idioma-item { display: flex; flex-direction: column; gap: 8px; }
-
-.idioma-top {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
-}
-
-.nivel {
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .5px;
-}
-
-.nivel.c1 { background: rgba(34,211,238,.15); color: var(--primary); border: 1px solid rgba(34,211,238,.4); }
-.nivel.b2 { background: rgba(167,139,250,.15); color: var(--secondary); border: 1px solid rgba(167,139,250,.4); }
-.nivel.b1 { background: rgba(99,102,241,.15); color: #6366f1; border: 1px solid rgba(99,102,241,.4); }
-
-.barra { height: 10px; background: #0b1220; border-radius: 999px; overflow: hidden; border: 1px solid rgba(255,255,255,.06); }
-
-.progresso { height: 100%; border-radius: 999px; background: linear-gradient(90deg,var(--primary),var(--secondary)); }
-.progresso.c1 { width: 85%; }
-.progresso.b2 { width: 70%; }
-.progresso.b1 { width: 55%; }
-
-/* ===== ANIMATIONS ===== */
-.fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-up:nth-child(1){ transition-delay: .1s }
-.fade-up:nth-child(2){ transition-delay: .2s }
-.fade-up:nth-child(3){ transition-delay: .3s }
-.fade-up:nth-child(4){ transition-delay: .4s }
-.fade-up:nth-child(5){ transition-delay: .5s }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width:500px){
-  .profile-card { flex-direction: column; text-align: center; }
-  .profile-contacts { justify-content: center; }
-  .linha { justify-content: center; }
-}
-
-@media (max-width: 674px){
-  .timeline::before { left: 20px; transform: none; }
-
-  .timeline-item {
-    width: 100%;
-    padding: 20px 20px 20px 60px;
-    margin-left: 0 !important;
-    text-align: left !important;
-  }
-
-  .timeline-item.left,
-  .timeline-item.right { margin-left: 0; text-align: left; }
-
-  .timeline-dot { left: 12px !important; right: auto !important; }
-
-  .timeline-item.left .stacks { justify-content: flex-start; }
-
-  .img-projeto,
-  .img-projeto-mobile { width: 100%; }
-
-  .timeline-year { justify-content: flex-start; }
-}
-
-section{
-  max-width:1000px;
-  margin:60px auto;
-  padding:0 20px;
-}
-
-.section-title{
-  font-size:1.8rem;
-  margin-bottom:30px;
-}
-
-.card{
-  background:var(--card);
-  border-radius:16px;
-  padding:24px;
-}
-
-/* ===== Skills Map ===== */
-.skills-map-wrapper{
-  display:flex;
-  justify-content:center;
-}
-
-.metro-map{
-  width:1000px;
-  max-width:95vw;
-  padding:40px 20px 60px;
-}
-
-.line-label{
-  position:absolute;
-  left:0;
-  top:0;
-  width:120px;
-  font-size:.75rem;
-  letter-spacing:1px;
-  opacity:.85;
-}
-
-.station{
+/* ===== ORBIT SYSTEM — FULLY RESPONSIVE ===== */
+.skills-orbit-section{
   display:flex;
   flex-direction:column;
   align-items:center;
-  width:70px;
+  padding:40px 0 60px;
+  /* evita scroll horizontal */
+  overflow-x:hidden;
+  width:100%;
 }
 
-.station-icon{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:rgba(17,24,39,.95);
-  border:3px solid var(--line-color);
+.skills-orbit-section h2{
+  margin-bottom:10px;
+  font-size:1.3rem;
+  text-align:center;
+}
+
+.subtitle{
+  font-size:.78rem;
+  color:var(--muted);
+  margin-bottom:30px;
+  text-align:center;
+  padding:0 12px;
+}
+
+.skills-orbit-wrapper{
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:20px;
-  transition:.2s;
-  position:relative;
-  z-index:2;
+  /* largura máxima = 100% da viewport com um pouco de margem */
+  width:100%;
+  max-width:100vw;
 }
 
-.station-icon img{
-  width:26px;
-  height:26px;
-}
-
-.station-icon:hover{
-  transform:scale(1.15);
-}
-
-.interchange{
-  border-color:#fff;
-  box-shadow:0 0 0 3px var(--line-color);
-}
-
-.station-label{
-  margin-top:8px;
-  font-size:.65rem;
-  text-align:center;
-  color:var(--muted);
-  line-height:1.2;
-}
-
-.map-legend{
-  margin-top:20px;
-  text-align:center;
-  color:var(--muted);
-  font-size:.9rem;
-}
-
-.metro-line{
-  --label-width:140px;
-  --rail-thickness:6px;
-  --icon-size:44px;
-  --icon-offset:22px;
-  --rail-y: calc(var(--icon-offset) + 2px);
+/*
+  --orb-size: tamanho real do quadrado da órbita.
+              Usa min() para nunca ultrapassar 95vw.
+  --sf: fator de escala (0..1), calculado em JS e injetado como CSS var.
+        Todos os tamanhos internos multiplicam por --sf.
+*/
+.orbit-system{
+  --orb-size: min(760px, 95vw);
+  --sf: 1; /* sobrescrito pelo JS */
 
   position:relative;
-  margin:42px 0;
-  padding-left:var(--label-width);
+  width:var(--orb-size);
+  height:var(--orb-size);
+  flex-shrink:0;
 }
 
-.stations{
-  display:flex;
-  gap:22px;
-  flex-wrap:wrap;
-  align-items:flex-start;
-  position:relative;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0 calc(var(--rail-y) - var(--rail-thickness)/2),
-      var(--line-color) calc(var(--rail-y) - var(--rail-thickness)/2) calc(var(--rail-y) + var(--rail-thickness)/2),
-      transparent calc(var(--rail-y) + var(--rail-thickness)/2) 84px
-    );
-  background-repeat:repeat-y;
-  background-size:100% 84px;
+.orbit-center{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:calc(110px * var(--sf));
+  height:calc(110px * var(--sf));
+  font-size:calc(.9rem * var(--sf));
+  border-radius:50%;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#000;
+  z-index:10;
+  white-space:nowrap;
 }
+
+.orbit-system.paused .orbit-ring{
+  animation-play-state:paused!important;
+}
+
+.orbit-ring{
+  position:absolute;
+  top:50%;left:50%;
+  /* --rd = diâmetro escalonado, calculado em JS */
+  width:var(--rd);
+  height:var(--rd);
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.08);
+  animation:spin 40s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes spin{
+  from{transform:translate(-50%,-50%) rotate(0deg)}
+  to  {transform:translate(-50%,-50%) rotate(360deg)}
+}
+
+.skill-icon{
+  position:absolute;
+  width:calc(46px * var(--sf));
+  height:calc(46px * var(--sf));
+  min-width:18px;min-height:18px;
+  border-radius:50%;
+  background:#0b1220;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:transform .2s;
+  pointer-events:all;
+  z-index:1;
+}
+
+.skill-icon:hover{z-index:1000;transform:scale(1.2)}
+
+.skill-icon img{
+  width:calc(26px * var(--sf));
+  height:calc(26px * var(--sf));
+  min-width:12px;min-height:12px;
+}
+
+.skill-icon svg{
+  width:calc(24px * var(--sf));
+  height:calc(24px * var(--sf));
+  min-width:10px;min-height:10px;
+  stroke:#fff;fill:none;
+}
+
+.skill-label{
+  z-index:2000;
+  position:absolute;
+  top:120%;left:50%;
+  transform:translateX(-50%);
+  font-size:calc(.62rem * var(--sf));
+  opacity:0;visibility:hidden;
+  transition:.2s;white-space:nowrap;
+  background:rgba(11,18,32,.95);
+  padding:3px 8px;border-radius:4px;
+  pointer-events:none;
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.skill-icon:hover .skill-label{opacity:1;visibility:visible}
+
+/* Bordas coloridas por categoria */
+.ai      {border-color:var(--ai)}
+.data    {border-color:var(--data)}
+.backend {border-color:var(--backend)}
+.frontend{border-color:var(--frontend)}
+.database{border-color:var(--database)}
+.devops  {border-color:var(--devops)}
+.testing {border-color:var(--testing)}
+.soft    {border-color:var(--soft)}
+.mobile  {border-color:var(--mobile)}
+.ux      {border-color:var(--ux)}
+
+/*
+  Posicionamento angular para anéis .use-angle:
+  O JS define --rd (diâmetro real em px após escala) em cada anel,
+  então o raio é var(--rd)/2. Usamos translateX com metade disso.
+*/
+.orbit-ring.use-angle .skill-icon{
+  position:absolute;
+  top:50%;left:50%;
+  transform:
+    translate(-50%,-50%)
+    rotate(var(--angle))
+    translateX(calc(var(--rd) / 2))
+    rotate(calc(-1 * var(--angle)));
+}
+
+/* Legenda */
+.legend{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:10px 18px;margin-top:28px;
+  max-width:680px;padding:0 12px;
+}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)}
+.legend-dot{width:12px;height:12px;border-radius:50%;border:2px solid}
 
 /* ===== TIMELINE ===== */
-.timeline{
-  position:relative;
+.timeline{position:relative}
+
+.timeline::before{
+  content:"";position:absolute;
+  left:50%;top:0;transform:translateX(-50%);
+  width:3px;height:100%;
+  background:linear-gradient(var(--primary),var(--secondary));
+  z-index:1;
 }
 
-/* Central vertical line */
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 100%;
-  background: linear-gradient(var(--primary), var(--secondary));
-  z-index: 1;
+.timeline-year{
+  position:relative;display:flex;justify-content:center;
+  width:100%;margin:40px 0;z-index:3;clear:both;
 }
 
-/* ===== YEAR ON THE LINE ===== */
-.timeline-year {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 40px 0;
-  z-index: 3;
-  clear: both;
+.timeline-year span{
+  position:relative;z-index:4;
+  background:var(--bg);border:2px solid var(--primary);
+  color:var(--text);padding:6px 18px;border-radius:999px;
+  font-size:.8rem;font-weight:700;letter-spacing:1px;
+  box-shadow:0 0 16px rgba(34,211,238,.35);
 }
 
-.timeline-year span {
-  position: relative;
-  z-index: 4;
-  background: var(--bg);
-  border: 2px solid var(--primary);
-  color: var(--text);
-  padding: 6px 18px;
-  border-radius: 999px;
-  font-size: .8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  box-shadow: 0 0 16px rgba(34,211,238,.35);
-}
-
-/* ===== ZIG-ZAG — controlled by JS classes ===== */
-.timeline-item{
-  position: relative;
-  width: 50%;
-  padding: 20px 40px;
-}
-
-/* LEFT = left side of the line (right-aligned text) */
-.timeline-item.left{
-  margin-left: 0;
-  text-align: right;
-}
-
-/* RIGHT = right side of the line (left-aligned text) */
-.timeline-item.right{
-  margin-left: 50%;
-  text-align: left;
-}
+.timeline-item{position:relative;width:50%;padding:20px 40px}
+.timeline-item.left{margin-left:0;text-align:right}
+.timeline-item.right{margin-left:50%;text-align:left}
 
 .timeline-dot{
-  position:absolute;
-  top:28px;
-  width:16px;
-  height:16px;
-  border-radius:50%;
+  position:absolute;top:28px;
+  width:16px;height:16px;border-radius:50%;
   background:linear-gradient(135deg,var(--primary),var(--secondary));
-  box-shadow:0 0 12px rgba(34,211,238,.6);
-  z-index:2;
+  box-shadow:0 0 12px rgba(34,211,238,.6);z-index:2;
 }
-
-.timeline-item.left  .timeline-dot{ right:-8px; }
-.timeline-item.right .timeline-dot{ left:-8px; }
+.timeline-item.left  .timeline-dot{right:-8px}
+.timeline-item.right .timeline-dot{left:-8px}
 
 .timeline-card{
-  background:var(--card);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;
-  padding:22px;
-  transition:.3s;
+  background:var(--card);border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;padding:22px;transition:.3s;
 }
-
 .timeline-card:hover{
   transform:translateY(-4px);
   border-color:rgba(34,211,238,.4);
   box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
 
-.stacks{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:14px 0 18px;
-}
-
-.timeline-item.left .stacks {
-  justify-content: flex-end;
-}
+.stacks{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}
+.timeline-item.left .stacks{justify-content:flex-end}
 
 .stacks img{
-  width:28px;
-  height:28px;
-  background:#0b1220;
-  padding:4px;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,.08);
-  transition:.2s;
+  width:28px;height:28px;background:#0b1220;
+  padding:4px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.08);transition:.2s;
 }
-
-.stacks img:hover{
-  transform:scale(1.15);
-  border-color:var(--primary);
-}
+.stacks img:hover{transform:scale(1.15);border-color:var(--primary)}
 
 .btn-github{
-  display:inline-block;
-  font-size:.8rem;
-  padding:8px 14px;
-  border-radius:999px;
-  text-decoration:none;
+  display:inline-block;font-size:.8rem;padding:8px 14px;
+  border-radius:999px;text-decoration:none;
   background:linear-gradient(90deg,var(--primary),var(--secondary));
-  color:#0b1220;
-  font-weight:600;
+  color:#0b1220;font-weight:600;
 }
 
 /* ===== FILTERS ===== */
 .filters{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:30px;
-  max-width:1000px;
-  margin-left:auto;
-  margin-right:auto;
-  padding: 0 20px;
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;
+  max-width:1000px;margin-left:auto;margin-right:auto;padding:0 20px;
 }
 
 .filter-btn{
-  padding:8px 14px;
-  border-radius:999px;
+  padding:8px 14px;border-radius:999px;
   border:1px solid rgba(255,255,255,.08);
-  background:transparent;
-  color:var(--text);
-  cursor:pointer;
-  font-size:.8rem;
-  transition:.25s;
+  background:transparent;color:var(--text);
+  cursor:pointer;font-size:.8rem;transition:.25s;
 }
-
-.filter-btn:hover,
-.filter-btn.active{
+.filter-btn:hover,.filter-btn.active{
   background:linear-gradient(90deg,var(--primary),var(--secondary));
-  color:#0b1220;
-  border-color:transparent;
+  color:#0b1220;border-color:transparent;
 }
 
 .img-projeto{
-  width:80%;
-  margin:14px 0;
-  border-radius:12px;
+  width:80%;margin:14px 0;border-radius:12px;
   border:1px solid rgba(255,255,255,.08);
 }
-
 .img-projeto-mobile{
-  width:40%;
-  margin:14px 0;
-  border-radius:12px;
+  width:40%;margin:14px 0;border-radius:12px;
   border:1px solid rgba(255,255,255,.08);
 }
 
-/* ===== EDUCATION — SIMPLE TIMELINE ===== */
+/* ===== EDUCATION ===== */
 .edu-timeline{
-  position:relative;
-  padding-left:40px;
-  display:flex;
-  flex-direction:column;
-  gap:34px;
+  position:relative;padding-left:40px;
+  display:flex;flex-direction:column;gap:34px;
 }
-
 .edu-timeline::before{
-  content:"";
-  position:absolute;
-  left:11px;
-  top:4px;
-  bottom:4px;
-  width:3px;
+  content:"";position:absolute;
+  left:11px;top:4px;bottom:4px;width:3px;
   background:linear-gradient(var(--primary),var(--secondary));
 }
-
-.edu-item{
-  position:relative;
-}
-
+.edu-item{position:relative}
 .edu-dot{
-  position:absolute;
-  left:-36px;
-  top:6px;
-  width:18px;
-  height:18px;
-  border-radius:50%;
+  position:absolute;left:-36px;top:6px;
+  width:18px;height:18px;border-radius:50%;
   background:linear-gradient(135deg,var(--primary),var(--secondary));
   box-shadow:0 0 14px rgba(34,211,238,.6);
 }
-
-.edu-content h3{
-  color:var(--primary);
-  font-size:1.05rem;
-  margin-bottom:6px;
-}
-
-.edu-meta{
-  color:var(--muted);
-  font-size:.9rem;
-}
+.edu-content h3{color:var(--primary);font-size:1.05rem;margin-bottom:6px}
+.edu-meta{color:var(--muted);font-size:.9rem}
 
 /* ===== CERTIFICATES ===== */
-.cert-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:22px;
-}
-#certificates{
-  max-width:400px;
-}
+#certificates{max-width:400px}
 
 .cert-card{
-  background:var(--card);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;
-  overflow:hidden;
-  transition:.3s;
-  display:flex;
-  flex-direction:column;
+  background:var(--card);border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;overflow:hidden;transition:.3s;
+  display:flex;flex-direction:column;margin-bottom:20px;
 }
-
 .cert-card:hover{
   transform:translateY(-6px);
   border-color:rgba(34,211,238,.5);
   box-shadow:0 14px 34px rgba(0,0,0,.35);
 }
-
 .cert-img{
-  width:100%;
-  height:150px;
-  background:#0b1220;
-  border-bottom:1px solid rgba(255,255,255,.06);
+  width:100%;height:150px;background:#0b1220;
+  border-bottom:1px solid rgba(255,255,255,.06);object-fit:cover;
 }
+.cert-content{padding:16px}
+.cert-title{font-weight:700;margin-bottom:6px}
+.cert-org{color:var(--primary);font-weight:600;font-size:.9rem;margin-bottom:6px}
+.cert-meta{color:var(--muted);font-size:.85rem}
 
-.cert-content{
-  padding:16px;
-}
-
-.cert-title{
-  font-weight:700;
-  margin-bottom:6px;
-}
-
-.cert-org{
-  color:var(--primary);
-  font-weight:600;
-  font-size:.9rem;
-  margin-bottom:6px;
-}
-
-.cert-meta{
-  color:var(--muted);
-  font-size:.85rem;
-}
-
-/* ===== HEADER / PROFILE ===== */
-.profile{
-  max-width:1000px;
-  margin:60px auto 20px;
-  padding:0 20px;
-}
+/* ===== PROFILE ===== */
+.profile{max-width:1000px;margin:60px auto 20px;padding:0 20px}
 
 .profile-card{
-  background:var(--card);
-  border-radius:20px;
-  padding:32px;
-  display:flex;
-  align-items:center;
-  gap:28px;
+  background:var(--card);border-radius:20px;padding:32px;
+  display:flex;align-items:center;gap:28px;
   border:1px solid rgba(255,255,255,.06);
 }
-
 .profile-photo{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  object-fit:cover;
+  width:140px;height:140px;border-radius:50%;object-fit:cover;
   border:3px solid var(--primary);
   box-shadow:0 0 24px rgba(34,211,238,.35);
 }
-
-.profile-info h1{
-  font-size:2rem;
-  margin-bottom:6px;
-}
-
-.profile-role{
-  color:var(--primary);
-  font-weight:600;
-  margin-bottom:14px;
-}
-
-.profile-desc{
-  color:var(--muted);
-  margin-bottom:18px;
-}
-
-.profile-contacts{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px 24px;
-  font-size:.95rem;
-}
-
+.profile-info h1{font-size:2rem;margin-bottom:6px}
+.profile-role{color:var(--primary);font-weight:600;margin-bottom:14px}
+.profile-desc{color:var(--muted);margin-bottom:18px}
+.profile-contacts{display:flex;flex-wrap:wrap;gap:14px 24px;font-size:.95rem}
 .profile-contacts a{
-  color:var(--text);
-  text-decoration:none;
+  color:var(--text);text-decoration:none;
   border-bottom:1px dashed rgba(255,255,255,.2);
 }
-
-.profile-contacts a:hover{
-  color:var(--primary);
-  border-color:var(--primary);
-}
-
-.linha{
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.rede-social-img{
-  width:30px;
-  height:30px;
-  border-radius: 100%;
-}
+.profile-contacts a:hover{color:var(--primary);border-color:var(--primary)}
+.linha{display:flex;align-items:center;gap:6px}
+.rede-social-img{width:30px;height:30px;border-radius:100%}
 
 /* ===== LANGUAGES ===== */
-.idioma-card{
-  display:flex;
-  flex-direction:column;
-  gap:22px;
+.idioma-card{display:flex;flex-direction:column;gap:22px}
+.idioma-item{display:flex;flex-direction:column;gap:8px}
+.idioma-top{display:flex;justify-content:space-between;font-weight:600}
+.nivel{padding:2px 10px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.5px}
+.nivel.c1{background:rgba(34,211,238,.15);color:var(--primary);border:1px solid rgba(34,211,238,.4)}
+.nivel.b2{background:rgba(167,139,250,.15);color:var(--secondary);border:1px solid rgba(167,139,250,.4)}
+.nivel.b1{background:rgba(99,102,241,.15);color:#6366f1;border:1px solid rgba(99,102,241,.4)}
+.barra{height:10px;background:#0b1220;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.progresso{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--secondary))}
+.progresso.c1{width:85%}
+.progresso.b2{width:70%}
+.progresso.b1{width:55%}
+
+/* ===== ANIMATIONS ===== */
+.fade-up{opacity:0;transform:translateY(30px);transition:all 0.8s ease}
+.fade-up.show{opacity:1;transform:translateY(0)}
+.fade-up:nth-child(1){transition-delay:.1s}
+.fade-up:nth-child(2){transition-delay:.2s}
+.fade-up:nth-child(3){transition-delay:.3s}
+.fade-up:nth-child(4){transition-delay:.4s}
+.fade-up:nth-child(5){transition-delay:.5s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:500px){
+  .profile-card{flex-direction:column;text-align:center}
+  .profile-contacts{justify-content:center}
+  .linha{justify-content:center}
 }
 
-.idioma-item{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.idioma-top{
-  display:flex;
-  justify-content:space-between;
-  font-weight:600;
-}
-
-.nivel{
-  padding:2px 10px;
-  border-radius:999px;
-  font-size:.75rem;
-  font-weight:700;
-  letter-spacing:.5px;
-}
-
-.nivel.c1{
-  background:rgba(34,211,238,.15);
-  color:var(--primary);
-  border:1px solid rgba(34,211,238,.4);
-}
-
-.nivel.b2{
-  background:rgba(167,139,250,.15);
-  color:var(--secondary);
-  border:1px solid rgba(167,139,250,.4);
-}
-
-.barra{
-  height:10px;
-  background:#0b1220;
-  border-radius:999px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.progresso{
-  height:100%;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--primary),var(--secondary));
-}
-
-.progresso.c1{ width:85%; }
-.progresso.b2{ width:70%; }
-
-.nivel.b1{
-  background:rgba(99,102,241,.15);
-  color:#6366f1;
-  border:1px solid rgba(99,102,241,.4);
-}
-
-.progresso.b1{ width:55%; }
-
-@media (max-width:500px){
-  .profile-card{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .profile-contacts{
-    justify-content:center;
-  }
-
-  .linha{
-    justify-content:center;
-  }
-}
-
-@media (max-width:445px){
-  .stations{
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-
-    /* trilho vertical único */
-    background: linear-gradient(
-      to bottom,
-      var(--line-color),
-      var(--line-color)
-    );
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 6px 100%;
-  }
-}
-
-@media (max-width: 674px){
-
-  /* remove a linha central */
-  .timeline::before {
-    left: 20px;
-    transform: none;
-  }
-
-  /* cada item ocupa 100% */
-  .timeline-item{
-    width: 100%;
-    padding: 20px 20px 20px 60px;
-    margin-left: 0 !important;
-    text-align: left !important;
-  }
-
-  /* remove zig-zag */
-  .timeline-item.left,
-  .timeline-item.right{
-    margin-left: 0;
-    text-align: left;
-  }
-
-  /* posiciona o ponto à esquerda */
-  .timeline-dot{
-    left: 12px !important;
-    right: auto !important;
-  }
-
-  /* stacks alinhados à esquerda */
-  .timeline-item.left .stacks{
-    justify-content: flex-start;
-  }
-
-  /* imagens ocupando melhor a tela */
-  .img-projeto,
-  .img-projeto-mobile{
-    width: 100%;
-  }
-
-  .timeline-year{
-    justify-content: flex-start;
-  }
+@media(max-width:674px){
+  .timeline::before{left:20px;transform:none}
+  .timeline-item{width:100%;padding:20px 20px 20px 60px;margin-left:0!important;text-align:left!important}
+  .timeline-item.left,.timeline-item.right{margin-left:0;text-align:left}
+  .timeline-dot{left:12px!important;right:auto!important}
+  .timeline-item.left .stacks{justify-content:flex-start}
+  .img-projeto,.img-projeto-mobile{width:100%}
+  .timeline-year{justify-content:flex-start}
 }
 </style>
 </head>
@@ -1236,9 +437,7 @@ section{
       <br>
       <div class="profile-contacts">
         <span class="linha"><img src="whatsapp 1.png" style="width:20px">(81) 98552-1110</span>
-        <span class="linha">
-          <a href="mailto:henriquesx44@gmail.com">henriquesx44@gmail.com</a>
-        </span>
+        <span class="linha"><a href="mailto:henriquesx44@gmail.com">henriquesx44@gmail.com</a></span>
         <a href="https://www.linkedin.com/in/henrique-silva-xavier-3a4047241/" target="_blank"><img src="linkedin 1.png" class="rede-social-img" style="width:30px"></a>
         <a href="https://www.instagram.com/henriquesilvaxavier8/" target="_blank"><img src="instagram 1.png" class="rede-social-img" style="width:30px"></a>
         <a href="https://github.com/henriquesilvaxavier" target="_blank"><img src="github 1.png" class="rede-social-img" style="width:30px"></a>
@@ -1276,12 +475,12 @@ section{
 <!-- ================= CERTIFICATES ================= -->
 <section id="certificates">
   <h2 class="section-title">🏅 Certificates & Achievements</h2>
-  <div class="cert-card fade-up" style="display:flex; flex-direction:column; gap:18px; margin-bottom:20px;">
-    <div style="display:flex; align-items:center; gap:12px;">
+  <div class="cert-card fade-up" style="display:flex;flex-direction:column;gap:18px;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
       <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;">🥉</div>
       <div>
         <p style="font-weight:600;">Bronze Medal — OBMEP</p>
-        <p style="color:var(--muted); font-size:.9rem;">Brazilian Mathematical Olympiad for Public Schools</p>
+        <p style="color:var(--muted);font-size:.9rem;">Brazilian Mathematical Olympiad for Public Schools</p>
       </div>
     </div>
   </div>
@@ -1302,204 +501,93 @@ section{
 
       <div class="orbit-center">CORE</div>
 
-      <!-- SOFT SKILLS - órbita 1 (180px) -->
-      <div class="orbit-ring" style="width:180px;height:180px;">
-        <div class="skill-icon soft" style="top:-26px;left:15%;">
+      <!-- ÓRBITA 1 — soft skills, diâmetro base 180px, posicionada via JS (data-a = ângulo em graus) -->
+      <div class="orbit-ring" id="ring1" data-base-d="180">
+        <div class="skill-icon soft" data-a="270">
           <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-3-6.7" stroke-width="2"/><path d="M21 3v6h-6" stroke-width="2"/></svg>
           <span class="skill-label">Persistence</span>
         </div>
-        <div class="skill-icon soft" style="top:-26px;right:15%;">
+        <div class="skill-icon soft" data-a="315">
           <svg viewBox="0 0 24 24"><path d="M12 3v6l4-4M12 21v-6l-4 4" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>
           <span class="skill-label">Adaptability</span>
         </div>
-        <div class="skill-icon soft" style="right:-26px;top:20%;">
+        <div class="skill-icon soft" data-a="0">
           <svg viewBox="0 0 24 24"><path d="M4 19h16M4 15l4-4 4 4 8-8" stroke-width="2"/></svg>
           <span class="skill-label">Analytical</span>
         </div>
-        <div class="skill-icon soft" style="right:-26px;bottom:20%;">
+        <div class="skill-icon soft" data-a="45">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/></svg>
           <span class="skill-label">Results</span>
         </div>
-        <div class="skill-icon soft" style="bottom:-26px;left:40%;">
+        <div class="skill-icon soft" data-a="90">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path d="M9 9a3 3 0 115 1c0 2-3 2-3 4" stroke-width="2"/></svg>
           <span class="skill-label">Problem Solving</span>
         </div>
-        <div class="skill-icon soft" style="left:-26px;bottom:20%;">
+        <div class="skill-icon soft" data-a="135">
           <svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>
           <span class="skill-label">Continuous Learning</span>
         </div>
-        <div class="skill-icon soft" style="left:-26px;top:20%;">
+        <div class="skill-icon soft" data-a="180">
           <svg viewBox="0 0 24 24"><path d="M17 20a4 4 0 10-8 0" stroke-width="2"/><circle cx="12" cy="10" r="4" stroke-width="2"/></svg>
           <span class="skill-label">Teamwork</span>
         </div>
       </div>
 
-      <!-- ÓRBITA 2 (280px) -->
-      <div class="orbit-ring" style="width:280px;height:280px;">
-        <div class="skill-icon ai" style="top:-23px;left:42%;">
-          <img src="https://skillicons.dev/icons?i=py"/>
-          <span class="skill-label">Python</span>
-        </div>
-        <div class="skill-icon testing" style="left:-23px;bottom:35%;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/insomnia/insomnia-original.svg"/>
-          <span class="skill-label">Insomnia</span>
-        </div>
-        <div class="skill-icon ux" style="right:-23px;top:38%;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"/>
-          <span class="skill-label">Figma</span>
-        </div>
-        <div class="skill-icon frontend" style="bottom:-23px;left:30%;">
-          <img src="https://skillicons.dev/icons?i=html"/>
-          <span class="skill-label">HTML</span>
-        </div>
-        <div class="skill-icon devops" style="left:-23px;top:35%;">
-          <img src="https://skillicons.dev/icons?i=git"/>
-          <span class="skill-label">Git</span>
-        </div>
-        <div class="skill-icon ai" style="bottom:-23px;right:35%;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"/>
-          <span class="skill-label">Jupyter</span>
-        </div>
+      <!-- ÓRBITA 2 — 280px base, posicionada via JS (data-a) -->
+      <div class="orbit-ring" id="ring2" data-base-d="280">
+        <div class="skill-icon ai" data-a="270"><img src="https://skillicons.dev/icons?i=py"/><span class="skill-label">Python</span></div>
+        <div class="skill-icon testing" data-a="210"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/insomnia/insomnia-original.svg"/><span class="skill-label">Insomnia</span></div>
+        <div class="skill-icon ux" data-a="30"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"/><span class="skill-label">Figma</span></div>
+        <div class="skill-icon frontend" data-a="90"><img src="https://skillicons.dev/icons?i=html"/><span class="skill-label">HTML</span></div>
+        <div class="skill-icon devops" data-a="150"><img src="https://skillicons.dev/icons?i=git"/><span class="skill-label">Git</span></div>
+        <div class="skill-icon ai" data-a="330"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"/><span class="skill-label">Jupyter</span></div>
       </div>
 
-      <!-- ÓRBITA 3 (390px) -->
-      <div class="orbit-ring use-angle" style="width:390px;height:390px; --radius:195px;">
-        <div class="skill-icon frontend" style="--angle:0deg;">
-          <img src="https://skillicons.dev/icons?i=css"/>
-          <span class="skill-label">CSS</span>
-        </div>
-        <div class="skill-icon frontend" style="--angle:60deg;">
-          <img src="https://skillicons.dev/icons?i=tailwind"/>
-          <span class="skill-label">Tailwind</span>
-        </div>
-        <div class="skill-icon ai" style="--angle:120deg;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg"/>
-          <span class="skill-label">Scikit-learn</span>
-        </div>
-        <div class="skill-icon frontend" style="--angle:180deg;">
-          <img src="https://skillicons.dev/icons?i=js"/>
-          <span class="skill-label">JavaScript</span>
-        </div>
-        <div class="skill-icon data" style="--angle:240deg;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"/>
-          <span class="skill-label">Pandas</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:300deg;">
-          <img src="https://skillicons.dev/icons?i=java"/>
-          <span class="skill-label">Java</span>
-        </div>
+      <!-- ÓRBITA 3 — 390px base, posicionada via JS (data-a) -->
+      <div class="orbit-ring" id="ring3" data-base-d="390">
+        <div class="skill-icon frontend" data-a="0"><img src="https://skillicons.dev/icons?i=css"/><span class="skill-label">CSS</span></div>
+        <div class="skill-icon frontend" data-a="60"><img src="https://skillicons.dev/icons?i=tailwind"/><span class="skill-label">Tailwind</span></div>
+        <div class="skill-icon ai" data-a="120"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg"/><span class="skill-label">Scikit-learn</span></div>
+        <div class="skill-icon frontend" data-a="180"><img src="https://skillicons.dev/icons?i=js"/><span class="skill-label">JavaScript</span></div>
+        <div class="skill-icon data" data-a="240"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"/><span class="skill-label">Pandas</span></div>
+        <div class="skill-icon backend" data-a="300"><img src="https://skillicons.dev/icons?i=java"/><span class="skill-label">Java</span></div>
       </div>
 
-      <!-- ÓRBITA 4 (510px) -->
-      <div class="orbit-ring use-angle" style="width:510px;height:510px; --radius:255px;">
-        <div class="skill-icon frontend" style="--angle:0deg;">
-          <img src="https://skillicons.dev/icons?i=bootstrap"/>
-          <span class="skill-label">Bootstrap</span>
-        </div>
-        <div class="skill-icon frontend" style="--angle:45deg;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chartjs/chartjs-original.svg"/>
-          <span class="skill-label">Chart.js</span>
-        </div>
-        <div class="skill-icon data" style="--angle:90deg;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg"/>
-          <span class="skill-label">Matplotlib</span>
-        </div>
-        <div class="skill-icon data" style="--angle:135deg;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"/>
-          <span class="skill-label">NumPy</span>
-        </div>
-        <div class="skill-icon database" style="--angle:180deg;">
-          <img src="https://skillicons.dev/icons?i=sqlite"/>
-          <span class="skill-label">SQLite</span>
-        </div>
-        <div class="skill-icon database" style="--angle:225deg;">
-          <img src="https://skillicons.dev/icons?i=mysql"/>
-          <span class="skill-label">MySQL</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:270deg;">
-          <img src="https://skillicons.dev/icons?i=flask"/>
-          <span class="skill-label">Flask</span>
-        </div>
-        <div class="skill-icon data" style="--angle:315deg;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png"/>
-          <span class="skill-label">Power BI</span>
-        </div>
+      <!-- ÓRBITA 4 — 510px base -->
+      <div class="orbit-ring" id="ring4" data-base-d="510">
+        <div class="skill-icon frontend" data-a="0"><img src="https://skillicons.dev/icons?i=bootstrap"/><span class="skill-label">Bootstrap</span></div>
+        <div class="skill-icon frontend" data-a="45"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chartjs/chartjs-original.svg"/><span class="skill-label">Chart.js</span></div>
+        <div class="skill-icon data" data-a="90"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg"/><span class="skill-label">Matplotlib</span></div>
+        <div class="skill-icon data" data-a="135"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"/><span class="skill-label">NumPy</span></div>
+        <div class="skill-icon database" data-a="180"><img src="https://skillicons.dev/icons?i=sqlite"/><span class="skill-label">SQLite</span></div>
+        <div class="skill-icon database" data-a="225"><img src="https://skillicons.dev/icons?i=mysql"/><span class="skill-label">MySQL</span></div>
+        <div class="skill-icon backend" data-a="270"><img src="https://skillicons.dev/icons?i=flask"/><span class="skill-label">Flask</span></div>
+        <div class="skill-icon data" data-a="315"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png"/><span class="skill-label">Power BI</span></div>
       </div>
 
-      <!-- ÓRBITA 5 (640px) -->
-      <div class="orbit-ring use-angle" style="width:640px;height:640px; --radius:320px;">
-        <div class="skill-icon ai" style="--angle:0deg;">
-          <img src="https://skillicons.dev/icons?i=tensorflow"/>
-          <span class="skill-label">TensorFlow</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:30deg;">
-          <img src="https://skillicons.dev/icons?i=django"/>
-          <span class="skill-label">Django</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:60deg;">
-          <img src="https://skillicons.dev/icons?i=spring"/>
-          <span class="skill-label">Spring</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:90deg;">
-          <img src="https://skillicons.dev/icons?i=php"/>
-          <span class="skill-label">PHP</span>
-        </div>
-        <div class="skill-icon database" style="--angle:120deg;">
-          <img src="https://skillicons.dev/icons?i=postgresql"/>
-          <span class="skill-label">PostgreSQL</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:150deg;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg"/>
-          <span class="skill-label">Prisma</span>
-        </div>
-        <div class="skill-icon mobile" style="--angle:180deg;">
-          <img src="https://skillicons.dev/icons?i=react"/>
-          <span class="skill-label">React Native</span>
-        </div>
-        <div class="skill-icon frontend" style="--angle:210deg;">
-          <img src="https://skillicons.dev/icons?i=react"/>
-          <span class="skill-label">React</span>
-        </div>
-        <div class="skill-icon testing" style="--angle:240deg;">
-          <img src="https://skillicons.dev/icons?i=jest"/>
-          <span class="skill-label">Jest</span>
-        </div>
-        <div class="skill-icon database" style="--angle:270deg;">
-          <img src="https://skillicons.dev/icons?i=mongodb"/>
-          <span class="skill-label">MongoDB</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:300deg;">
-          <img src="https://skillicons.dev/icons?i=laravel"/>
-          <span class="skill-label">Laravel</span>
-        </div>
-        <div class="skill-icon testing" style="--angle:330deg;">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"/>
-          <span class="skill-label">Postman</span>
-        </div>
+      <!-- ÓRBITA 5 — 640px base -->
+      <div class="orbit-ring" id="ring5" data-base-d="640">
+        <div class="skill-icon ai" data-a="0"><img src="https://skillicons.dev/icons?i=tensorflow"/><span class="skill-label">TensorFlow</span></div>
+        <div class="skill-icon backend" data-a="30"><img src="https://skillicons.dev/icons?i=django"/><span class="skill-label">Django</span></div>
+        <div class="skill-icon backend" data-a="60"><img src="https://skillicons.dev/icons?i=spring"/><span class="skill-label">Spring</span></div>
+        <div class="skill-icon backend" data-a="90"><img src="https://skillicons.dev/icons?i=php"/><span class="skill-label">PHP</span></div>
+        <div class="skill-icon database" data-a="120"><img src="https://skillicons.dev/icons?i=postgresql"/><span class="skill-label">PostgreSQL</span></div>
+        <div class="skill-icon backend" data-a="150"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg"/><span class="skill-label">Prisma</span></div>
+        <div class="skill-icon mobile" data-a="180"><img src="https://skillicons.dev/icons?i=react"/><span class="skill-label">React Native</span></div>
+        <div class="skill-icon frontend" data-a="210"><img src="https://skillicons.dev/icons?i=react"/><span class="skill-label">React</span></div>
+        <div class="skill-icon testing" data-a="240"><img src="https://skillicons.dev/icons?i=jest"/><span class="skill-label">Jest</span></div>
+        <div class="skill-icon database" data-a="270"><img src="https://skillicons.dev/icons?i=mongodb"/><span class="skill-label">MongoDB</span></div>
+        <div class="skill-icon backend" data-a="300"><img src="https://skillicons.dev/icons?i=laravel"/><span class="skill-label">Laravel</span></div>
+        <div class="skill-icon testing" data-a="330"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"/><span class="skill-label">Postman</span></div>
       </div>
 
-      <!-- ÓRBITA 6 (760px) -->
-      <div class="orbit-ring use-angle" style="width:760px;height:760px; --radius:380px;">
-        <div class="skill-icon ai" style="--angle:0deg;">
-          <img src="https://cdn.simpleicons.org/gradio/FF7C00"/>
-          <span class="skill-label">Gradio</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:72deg;">
-          <img src="https://skillicons.dev/icons?i=nodejs"/>
-          <span class="skill-label">Node.js</span>
-        </div>
-        <div class="skill-icon backend" style="--angle:144deg;">
-          <img src="https://skillicons.dev/icons?i=express"/>
-          <span class="skill-label">Express</span>
-        </div>
-        <div class="skill-icon devops" style="--angle:216deg;">
-          <img src="https://skillicons.dev/icons?i=azure"/>
-          <span class="skill-label">Azure</span>
-        </div>
-        <div class="skill-icon testing" style="--angle:288deg;">
-          <img src="https://skillicons.dev/icons?i=selenium"/>
-          <span class="skill-label">Selenium</span>
-        </div>
+      <!-- ÓRBITA 6 — 760px base -->
+      <div class="orbit-ring" id="ring6" data-base-d="760">
+        <div class="skill-icon ai" data-a="0"><img src="https://cdn.simpleicons.org/gradio/FF7C00"/><span class="skill-label">Gradio</span></div>
+        <div class="skill-icon backend" data-a="72"><img src="https://skillicons.dev/icons?i=nodejs"/><span class="skill-label">Node.js</span></div>
+        <div class="skill-icon backend" data-a="144"><img src="https://skillicons.dev/icons?i=express"/><span class="skill-label">Express</span></div>
+        <div class="skill-icon devops" data-a="216"><img src="https://skillicons.dev/icons?i=azure"/><span class="skill-label">Azure</span></div>
+        <div class="skill-icon testing" data-a="288"><img src="https://skillicons.dev/icons?i=selenium"/><span class="skill-label">Selenium</span></div>
       </div>
 
     </div>
@@ -1525,31 +613,19 @@ section{
   <h2 class="section-title">🌍 English — Proficiency</h2>
   <div class="card idioma-card fade-up">
     <div class="idioma-item">
-      <div class="idioma-top">
-        <span>Reading</span>
-        <span class="nivel c1">C1</span>
-      </div>
+      <div class="idioma-top"><span>Reading</span><span class="nivel c1">C1</span></div>
       <div class="barra"><div class="progresso c1"></div></div>
     </div>
     <div class="idioma-item">
-      <div class="idioma-top">
-        <span>Writing</span>
-        <span class="nivel b1">B1</span>
-      </div>
+      <div class="idioma-top"><span>Writing</span><span class="nivel b1">B1</span></div>
       <div class="barra"><div class="progresso b1"></div></div>
     </div>
     <div class="idioma-item">
-      <div class="idioma-top">
-        <span>Listening</span>
-        <span class="nivel b2">B2</span>
-      </div>
+      <div class="idioma-top"><span>Listening</span><span class="nivel b2">B2</span></div>
       <div class="barra"><div class="progresso b2"></div></div>
     </div>
     <div class="idioma-item">
-      <div class="idioma-top">
-        <span>Speaking</span>
-        <span class="nivel b2">B2</span>
-      </div>
+      <div class="idioma-top"><span>Speaking</span><span class="nivel b2">B2</span></div>
       <div class="barra"><div class="progresso b2"></div></div>
     </div>
   </div>
@@ -1580,13 +656,9 @@ section{
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
           <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="https://github.com/HenriqueSilvaXavier/dicionarioNebelfeld.github.io" class="btn-github">
-            View on GitHub
-          </a>
-          <a href="https://henriquesilvaxavier.github.io/dicionarioNebelfeld.github.io/" target="_blank" class="btn-github">
-            View Deploy
-          </a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://github.com/HenriqueSilvaXavier/dicionarioNebelfeld.github.io" class="btn-github">View on GitHub</a>
+          <a href="https://henriquesilvaxavier.github.io/dicionarioNebelfeld.github.io/" target="_blank" class="btn-github">View Deploy</a>
         </div>
       </div>
     </div>
@@ -1602,13 +674,9 @@ section{
           <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
           <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="https://github.com/HenriqueSilvaXavier/CEPDistancia.github.io" class="btn-github">
-            View on GitHub
-          </a>
-          <a href="https://henriquesilvaxavier.github.io/CEPDistancia.github.io/" target="_blank" class="btn-github">
-            View Deploy
-          </a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://github.com/HenriqueSilvaXavier/CEPDistancia.github.io" class="btn-github">View on GitHub</a>
+          <a href="https://henriquesilvaxavier.github.io/CEPDistancia.github.io/" target="_blank" class="btn-github">View Deploy</a>
         </div>
       </div>
     </div>
@@ -1678,13 +746,9 @@ section{
           <img src="https://img.icons8.com/color/1200/numpy.jpg" title="Numpy" alt="Numpy">
           <img src="https://yt3.googleusercontent.com/XNIcd1v2bK-ST8XcAGuDJshPImz1W88I2gWpKgtTxTGCXn2LDUBhViufHpv1u5j0B4mr574=s900-c-k-c0x00ffffff-no-rj" title="Plotly" alt="Plotly">
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="https://github.com/HenriqueSilvaXavier/consumo_energetico" class="btn-github">
-            View on GitHub
-          </a>
-          <a href="https://consumo-energetico2-6.onrender.com/" target="_blank" class="btn-github">
-            View Deploy
-          </a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://github.com/HenriqueSilvaXavier/consumo_energetico" class="btn-github">View on GitHub</a>
+          <a href="https://consumo-energetico2-6.onrender.com/" target="_blank" class="btn-github">View Deploy</a>
         </div>
       </div>
     </div>
@@ -1718,13 +782,9 @@ section{
           <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
           <img src="https://skillicons.dev/icons?i=php" title="PHP" alt="PHP">
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="https://github.com/HenriqueSilvaXavier/Decimal-Division-Anatomy" class="btn-github">
-            View on GitHub
-          </a>
-          <a href="https://henriquesilvaxavier.github.io/Decimal-Division-Anatomy.github.io/" target="_blank" class="btn-github">
-            View Deploy
-          </a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://github.com/HenriqueSilvaXavier/Decimal-Division-Anatomy" class="btn-github">View on GitHub</a>
+          <a href="https://henriquesilvaxavier.github.io/Decimal-Division-Anatomy.github.io/" target="_blank" class="btn-github">View Deploy</a>
         </div>
       </div>
     </div>
@@ -1776,13 +836,9 @@ section{
           <img src="https://skillicons.dev/icons?i=selenium" title="Selenium" alt="Selenium">
           <img src="https://skillicons.dev/icons?i=jest" title="Jest" alt="Jest">
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="https://github.com/gabrielamaiia01/IA_PI" class="btn-github">
-            View on GitHub
-          </a>
-          <a href="https://hub.docker.com/r/henriquesilvaxavier/monitor_rj" target="_blank" class="btn-github">
-            View on Dockerhub
-          </a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://github.com/gabrielamaiia01/IA_PI" class="btn-github">View on GitHub</a>
+          <a href="https://hub.docker.com/r/henriquesilvaxavier/monitor_rj" target="_blank" class="btn-github">View on Dockerhub</a>
         </div>
       </div>
     </div>
@@ -1829,9 +885,47 @@ section{
 </section>
 
 <script>
-// ===== ORBIT: pause on hover =====
+// ===== ORBIT: SISTEMA DE ESCALA RESPONSIVA =====
 const orbitSystem = document.getElementById('orbitSystem');
-document.querySelectorAll('.skill-icon').forEach(icon => {
+
+function updateOrbit() {
+  // Tamanho real do sistema em px (limitado por min(760px, 95vw))
+  const orbSize = Math.min(760, window.innerWidth * 0.95);
+  const sf = orbSize / 760; // fator de escala
+
+  // Injeta --sf na raiz do elemento para que o CSS use
+  orbitSystem.style.setProperty('--sf', sf);
+
+  // Para cada anel, calcula o diâmetro real e posiciona os ícones
+  orbitSystem.querySelectorAll('.orbit-ring').forEach(ring => {
+    const baseD  = parseFloat(ring.dataset.baseD); // diâmetro base em px (760px = 100%)
+    const realD  = baseD * sf;                      // diâmetro real após escala
+    const radius = realD / 2;                       // raio real
+    const iconW  = 46 * sf;                         // largura do ícone
+
+    // Aplica o diâmetro real como CSS var --rd (usado pelo CSS .use-angle e pelo resize)
+    ring.style.setProperty('--rd', realD + 'px');
+    ring.style.width  = realD + 'px';
+    ring.style.height = realD + 'px';
+
+    // Posiciona cada ícone via ângulo (data-a)
+    ring.querySelectorAll('.skill-icon[data-a]').forEach(icon => {
+      const angleDeg = parseFloat(icon.dataset.a);
+      const angleRad = angleDeg * Math.PI / 180;
+      const x = Math.cos(angleRad) * radius;
+      const y = Math.sin(angleRad) * radius;
+      icon.style.left = `calc(50% + ${x}px - ${iconW / 2}px)`;
+      icon.style.top  = `calc(50% + ${y}px - ${iconW / 2}px)`;
+    });
+  });
+}
+
+// Roda no load e no resize
+updateOrbit();
+window.addEventListener('resize', updateOrbit);
+
+// Pausa animação ao hover
+orbitSystem.querySelectorAll('.skill-icon').forEach(icon => {
   icon.addEventListener('mouseenter', () => orbitSystem.classList.add('paused'));
   icon.addEventListener('mouseleave', () => orbitSystem.classList.remove('paused'));
 });
@@ -1849,7 +943,7 @@ function applyFilter(filter) {
   const visibleItems = [...items].filter(i => i.style.display !== 'none');
   visibleItems.forEach((item, idx) => {
     item.classList.remove('left', 'right');
-    item.classList.add(idx % 2 === 0 ? 'left' : 'right'); // ← aqui!
+    item.classList.add(idx % 2 === 0 ? 'left' : 'right');
   });
 
   document.querySelectorAll('.timeline-year').forEach(yearEl => {
@@ -1857,8 +951,7 @@ function applyFilter(filter) {
     let hasVisible = false;
     while (next && !next.classList.contains('timeline-year')) {
       if (next.classList.contains('timeline-item') && next.style.display !== 'none') {
-        hasVisible = true;
-        break;
+        hasVisible = true; break;
       }
       next = next.nextElementSibling;
     }
@@ -1874,39 +967,23 @@ filterButtons.forEach(btn => {
   });
 });
 
-// ===== FADE-UP OBSERVER =====
+// ===== FADE-UP =====
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('show');
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// ===== ZIG-ZAG INITIAL LOAD =====
+// ===== ZIG-ZAG INITIAL =====
 function applyInitialZigZag() {
-  const items = document.querySelectorAll('.timeline-item');
-  
   let visibleIndex = 0;
-
-  items.forEach(item => {
-    // ignora itens escondidos (caso futuramente tenha)
+  document.querySelectorAll('.timeline-item').forEach(item => {
     if (item.style.display === 'none') return;
-
     item.classList.remove('left', 'right');
-
-    if (visibleIndex % 2 === 0) {
-      item.classList.add('left');
-    } else {
-      item.classList.add('right');
-    }
-
+    item.classList.add(visibleIndex % 2 === 0 ? 'left' : 'right');
     visibleIndex++;
   });
 }
-
-// roda quando a página carrega
 applyInitialZigZag();
-
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
 </body>
