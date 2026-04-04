@@ -54,13 +54,12 @@ section{
   padding:24px;
 }
 
-/* ===== ORBIT SYSTEM — FULLY RESPONSIVE ===== */
+/* ===== ORBIT SYSTEM ===== */
 .skills-orbit-section{
   display:flex;
   flex-direction:column;
   align-items:center;
   padding:40px 0 60px;
-  /* evita scroll horizontal */
   overflow-x:hidden;
   width:100%;
 }
@@ -82,25 +81,19 @@ section{
 .skills-orbit-wrapper{
   display:flex;
   justify-content:center;
-  /* largura máxima = 100% da viewport com um pouco de margem */
   width:100%;
   max-width:100vw;
 }
 
-/*
-  --orb-size: tamanho real do quadrado da órbita.
-              Usa min() para nunca ultrapassar 95vw.
-  --sf: fator de escala (0..1), calculado em JS e injetado como CSS var.
-        Todos os tamanhos internos multiplicam por --sf.
-*/
 .orbit-system{
   --orb-size: min(760px, 95vw);
-  --sf: 1; /* sobrescrito pelo JS */
+  --sf: 1;
 
   position:relative;
   width:var(--orb-size);
   height:var(--orb-size);
   flex-shrink:0;
+  overflow: visible;
 }
 
 .orbit-center{
@@ -125,14 +118,14 @@ section{
 .orbit-ring{
   position:absolute;
   top:50%;left:50%;
-  /* --rd = diâmetro escalonado, calculado em JS */
   width:var(--rd);
   height:var(--rd);
   transform:translate(-50%,-50%);
   border-radius:50%;
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.13);
   animation:spin 40s linear infinite;
   pointer-events:none;
+  overflow: visible;
 }
 
 @keyframes spin{
@@ -140,22 +133,26 @@ section{
   to  {transform:translate(-50%,-50%) rotate(360deg)}
 }
 
-.skill-icon{
-  position:absolute;
-  width:calc(46px * var(--sf));
-  height:calc(46px * var(--sf));
-  min-width:18px;min-height:18px;
-  border-radius:50%;
-  background:#0b1220;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  border:2px solid transparent;
-  transition:transform .2s;
-  pointer-events:all;
-  z-index:1;
+.skill-icon {
+  width: calc(46px * var(--sf));
+  height: calc(46px * var(--sf));
+  min-width: 18px; min-height: 18px;
+  border-radius: 50%;
+  background: #0b1220;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform .2s;
+  pointer-events: all;
+  position: absolute;
+  z-index: 10;
+  overflow: visible;
 }
 
-.skill-icon:hover{z-index:1000;transform:scale(1.2)}
+.skill-icon:hover{
+  transform: scale(1.2);
+  z-index: 999999;
+}
 
 .skill-icon img{
   width:calc(26px * var(--sf));
@@ -170,21 +167,8 @@ section{
   stroke:#fff;fill:none;
 }
 
-.skill-label{
-  z-index:2000;
-  position:absolute;
-  top:120%;left:50%;
-  transform:translateX(-50%);
-  font-size:calc(.62rem * var(--sf));
-  opacity:0;visibility:hidden;
-  transition:.2s;white-space:nowrap;
-  background:rgba(11,18,32,.95);
-  padding:3px 8px;border-radius:4px;
-  pointer-events:none;
-  border:1px solid rgba(255,255,255,.1);
-}
-
-.skill-icon:hover .skill-label{opacity:1;visibility:visible}
+/* skill-label escondido — tooltip é feito via JS no body */
+.skill-label { display: none; }
 
 /* Bordas coloridas por categoria */
 .ai      {border-color:var(--ai)}
@@ -198,11 +182,6 @@ section{
 .mobile  {border-color:var(--mobile)}
 .ux      {border-color:var(--ux)}
 
-/*
-  Posicionamento angular para anéis .use-angle:
-  O JS define --rd (diâmetro real em px após escala) em cada anel,
-  então o raio é var(--rd)/2. Usamos translateX com metade disso.
-*/
 .orbit-ring.use-angle .skill-icon{
   position:absolute;
   top:50%;left:50%;
@@ -493,15 +472,15 @@ section{
 
 <!-- ================= SKILLS ORBIT ================= -->
 <div class="skills-orbit-section">
-  <h2>🚀 Habilidades</h2>
-  <p class="subtitle">Quanto mais próxima do centro, maior o nível de domínio. Passe o mouse para ver o nome.</p>
+  <h2>🚀 Skills</h2>
+  <p class="subtitle">The closer to the center, the higher the level of mastery. Hover over the icons to see the names.</p>
 
   <div class="skills-orbit-wrapper">
     <div class="orbit-system" id="orbitSystem">
 
       <div class="orbit-center">CORE</div>
 
-      <!-- ÓRBITA 1 — soft skills, diâmetro base 180px, posicionada via JS (data-a = ângulo em graus) -->
+      <!-- ÓRBITA 1 — soft skills -->
       <div class="orbit-ring" id="ring1" data-base-d="180">
         <div class="skill-icon soft" data-a="270">
           <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-3-6.7" stroke-width="2"/><path d="M21 3v6h-6" stroke-width="2"/></svg>
@@ -517,7 +496,7 @@ section{
         </div>
         <div class="skill-icon soft" data-a="45">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/></svg>
-          <span class="skill-label">Results</span>
+          <span class="skill-label">Results-oriented</span>
         </div>
         <div class="skill-icon soft" data-a="90">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path d="M9 9a3 3 0 115 1c0 2-3 2-3 4" stroke-width="2"/></svg>
@@ -528,12 +507,16 @@ section{
           <span class="skill-label">Continuous Learning</span>
         </div>
         <div class="skill-icon soft" data-a="180">
-          <svg viewBox="0 0 24 24"><path d="M17 20a4 4 0 10-8 0" stroke-width="2"/><circle cx="12" cy="10" r="4" stroke-width="2"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M17 20a4 4 0 10-8 0" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M23 20a4 4 0 00-6-3.46M1 20a4 4 0 016-3.46" stroke="currentColor" stroke-width="2"/>
+          </svg>
           <span class="skill-label">Teamwork</span>
         </div>
       </div>
 
-      <!-- ÓRBITA 2 — 280px base, posicionada via JS (data-a) -->
+      <!-- ÓRBITA 2 — 280px -->
       <div class="orbit-ring" id="ring2" data-base-d="280">
         <div class="skill-icon ai" data-a="270"><img src="https://skillicons.dev/icons?i=py"/><span class="skill-label">Python</span></div>
         <div class="skill-icon testing" data-a="210"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/insomnia/insomnia-original.svg"/><span class="skill-label">Insomnia</span></div>
@@ -543,7 +526,7 @@ section{
         <div class="skill-icon ai" data-a="330"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"/><span class="skill-label">Jupyter</span></div>
       </div>
 
-      <!-- ÓRBITA 3 — 390px base, posicionada via JS (data-a) -->
+      <!-- ÓRBITA 3 — 390px -->
       <div class="orbit-ring" id="ring3" data-base-d="390">
         <div class="skill-icon frontend" data-a="0"><img src="https://skillicons.dev/icons?i=css"/><span class="skill-label">CSS</span></div>
         <div class="skill-icon frontend" data-a="60"><img src="https://skillicons.dev/icons?i=tailwind"/><span class="skill-label">Tailwind</span></div>
@@ -553,7 +536,7 @@ section{
         <div class="skill-icon backend" data-a="300"><img src="https://skillicons.dev/icons?i=java"/><span class="skill-label">Java</span></div>
       </div>
 
-      <!-- ÓRBITA 4 — 510px base -->
+      <!-- ÓRBITA 4 — 510px -->
       <div class="orbit-ring" id="ring4" data-base-d="510">
         <div class="skill-icon frontend" data-a="0"><img src="https://skillicons.dev/icons?i=bootstrap"/><span class="skill-label">Bootstrap</span></div>
         <div class="skill-icon frontend" data-a="45"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chartjs/chartjs-original.svg"/><span class="skill-label">Chart.js</span></div>
@@ -565,7 +548,7 @@ section{
         <div class="skill-icon data" data-a="315"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png"/><span class="skill-label">Power BI</span></div>
       </div>
 
-      <!-- ÓRBITA 5 — 640px base -->
+      <!-- ÓRBITA 5 — 640px -->
       <div class="orbit-ring" id="ring5" data-base-d="640">
         <div class="skill-icon ai" data-a="0"><img src="https://skillicons.dev/icons?i=tensorflow"/><span class="skill-label">TensorFlow</span></div>
         <div class="skill-icon backend" data-a="30"><img src="https://skillicons.dev/icons?i=django"/><span class="skill-label">Django</span></div>
@@ -581,7 +564,7 @@ section{
         <div class="skill-icon testing" data-a="330"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"/><span class="skill-label">Postman</span></div>
       </div>
 
-      <!-- ÓRBITA 6 — 760px base -->
+      <!-- ÓRBITA 6 — 760px -->
       <div class="orbit-ring" id="ring6" data-base-d="760">
         <div class="skill-icon ai" data-a="0"><img src="https://cdn.simpleicons.org/gradio/FF7C00"/><span class="skill-label">Gradio</span></div>
         <div class="skill-icon backend" data-a="72"><img src="https://skillicons.dev/icons?i=nodejs"/><span class="skill-label">Node.js</span></div>
@@ -889,26 +872,20 @@ section{
 const orbitSystem = document.getElementById('orbitSystem');
 
 function updateOrbit() {
-  // Tamanho real do sistema em px (limitado por min(760px, 95vw))
   const orbSize = Math.min(760, window.innerWidth * 0.95);
-  const sf = orbSize / 760; // fator de escala
-
-  // Injeta --sf na raiz do elemento para que o CSS use
+  const sf = orbSize / 760;
   orbitSystem.style.setProperty('--sf', sf);
 
-  // Para cada anel, calcula o diâmetro real e posiciona os ícones
   orbitSystem.querySelectorAll('.orbit-ring').forEach(ring => {
-    const baseD  = parseFloat(ring.dataset.baseD); // diâmetro base em px (760px = 100%)
-    const realD  = baseD * sf;                      // diâmetro real após escala
-    const radius = realD / 2;                       // raio real
-    const iconW  = 46 * sf;                         // largura do ícone
+    const baseD  = parseFloat(ring.dataset.baseD);
+    const realD  = baseD * sf;
+    const radius = realD / 2;
+    const iconW  = 46 * sf;
 
-    // Aplica o diâmetro real como CSS var --rd (usado pelo CSS .use-angle e pelo resize)
     ring.style.setProperty('--rd', realD + 'px');
     ring.style.width  = realD + 'px';
     ring.style.height = realD + 'px';
 
-    // Posiciona cada ícone via ângulo (data-a)
     ring.querySelectorAll('.skill-icon[data-a]').forEach(icon => {
       const angleDeg = parseFloat(icon.dataset.a);
       const angleRad = angleDeg * Math.PI / 180;
@@ -920,14 +897,52 @@ function updateOrbit() {
   });
 }
 
-// Roda no load e no resize
 updateOrbit();
 window.addEventListener('resize', updateOrbit);
 
-// Pausa animação ao hover
+// ===== TOOLTIP GLOBAL — filho direto do body =====
+// Assim nenhum stacking context das órbitas pode escondê-lo.
+const tooltip = document.createElement('div');
+tooltip.style.cssText = [
+  'position:fixed',
+  'background:rgba(11,18,32,.95)',
+  'color:#e5e7eb',
+  'padding:4px 10px',
+  'border-radius:4px',
+  'border:1px solid rgba(255,255,255,.15)',
+  'font-family:Poppins,sans-serif',
+  'font-size:.72rem',
+  'white-space:nowrap',
+  'pointer-events:none',
+  'opacity:0',
+  'transition:opacity .15s',
+  'z-index:2147483647',
+  'top:0',
+  'left:0',
+].join(';');
+document.body.appendChild(tooltip);
+
 orbitSystem.querySelectorAll('.skill-icon').forEach(icon => {
-  icon.addEventListener('mouseenter', () => orbitSystem.classList.add('paused'));
-  icon.addEventListener('mouseleave', () => orbitSystem.classList.remove('paused'));
+  const labelEl = icon.querySelector('.skill-label');
+  const name = labelEl ? labelEl.textContent.trim() : '';
+
+  icon.addEventListener('mouseenter', () => {
+    orbitSystem.classList.add('paused');
+    if (!name) return;
+    tooltip.textContent = name;
+    tooltip.style.opacity = '1';
+  });
+
+  icon.addEventListener('mousemove', e => {
+    // Posiciona o tooltip 14px à direita e 34px acima do cursor
+    tooltip.style.left = (e.clientX + 14) + 'px';
+    tooltip.style.top  = (e.clientY - 34) + 'px';
+  });
+
+  icon.addEventListener('mouseleave', () => {
+    orbitSystem.classList.remove('paused');
+    tooltip.style.opacity = '0';
+  });
 });
 
 // ===== FILTERS =====

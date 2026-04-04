@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Resume & Portfolio - Henrique Silva Xavier</title>
+<title>Resume & Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@ section{
   padding:24px;
 }
 
-/* ===== Skills Map com Animação do Metrô ===== */
+/* ===== Skills Map ===== */
 .skills-map-wrapper{
   display:flex;
   justify-content:center;
@@ -56,81 +56,21 @@ section{
   padding:40px 20px 60px;
 }
 
-/* Estilo base para cada linha do metrô */
-.metro-line{
-  --label-width:140px;
-  --rail-thickness:6px;
-  --icon-size:44px;
-  --icon-offset:22px;
-  --rail-y: calc(var(--icon-offset) + 2px);
-  --line-color: #8b5cf6;
-  
-  position:relative;
-  margin:42px 0;
-  padding-left:var(--label-width);
-}
-
 .line-label{
   position:absolute;
   left:0;
-  top:50%;
-  transform:translateY(-50%);
-  width:var(--label-width);
+  top:0;
+  width:120px;
   font-size:.75rem;
   letter-spacing:1px;
   opacity:.85;
-  font-weight:600;
-  color:var(--line-color);
-  text-shadow:0 0 5px rgba(0,0,0,0.5);
-  z-index:2;
 }
 
-/* Trilho da linha */
-.stations {
-  display: flex;
-  gap: 22px;
-  flex-wrap: wrap;
-  position: relative;
-  padding: 20px 0;
-}
-
-/* linha horizontal */
-.stations::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: var(--line-color);
-  top: 28px;
-  z-index: 0;
-}
-
-/* linha vertical conectando */
-.station::after {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 40px;
-  background: var(--line-color);
-  top: 44px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 0;
-}
-
-/* última linha não desce */
-.station:last-child::after {
-  display: none;
-}
-/* Estação */
 .station{
   display:flex;
   flex-direction:column;
   align-items:center;
   width:70px;
-  position:relative;
-  z-index:2;
 }
 
 .station-icon{
@@ -168,8 +108,6 @@ section{
   text-align:center;
   color:var(--muted);
   line-height:1.2;
-  max-width: 70px;
-  word-break: break-word;
 }
 
 .map-legend{
@@ -179,69 +117,33 @@ section{
   font-size:.9rem;
 }
 
-/* ===== TREM ANIMADO (versão do primeiro código) ===== */
-.train-dot {
-  position: absolute;
-  top: calc(var(--rail-y) - 7px);
-  transform: translateY(0);
-  height: 14px;
-  background: var(--line-color);
-  border-radius: 7px;
-  z-index: 10;
-  left: 4px;
-  animation: ride 12s linear infinite;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 0 3px;
-  box-shadow: 0 0 10px var(--line-color);
-  pointer-events: none;
+.metro-line{
+  --label-width:140px;
+  --rail-thickness:6px;
+  --icon-size:44px;
+  --icon-offset:22px;
+  --rail-y: calc(var(--icon-offset) + 2px);
+
+  position:relative;
+  margin:42px 0;
+  padding-left:var(--label-width);
 }
 
-.train-dot .car { 
-  width: 12px; 
-  height: 8px; 
-  background: rgba(255,255,255,0.35); 
-  border-radius: 2px; 
-}
-
-.train-dot .car:first-child { 
-  background: rgba(255,255,255,0.7); 
-  border-radius: 3px 2px 2px 3px; 
-}
-
-@keyframes ride {
-  0% { left: 4px; opacity: 0; width: 40px; }
-  5% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { left: calc(100% - 48px); opacity: 0; width: 40px; }
-}
-
-/* Ajuste responsivo para o trem */
-@media (max-width: 768px) {
-  .stations {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    background: linear-gradient(to bottom, var(--line-color), var(--line-color));
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 6px 100%;
-  }
-  
-  .train-dot {
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    top: 4px;
-    animation: rideVertical 10s linear infinite;
-  }
-  
-  @keyframes rideVertical {
-    0% { top: 4px; opacity: 0; width: 40px; }
-    5% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { top: calc(100% - 24px); opacity: 0; width: 40px; }
-  }
+.stations{
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  position:relative;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 calc(var(--rail-y) - var(--rail-thickness)/2),
+      var(--line-color) calc(var(--rail-y) - var(--rail-thickness)/2) calc(var(--rail-y) + var(--rail-thickness)/2),
+      transparent calc(var(--rail-y) + var(--rail-thickness)/2) 84px
+    );
+  background-repeat:repeat-y;
+  background-size:100% 84px;
 }
 
 /* ===== TIMELINE ===== */
@@ -287,7 +189,7 @@ section{
   box-shadow: 0 0 16px rgba(34,211,238,.35);
 }
 
-/* ===== ZIG-ZAG ===== */
+/* ===== ZIG-ZAG — controlled by JS classes ===== */
 .timeline-item{
   position: relative;
   width: 50%;
@@ -415,7 +317,7 @@ section{
   border:1px solid rgba(255,255,255,.08);
 }
 
-/* ===== EDUCATION ===== */
+/* ===== EDUCATION — SIMPLE TIMELINE ===== */
 .edu-timeline{
   position:relative;
   padding-left:40px;
@@ -478,7 +380,6 @@ section{
   transition:.3s;
   display:flex;
   flex-direction:column;
-  margin-bottom: 20px;
 }
 
 .cert-card:hover{
@@ -492,7 +393,6 @@ section{
   height:150px;
   background:#0b1220;
   border-bottom:1px solid rgba(255,255,255,.06);
-  object-fit: cover;
 }
 
 .cert-content{
@@ -652,39 +552,6 @@ section{
 
 .progresso.b1{ width:55%; }
 
-/* ===== ANIMAÇÃO GLOBAL ===== */
-.fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-up:nth-child(1){ transition-delay: .1s }
-.fade-up:nth-child(2){ transition-delay: .2s }
-.fade-up:nth-child(3){ transition-delay: .3s }
-.fade-up:nth-child(4){ transition-delay: .4s }
-.fade-up:nth-child(5){ transition-delay: .5s }
-
-/* Pulse nas estações */
-.station-icon {
-  animation: pulse 2.5s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0%,100% {
-    box-shadow: 0 0 0px var(--line-color);
-  }
-  50% {
-    box-shadow: 0 0 12px var(--line-color);
-  }
-}
-
-/* Responsividade */
 @media (max-width:500px){
   .profile-card{
     flex-direction:column;
@@ -700,12 +567,33 @@ section{
   }
 }
 
+@media (max-width:445px){
+  .stations{
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    /* trilho vertical único */
+    background: linear-gradient(
+      to bottom,
+      var(--line-color),
+      var(--line-color)
+    );
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 6px 100%;
+  }
+}
+
 @media (max-width: 674px){
+
+  /* remove a linha central */
   .timeline::before {
     left: 20px;
     transform: none;
   }
 
+  /* cada item ocupa 100% */
   .timeline-item{
     width: 100%;
     padding: 20px 20px 20px 60px;
@@ -713,28 +601,28 @@ section{
     text-align: left !important;
   }
 
+  /* remove zig-zag */
   .timeline-item.left,
   .timeline-item.right{
     margin-left: 0;
     text-align: left;
   }
 
+  /* posiciona o ponto à esquerda */
   .timeline-dot{
     left: 12px !important;
     right: auto !important;
   }
 
+  /* stacks alinhados à esquerda */
   .timeline-item.left .stacks{
     justify-content: flex-start;
   }
 
+  /* imagens ocupando melhor a tela */
   .img-projeto,
   .img-projeto-mobile{
     width: 100%;
-  }
-
-  .timeline-year{
-    justify-content: flex-start;
   }
 }
 </style>
@@ -743,8 +631,8 @@ section{
 <body>
 <!-- ================= PROFILE ================= -->
 <section class="profile">
-  <div class="profile-card fade-up">
-    <img src="eu.jpg" alt="Photo of Henrique Silva Xavier" class="profile-photo" onerror="this.src='https://via.placeholder.com/140?text=HSX'">
+  <div class="profile-card">
+    <img src="eu.jpg" alt="Photo of Henrique Silva Xavier" class="profile-photo">
     <div class="profile-info">
       <h1>Henrique Silva Xavier</h1>
       <div class="profile-role">Junior Full Stack Developer • Looking for a professional opportunity</div>
@@ -754,13 +642,13 @@ section{
       <p>Localization: Recife, Pernambuco, Brazil</p>
       <br>
       <div class="profile-contacts">
-        <span class="linha"><img src="whatsapp 1.png" style="width:20px">(81) 98552-1110</span>
+        <span class="linha"><img src="whatsapp 1.png">(81) 98552-1110</span>
         <span class="linha">
           <a href="mailto:henriquesx44@gmail.com">henriquesx44@gmail.com</a>
         </span>
-        <a href="https://www.linkedin.com/in/henrique-silva-xavier-3a4047241/" target="_blank"><img src="linkedin 1.png" class="rede-social-img" style="width:30px"></a>
-        <a href="https://www.instagram.com/henriquesilvaxavier8/" target="_blank"><img src="instagram 1.png" class="rede-social-img" style="width:30px"></a>
-        <a href="https://github.com/henriquesilvaxavier" target="_blank"><img src="github 1.png" class="rede-social-img" style="width:30px"></a>
+        <a href="https://www.linkedin.com/in/henrique-silva-xavier-3a4047241/" target="_blank"><img src="linkedin 1.png" class="rede-social-img"></a>
+        <a href="https://www.instagram.com/henriquesilvaxavier8/" target="_blank"><img src="instagram 1.png" class="rede-social-img"></a>
+        <a href="https://github.com/henriquesilvaxavier" target="_blank"><img src="github 1.png" class="rede-social-img"></a>
       </div>
     </div>
   </div>
@@ -769,7 +657,7 @@ section{
 <!-- ================= EDUCATION ================= -->
 <section id="education">
   <h2 class="section-title">🎓 Education</h2>
-  <div class="card fade-up">
+  <div class="card">
     <div class="edu-timeline">
       <div class="edu-item">
         <div class="edu-dot"></div>
@@ -792,23 +680,283 @@ section{
   </div>
 </section>
 
-<!-- ================= SKILLS MAP ================= -->
+<!-- ================= CERTIFICATES ================= -->
+<section id="certificates">
+  <h2 class="section-title">🏅 Certificates & Achievements</h2>
+
+  <!-- Medal -->
+  <div class="cert-card" style="display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;">
+        🥉
+      </div>
+      <div>
+        <p style="font-weight:600;">Bronze Medal — OBMEP</p>
+        <p style="color:var(--muted); font-size:.9rem;">Brazilian Mathematical Olympiad for Public Schools</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Volunteering -->
+  <div class="cert-card">
+    <img src="voluntariado recnplay.png" class="cert-img" alt="Rec'N'Play Volunteering">
+    <div class="cert-content">
+      <div class="cert-title">Rec'N'Play Volunteering</div>
+      <div class="cert-org">Rec'N'Play</div>
+    </div>
+  </div>
+
+  <!-- Data Analysis -->
+  <div class="cert-card">
+    <img src="analise de dados.png" class="cert-img" alt="Data Analysis Intensive">
+    <div class="cert-content">
+      <div class="cert-title">Data Analysis Intensive</div>
+      <div class="cert-org">Hashtag Treinamentos</div>
+    </div>
+  </div>
+
+  <!-- Python Journey -->
+  <div class="cert-card">
+    <img src="hashtag python.png" class="cert-img" alt="Python Journey">
+    <div class="cert-content">
+      <div class="cert-title">Python Journey</div>
+      <div class="cert-org">Hashtag Treinamentos</div>
+    </div>
+  </div>
+
+  <!-- Rocketseat -->
+  <div class="cert-card">
+    <img src="rocketseat 1.png" class="cert-img" alt="Rocketseat">
+    <div class="cert-content">
+      <div class="cert-title">Rocketseat Knowledge Trail</div>
+      <div class="cert-org">Rocketseat</div>
+    </div>
+  </div>
+
+  <div class="cert-card">
+    <img src="certificado deloitte bootcamp java.png" class="cert-img" alt="Deloitte Bootcamp Java">
+    <div class="cert-content">
+      <div class="cert-title">Java Bootcamp</div>
+      <div class="cert-org">Deloitte</div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
-<h2 class="section-title">🚀 Skills Metro Map</h2>
-<div class="card fade-up">
+<h2 class="section-title">🚀 Skills</h2>
+<div class="card">
 <div class="skills-map-wrapper">
-<div class="metro-map" id="dynamicMetroMap"></div>
+<div class="metro-map">
+
+<div class="metro-line" style="--line-color:#8b5cf6">
+  <div class="line-label">ARTIFICIAL INTELLIGENCE</div>
+  <div class="stations">
+    <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=py" width="26"></div><span class="station-label">Python</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=tensorflow" width="26"></div><span class="station-label">TensorFlow</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg" width="26"></div><span class="station-label">Keras</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=scikitlearn" width="26"></div><span class="station-label">Scikit-Learn</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=opencv" width="26"></div><span class="station-label">OpenCV</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.simpleicons.org/langchain/1C3C3C" width="26"></div><span class="station-label">LangChain</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.simpleicons.org/gradio/FF7C00" width="26"></div><span class="station-label">Gradio</span></div>
+  </div>
 </div>
+
+<div class="metro-line" style="--line-color:#06b6d4">
+  <div class="line-label">DATA SCIENCE</div>
+  <div class="stations">
+    <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=py" width="26"></div><span class="station-label">Python</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" width="26"></div><span class="station-label">Jupyter</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" width="26"></div><span class="station-label">NumPy</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" width="26"></div><span class="station-label">Pandas</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" width="26"></div><span class="station-label">Matplotlib</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="26"></div><span class="station-label">Seaborn</span></div>
+    <div class="station">
+      <div class="station-icon">
+        <a href="https://app.powerbi.com/home?experience=power-bi" target="_blank" rel="noreferrer">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png" width="26">
+        </a>
+      </div>
+      <span class="station-label">Power BI</span>
+    </div>
+  </div>
+</div>
+
+<div class="metro-line" style="--line-color:#60a5fa">
+  <div class="line-label">BACK-END</div>
+  <div class="stations">
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=nodejs" width="26"></div><span class="station-label">Node.js</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=express" width="26"></div><span class="station-label">Express</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=django" width="26"></div><span class="station-label">Django</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=flask" width="26"></div><span class="station-label">Flask</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=java" width="26"></div><span class="station-label">Java</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=spring" width="26"></div><span class="station-label">Spring</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=php" width="26"></div><span class="station-label">PHP</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=laravel" width="26"></div><span class="station-label">Laravel</span></div>
+    <div class="station"><div class="station-icon interchange"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6L3aRhMgDRFOA8N9nZOeLsWYwT-6K6-tKCcncGiIfZ4j5o0WxlaZe-bi&s=10" width="26"></div><span class="station-label">Prisma ORM</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=postman" width="26"></div><span class="station-label">Postman</span></div>
+    <div class="station"><div class="station-icon"><img src="https://s3.amazonaws.com/s3.roaringapps.com/assets/icons/1561251841927-Insomnia.png" width="26"></div><span class="station-label">Insomnia</span></div>
+  </div>
+</div>
+
+<div class="metro-line" style="--line-color:#34d399">
+  <div class="line-label">FRONT-END</div>
+  <div class="stations">
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=html" width="26"></div><span class="station-label">HTML5</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=css" width="26"></div><span class="station-label">CSS3</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=js" width="26"></div><span class="station-label">JavaScript</span></div>
+    <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=react" width="26"></div><span class="station-label">React</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=ts" width="26"></div><span class="station-label">TypeScript</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=bootstrap" width="26"></div><span class="station-label">Bootstrap</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=tailwind" width="26"></div><span class="station-label">Tailwind</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.simpleicons.org/chartdotjs/FF6384" width="26"></div><span class="station-label">Chart.js</span></div>
+    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="26"></div><span class="station-label">CanvasJS</span></div>
+  </div>
+</div>
+
+<div class="metro-line" style="--line-color:#fbbf24">
+  <div class="line-label">DATABASES</div>
+  <div class="stations">
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=mongodb" width="26"></div><span class="station-label">MongoDB</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=mysql" width="26"></div><span class="station-label">MySQL</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=postgres" width="26"></div><span class="station-label">PostgreSQL</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=sqlite" width="26"></div><span class="station-label">SQLite</span></div>
+  </div>
+</div>
+
+<div class="metro-line" style="--line-color:#22c55e">
+  <div class="line-label">MOBILE</div>
+  <div class="stations">
+    <div class="station">
+      <div class="station-icon interchange">
+        <img src="https://reactnative.dev/img/header_logo.svg" width="26">
+      </div>
+      <span class="station-label">React Native</span>
+    </div>
+  </div>
+</div>
+
+<div class="metro-line" style="--line-color:#f59e0b">
+  <div class="line-label">DEVOPS</div>
+  <div class="stations">
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=git" width="26"></div><span class="station-label">Git</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=azure" width="26"></div><span class="station-label">Azure</span></div>
+  </div>
+</div>
+
+<div class="metro-line" style="--line-color:#ef4444">
+  <div class="line-label">TESTING</div>
+  <div class="stations">
+    <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=jest" width="26"></div><span class="station-label">Jest</span></div>
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=selenium" width="26"></div><span class="station-label">Selenium</span></div>
+  </div>
+</div>
+
+<div class="metro-line" style="--line-color:#f472b6">
+  <div class="line-label">UX</div>
+  <div class="stations">
+    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=figma" width="26"></div><span class="station-label">Figma</span></div>
+  </div>
+</div>
+
+<div class="metro-line" style="--line-color:#f43f5e">
+  <div class="line-label">SOFT SKILLS</div>
+  <div class="stations">
+
+    <div class="station">
+      <div class="station-icon">
+        <!-- Adaptability -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3v6l4-4M12 21v-6l-4 4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="station-label">Adaptability</span>
+    </div>
+
+    <div class="station">
+      <div class="station-icon">
+        <!-- Persistence -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M21 12a9 9 0 11-3-6.7" stroke="currentColor" stroke-width="2"/>
+          <path d="M21 3v6h-6" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="station-label">Persistence</span>
+    </div>
+
+    <div class="station">
+      <div class="station-icon">
+        <!-- Teamwork -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M17 20a4 4 0 10-8 0" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+          <path d="M23 20a4 4 0 00-6-3.46M1 20a4 4 0 016-3.46" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="station-label">Teamwork</span>
+    </div>
+
+    <div class="station">
+      <div class="station-icon">
+        <!-- Results-oriented -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="1" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="station-label">Results-oriented</span>
+    </div>
+
+    <div class="station">
+      <div class="station-icon">
+        <!-- Problem Solving -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+          <path d="M9.09 9a3 3 0 115.82 1c0 2-3 2-3 4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="17" r="1" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="station-label">Problem Solving</span>
+    </div>
+
+    <div class="station">
+      <div class="station-icon">
+        <!-- Continuous Learning -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="station-label">Continuous Learning</span>
+    </div>
+
+    <div class="station">
+      <div class="station-icon">
+        <!-- Analytical Thinking -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M4 19h16M4 15l4-4 4 4 8-8" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="station-label">Analytical Thinking</span>
+    </div>
+
+  </div>
+</div>
+
+</div>
+</div>
+
 <div class="map-legend">
-  🚆 Each line has a moving train • Stations connect skills across areas
+  Skills Metro Map • Each line is an area • Stations connect stacks across areas
 </div>
-</div>
+
 </section>
 
 <!-- ================= ENGLISH PROFICIENCY ================= -->
 <section id="languages">
   <h2 class="section-title">🌍 English — Proficiency</h2>
-  <div class="card idioma-card fade-up">
+  <div class="card idioma-card">
     <div class="idioma-item">
       <div class="idioma-top">
         <span>Reading</span>
@@ -840,7 +988,6 @@ section{
   </div>
 </section>
 
-<!-- ================= PROJECTS ================= -->
 <h2 class="section-title" style="max-width:1000px;margin:60px auto 20px;padding:0 20px;">🗂️ Projects</h2>
 
 <div class="filters">
@@ -852,408 +999,327 @@ section{
 </div>
 
 <section>
-  <div class="timeline" id="projectsTimeline">
-    <!-- Projects will be populated by JS -->
-  </div>
+  <div class="timeline">
+
+    <div class="timeline-year"><span>2024</span></div>
+    <div class="timeline-item" data-tags="frontend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>Nebelfeld Dictionary</h3>
+        <img src="Nebelfeld.png" class="img-projeto" alt="Nebelfeld Dashboard Project">
+        <p>The Nebelfeld Dictionary is a multilingual website that allows you to search for words in different languages, displaying definitions, synonyms and example phrases. It includes spelling correction, pronunciation in different accents and a section with highlighted words.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://github.com/HenriqueSilvaXavier/dicionarioNebelfeld.github.io" class="btn-github">
+            View on GitHub
+          </a>
+          <a href="https://henriquesilvaxavier.github.io/dicionarioNebelfeld.github.io/" target="_blank" class="btn-github">
+            View Deploy
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="frontend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>CEPDistância</h3>
+        <img src="CEPDistância.png" class="img-projeto" alt="CEPDistance Project">
+        <p>The website uses the ViaCEP API to calculate the distance between two CEP codes entered by the user. The background is a world map.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://github.com/HenriqueSilvaXavier/CEPDistancia.github.io" class="btn-github">
+            View on GitHub
+          </a>
+          <a href="https://henriquesilvaxavier.github.io/CEPDistancia.github.io/" target="_blank" class="btn-github">
+            View Deploy
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="mobile">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>Notex App</h3>
+        <img src="notex.png" class="img-projeto-mobile" alt="Notex App Project">
+        <p>The project serves as an app for Mediotec students to see their grades, subjects and their respective teachers, schedules, reports and the academic calendar.</p>
+        <div class="stacks">
+          <img src="https://cms-assets.tutsplus.com/uploads/users/1125/posts/29791/preview_image/RN.jpg" title="React Native">
+          <img src="https://skillicons.dev/icons?i=typescript" title="TypeScript" alt="TypeScript">
+          <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
+          <img src="https://skillicons.dev/icons?i=prisma" title="Prisma" alt="Prisma">
+        </div>
+        <a href="https://github.com/HenriqueSilvaXavier/Notex-Mobile-PI" class="btn-github">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="frontend backend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>Vitae.ai</h3>
+        <img src="Vitae.png" class="img-projeto" alt="Vitae.ai Project">
+        <p>A front-end that communicates with an AI that analyzes resumes sent by the user, gives improvement suggestions and evaluates them.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=react" title="React" alt="React">
+          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
+          <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
+          <img src="https://skillicons.dev/icons?i=flask" title="Flask" alt="Flask">
+        </div>
+        <a href="https://github.com/HenriqueSilvaXavier/Vitae.ai-Residencia" class="btn-github">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="timeline-year"><span>2025</span></div>
+
+    <div class="timeline-item" data-tags="frontend backend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>ToDoList</h3>
+        <img src="todo.png" class="img-projeto" alt="ToDoList Project">
+        <p>A Django project to create, edit, read, and delete tasks, with the categories: In Progress, Completed, and Not Done — and the ability to move tasks between categories.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+          <img src="https://skillicons.dev/icons?i=django" title="Django" alt="Django">
+        </div>
+        <a href="https://github.com/Elias969/Django_Tarefas.github.io" class="btn-github">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="data">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>Consumo Energetico</h3>
+        <img src="consumoenergetico.png" class="img-projeto" alt="Consumo Energetico Project">
+        <p>This site was built with Gradio and Pandas, using Pyotp and QRcode to implement sign-in and sign-up with MFA (Multi-Factor Authentication). The objective is to show predictions from AI Scikit-Learn models and Matplotlib charts.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGmhRoEHG6jt0ZCtTf39On6QihNKVDYKGCdw&s" title="Gradio" alt="Gradio">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRYs547v2gOR_xdllUqcUxfq25_7TeDqTrLg&s" title="Pandas" alt="Pandas">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/250px-Matplotlib_icon.svg.png" title="Matplotlib" alt="Matplotlib">
+          <img src="https://skillicons.dev/icons?i=sklearn" title="Scikit-Learn" alt="Scikit-Learn">
+          <img src="https://img.icons8.com/color/1200/numpy.jpg" title="Numpy" alt="Numpy">
+          <img src="https://yt3.googleusercontent.com/XNIcd1v2bK-ST8XcAGuDJshPImz1W88I2gWpKgtTxTGCXn2LDUBhViufHpv1u5j0B4mr574=s900-c-k-c0x00ffffff-no-rj" title="Plotly" alt="Plotly">
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://github.com/HenriqueSilvaXavier/consumo_energetico" class="btn-github">
+            View on GitHub
+          </a>
+          <a href="https://consumo-energetico2-6.onrender.com/" target="_blank" class="btn-github">
+            View Deploy
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="frontend backend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>CodeStore</h3>
+        <img src="codestore.png" class="img-projeto" alt="CodeStore Project">
+        <p>This project is an e-commerce web application for IT, gamer and design audiences. Products range from peripherals, devices, cables, and more. Built with JavaScript, HTML, and TailwindCSS, it connects to a backend API to fetch available products.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+          <img src="https://skillicons.dev/icons?i=tailwind" title="TailwindCSS" alt="TailwindCSS">
+          <img src="https://skillicons.dev/icons?i=nodejs" title="Node.js" alt="Node.js">
+        </div>
+        <a href="https://github.com/HenriqueSilvaXavier/CodeStore" class="btn-github">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="frontend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>Decimal Division Anatomy</h3>
+        <img src="decimalDivisionAnatomy.png" class="img-projeto" alt="Decimal Division Anatomy Project">
+        <p>The Decimal Division Anatomy project visually explains decimal division steps, simulating manual long division for non-integer decimals using HTML, CSS, and JavaScript. It also allows exporting the results as an image with html2canvas, serving as an interactive educational tool.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+          <img src="https://skillicons.dev/icons?i=php" title="PHP" alt="PHP">
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://github.com/HenriqueSilvaXavier/Decimal-Division-Anatomy" class="btn-github">
+            View on GitHub
+          </a>
+          <a href="https://henriquesilvaxavier.github.io/Decimal-Division-Anatomy.github.io/" target="_blank" class="btn-github">
+            View Deploy
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="frontend backend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>Lojas Henri</h3>
+        <img src="lojashenri 1.png" class="img-projeto" alt="Henri Store Project">
+        <p>The "Henri Store" project is an e-commerce platform that allows users to explore various product categories, such as home appliances, furniture, pet supplies, and more. The site offers features such as search, favorites, and shopping cart, as well as displaying promotions and product reviews.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+          <img src="https://skillicons.dev/icons?i=laravel" title="Laravel" alt="Laravel">
+          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
+          <img src="https://skillicons.dev/icons?i=php" title="PHP" alt="PHP">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRYs547v2gOR_xdllUqcUxfq25_7TeDqTrLg&s" title="Pandas" alt="Pandas">
+          <img src="https://img.icons8.com/color/1200/numpy.jpg" title="Numpy" alt="Numpy">
+          <img src="https://miro.medium.com/0*zKRz1UgqpOZ4bvuA" title="NLTK" alt="NLTK">
+          <img src="https://skillicons.dev/icons?i=mysql" title="MySQL" alt="MySQL">
+          <img src="https://skillicons.dev/icons?i=tailwind" title="Tailwind CSS" alt="Tailwind CSS">
+          <img src="https://skillicons.dev/icons?i=bootstrap" title="Bootstrap" alt="Bootstrap">
+        </div>
+        <a href="https://github.com/HenriqueSilvaXavier/LojasHenri-Laravel" class="btn-github">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="frontend data backend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>Monitor RJ</h3>
+        <img src="monitorrj.png" class="img-projeto" alt="Monitor RJ Project">
+        <p>This project allows users to see insights and dashboards about crimes in the state of Rio de Janeiro. With columns like mcirc (city), cisp, aisp, and risp, it's possible to monitor more closely the most violent localities. It also includes an AI machine learning model to predict the next value of violent lethality based on the data.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+          <img src="https://skillicons.dev/icons?i=flask" title="Flask" alt="Flask">
+          <img src="https://skillicons.dev/icons?i=postgres" title="PostgreSQL" alt="PostgreSQL">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRYs547v2gOR_xdllUqcUxfq25_7TeDqTrLg&s" title="Pandas" alt="Pandas">
+          <img src="https://skillicons.dev/icons?i=sklearn" title="Scikit-Learn" alt="Scikit-Learn">
+          <img src="https://img.icons8.com/color/1200/numpy.jpg" title="Numpy" alt="Numpy">
+          <img src="https://geopandas.org/en/v0.14.3/_images/geopandas_icon_green.png" title="GeoPandas" alt="GeoPandas">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/250px-Matplotlib_icon.svg.png" title="Matplotlib" alt="Matplotlib">
+          <img src="https://pbs.twimg.com/profile_images/758905296416681984/_GD1-XrU_400x400.jpg" title="ChartJS" alt="ChartJS">
+          <img src="https://avatars.githubusercontent.com/u/139423088?s=280&v=4" title="OpenRouter" alt="OpenRouter">
+          <img src="https://skillicons.dev/icons?i=selenium" title="Selenium" alt="Selenium">
+          <img src="https://skillicons.dev/icons?i=jest" title="Jest" alt="Jest">
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://github.com/gabrielamaiia01/IA_PI" class="btn-github">
+            View on GitHub
+          </a>
+          <a href="https://hub.docker.com/r/henriquesilvaxavier/monitor_rj" target="_blank" class="btn-github">
+            View on Dockerhub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-year"><span>2026</span></div>
+
+    <div class="timeline-item" data-tags="frontend backend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>FicLibris</h3>
+        <img src="ficlibris.png" class="img-projeto" alt="FicLibris Project">
+        <p>A virtual library of movies, books, manga, anime, and series that recommends content based on keywords and works the user has already seen and selected as a base reference. To generate recommendations, the system analyzes the similarity between works by comparing shared words in their synopsis, keywords, and genre.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+          <img src="https://skillicons.dev/icons?i=ts" title="TypeScript" alt="TypeScript">
+          <img src="https://skillicons.dev/icons?i=react" title="React" alt="React">
+          <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
+        </div>
+        <a href="https://github.com/HenriqueSilvaXavier/FicLibris" class="btn-github">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-tags="frontend backend">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <h3>Bootcamp-films</h3>
+        <img src="bootcamp.png" class="img-projeto" alt="Bootcamp-films Project">
+        <p>A film management web application built during a Java bootcamp. It allows users to browse, register, and manage movie entries through a full-stack interface powered by Spring Boot on the backend.</p>
+        <div class="stacks">
+          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
+          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
+          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+          <img src="https://skillicons.dev/icons?i=java" title="Java" alt="Java">
+          <img src="https://skillicons.dev/icons?i=spring" title="Spring" alt="Spring">
+          <img src="https://skillicons.dev/icons?i=bootstrap" title="Bootstrap" alt="Bootstrap">
+          <img src="https://marcphilipp.de/img/junit5-logo.png" title="JUnit" alt="JUnit">
+        </div>
+        <a href="https://github.com/HenriqueSilvaXavier/bootcamp" class="btn-github">View on GitHub</a>
+      </div>
+    </div>
+
+  </div><!-- /.timeline -->
 </section>
 
 <script>
 // =============================================
-// SKILLS MAP - COM ANIMAÇÃO DO METRÔ (primeiro código)
+// SIDE ASSIGNMENT — ignores .timeline-year
 // =============================================
-const SKILLS_LINES = [
-  {
-    id: 'AI', label: 'AI', color: '#8b5cf6',
-    stations: [
-      { name: 'Python', icon: 'https://skillicons.dev/icons?i=py', interchange: true },
-      { name: 'TensorFlow', icon: 'https://skillicons.dev/icons?i=tensorflow' },
-      { name: 'Keras', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg' },
-      { name: 'Scikit-Learn', icon: 'https://skillicons.dev/icons?i=scikitlearn' },
-      { name: 'OpenCV', icon: 'https://skillicons.dev/icons?i=opencv' },
-      { name: 'LangChain', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
-      { name: 'Gradio', icon: 'https://cdn.simpleicons.org/gradio/FF7C00' },
-    ]
-  },
-  {
-    id: 'DS', label: 'DATA', color: '#06b6d4',
-    stations: [
-      { name: 'Python', icon: 'https://skillicons.dev/icons?i=py', interchange: true },
-      { name: 'Jupyter', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg' },
-      { name: 'NumPy', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg' },
-      { name: 'Pandas', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg' },
-      { name: 'Matplotlib', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg' },
-      { name: 'Seaborn', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-      { name: 'Power BI', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png' },
-    ]
-  },
-  {
-    id: 'BE', label: 'BACK', color: '#60a5fa',
-    stations: [
-      { name: 'Node.js', icon: 'https://skillicons.dev/icons?i=nodejs' },
-      { name: 'Express', icon: 'https://skillicons.dev/icons?i=express' },
-      { name: 'Django', icon: 'https://skillicons.dev/icons?i=django' },
-      { name: 'Flask', icon: 'https://skillicons.dev/icons?i=flask' },
-      { name: 'Java', icon: 'https://skillicons.dev/icons?i=java' },
-      { name: 'Spring', icon: 'https://skillicons.dev/icons?i=spring' },
-      { name: 'PHP', icon: 'https://skillicons.dev/icons?i=php' },
-      { name: 'Laravel', icon: 'https://skillicons.dev/icons?i=laravel' },
-      { name: 'Prisma ORM', icon: 'https://skillicons.dev/icons?i=prisma', interchange: true },
-      { name: 'Postman', icon: 'https://skillicons.dev/icons?i=postman' },
-    ]
-  },
-  {
-    id: 'FE', label: 'FRONT', color: '#34d399',
-    stations: [
-      { name: 'HTML5', icon: 'https://skillicons.dev/icons?i=html' },
-      { name: 'CSS3', icon: 'https://skillicons.dev/icons?i=css' },
-      { name: 'JavaScript', icon: 'https://skillicons.dev/icons?i=js' },
-      { name: 'React', icon: 'https://skillicons.dev/icons?i=react', interchange: true },
-      { name: 'TypeScript', icon: 'https://skillicons.dev/icons?i=ts' },
-      { name: 'Bootstrap', icon: 'https://skillicons.dev/icons?i=bootstrap' },
-      { name: 'Tailwind', icon: 'https://skillicons.dev/icons?i=tailwind' },
-      { name: 'Chart.js', icon: 'https://cdn.simpleicons.org/chartdotjs/FF6384' },
-    ]
-  },
-  {
-    id: 'DB', label: 'DB', color: '#fbbf24',
-    stations: [
-      { name: 'MongoDB', icon: 'https://skillicons.dev/icons?i=mongodb' },
-      { name: 'MySQL', icon: 'https://skillicons.dev/icons?i=mysql' },
-      { name: 'PostgreSQL', icon: 'https://skillicons.dev/icons?i=postgres' },
-      { name: 'SQLite', icon: 'https://skillicons.dev/icons?i=sqlite' },
-    ]
-  },
-  {
-    id: 'MB', label: 'MOB', color: '#22c55e',
-    stations: [
-      { name: 'React Native', icon: 'https://reactnative.dev/img/header_logo.svg', interchange: true },
-    ]
-  },
-  {
-    id: 'DO', label: 'DEV\nOPS', color: '#f59e0b',
-    stations: [
-      { name: 'Git', icon: 'https://skillicons.dev/icons?i=git' },
-      { name: 'Azure', icon: 'https://skillicons.dev/icons?i=azure' },
-    ]
-  },
-  {
-    id: 'TE', label: 'TEST', color: '#ef4444',
-    stations: [
-      { name: 'Jest', icon: 'https://skillicons.dev/icons?i=jest', interchange: true },
-      { name: 'Selenium', icon: 'https://skillicons.dev/icons?i=selenium' },
-    ]
-  },
-  {
-    id: 'UX', label: 'UX', color: '#f472b6',
-    stations: [
-      { name: 'Figma', icon: 'https://skillicons.dev/icons?i=figma' },
-    ]
-  },
-  {
-    id: 'SS', label: 'SOFT', color: '#fb923c',
-    stations: [
-      { 
-        name: 'Adaptability',
-        svg: `<svg viewBox="0 0 24 24" fill="none">
-          <path d="M12 3v6l4-4M12 21v-6l-4 4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-        </svg>`
-      },
-      { 
-        name: 'Persistence',
-        svg: `<svg viewBox="0 0 24 24" fill="none">
-          <path d="M21 12a9 9 0 11-3-6.7" stroke="currentColor" stroke-width="2"/>
-          <path d="M21 3v6h-6" stroke="currentColor" stroke-width="2"/>
-        </svg>`
-      },
-      { 
-        name: 'Teamwork',
-        svg: `<svg viewBox="0 0 24 24" fill="none">
-          <path d="M17 20a4 4 0 10-8 0" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
-          <path d="M23 20a4 4 0 00-6-3.46M1 20a4 4 0 016-3.46" stroke="currentColor" stroke-width="2"/>
-        </svg>`
-      },
-      { 
-        name: 'Results-oriented',
-        svg: `<svg viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="1" fill="currentColor"/>
-        </svg>`
-      },
-      { 
-        name: 'Problem Solving',
-        svg: `<svg viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-          <path d="M9.09 9a3 3 0 115.82 1c0 2-3 2-3 4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="17" r="1" fill="currentColor"/>
-        </svg>`
-      },
-      { 
-        name: 'Continuous Learning',
-        svg: `<svg viewBox="0 0 24 24" fill="none">
-          <path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-        </svg>`
-      },
-      { 
-        name: 'Analytical Thinking',
-        svg: `<svg viewBox="0 0 24 24" fill="none">
-          <path d="M4 19h16M4 15l4-4 4 4 8-8" stroke="currentColor" stroke-width="2"/>
-        </svg>`
-      }
-    ]
-  }
-];
-
-// Renderizar o mapa do metrô com a animação do trem
-function renderMetroMap() {
-  const container = document.getElementById('dynamicMetroMap');
-  if (!container) return;
-  
-  container.innerHTML = '';
-  
-  SKILLS_LINES.forEach((line, idx) => {
-    const lineDiv = document.createElement('div');
-    lineDiv.className = 'metro-line';
-    lineDiv.style.setProperty('--line-color', line.color);
-    
-    // Label da linha
-    const label = document.createElement('div');
-    label.className = 'line-label';
-    label.innerHTML = line.label.replace('\n', '<br>');
-    label.style.color = line.color;
-    lineDiv.appendChild(label);
-    
-    // Container das estações
-    const stationsDiv = document.createElement('div');
-    stationsDiv.className = 'stations';
-    
-    // Trem animado (do primeiro código)
-    const train = document.createElement('div');
-    train.className = 'train-dot';
-    train.style.setProperty('--line-color', line.color);
-    train.style.animationDelay = (idx * 1.5) + 's';
-    for (let i = 0; i < 3; i++) {
-      const car = document.createElement('div');
-      car.className = 'car';
-      train.appendChild(car);
-    }
-    stationsDiv.appendChild(train);
-    
-    // Criar estações
-    line.stations.forEach(station => {
-      const stationDiv = document.createElement('div');
-      stationDiv.className = 'station';
-      
-      const iconDiv = document.createElement('div');
-      iconDiv.className = 'station-icon' + (station.interchange ? ' interchange' : '');
-      iconDiv.style.setProperty('--line-color', line.color);
-      iconDiv.style.borderColor = line.color;
-      
-      if (station.svg) {
-        iconDiv.innerHTML = station.svg;
-      } else if (station.icon) {
-        const img = document.createElement('img');
-        img.src = station.icon;
-        img.alt = station.name;
-        iconDiv.appendChild(img);
-      }
-      
-      const labelSpan = document.createElement('span');
-      labelSpan.className = 'station-label';
-      labelSpan.textContent = station.name;
-      
-      stationDiv.appendChild(iconDiv);
-      stationDiv.appendChild(labelSpan);
-      stationsDiv.appendChild(stationDiv);
-    });
-    applySnakeLayout(stationsDiv);
-
-    lineDiv.appendChild(stationsDiv);
-    container.appendChild(lineDiv);
-  });
-
-  function applySnakeLayout(stationsDiv) {
-    const stations = [...stationsDiv.querySelectorAll('.station')];
-
-    let rows = [];
-    let currentRow = [];
-    let lastTop = null;
-
-    stations.forEach(station => {
-      const top = station.offsetTop;
-
-      if (lastTop === null || Math.abs(top - lastTop) < 10) {
-        currentRow.push(station);
-      } else {
-        rows.push(currentRow);
-        currentRow = [station];
-      }
-
-      lastTop = top;
-    });
-
-    if (currentRow.length) rows.push(currentRow);
-
-    // alternar direção
-    rows.forEach((row, index) => {
-      if (index % 2 === 1) {
-        row.reverse().forEach(el => stationsDiv.appendChild(el));
-      }
-    });
-  }
-}
-
-// Projetos
-const projects = [
-  { year: 2024, name: "Nebelfeld Dictionary", img: "Nebelfeld.png", tags: "frontend", stacks: ["html","css","js"], github: "https://github.com/HenriqueSilvaXavier/dicionarioNebelfeld.github.io", deploy: "https://henriquesilvaxavier.github.io/dicionarioNebelfeld.github.io/", desc: "Multilingual dictionary with definitions, synonyms, and pronunciation." },
-  { year: 2024, name: "CEPDistância", img: "CEPDistância.png", tags: "frontend", stacks: ["html","css","js"], github: "https://github.com/HenriqueSilvaXavier/CEPDistancia.github.io", deploy: "https://henriquesilvaxavier.github.io/CEPDistancia.github.io/", desc: "Calculates distance between two Brazilian ZIP codes using ViaCEP API." },
-  { year: 2024, name: "Notex App", img: "notex.png", tags: "mobile", stacks: ["reactnative","typescript","sqlite","prisma"], github: "https://github.com/HenriqueSilvaXavier/Notex-Mobile-PI", desc: "Academic app for Mediotec students to see grades and schedule.", isMobile: true },
-  { year: 2024, name: "Vitae.ai", img: "Vitae.png", tags: "frontend backend", stacks: ["react","python","sqlite","flask"], github: "https://github.com/HenriqueSilvaXavier/Vitae.ai-Residencia", desc: "AI-powered resume analyzer with suggestions and evaluation." },
-  { year: 2025, name: "ToDoList", img: "todo.png", tags: "frontend backend", stacks: ["html","css","js","django"], github: "https://github.com/Elias969/Django_Tarefas.github.io", desc: "Task manager with categories: In Progress, Completed, Not Done." },
-  { year: 2025, name: "Consumo Energetico", img: "consumoenergetico.png", tags: "data", stacks: ["python","gradio","pandas","matplotlib","sklearn","numpy"], github: "https://github.com/HenriqueSilvaXavier/consumo_energetico", deploy: "https://consumo-energetico2-6.onrender.com/", desc: "Energy consumption prediction with AI models and MFA authentication." },
-  { year: 2025, name: "CodeStore", img: "codestore.png", tags: "frontend backend", stacks: ["html","css","js","tailwind","nodejs"], github: "https://github.com/HenriqueSilvaXavier/CodeStore", desc: "E-commerce for IT, gamer and design products." },
-  { year: 2025, name: "Decimal Division Anatomy", img: "decimalDivisionAnatomy.png", tags: "frontend", stacks: ["html","css","js","php"], github: "https://github.com/HenriqueSilvaXavier/Decimal-Division-Anatomy", deploy: "https://henriquesilvaxavier.github.io/Decimal-Division-Anatomy.github.io/", desc: "Visual decimal division simulator with export to image." },
-  { year: 2025, name: "Lojas Henri", img: "lojashenri 1.png", tags: "frontend backend", stacks: ["html","css","js","laravel","python","php","mysql","tailwind","bootstrap"], github: "https://github.com/HenriqueSilvaXavier/LojasHenri-Laravel", desc: "Complete e-commerce platform with AI recommendations." },
-  { year: 2025, name: "Monitor RJ", img: "monitorrj.png", tags: "frontend data backend", stacks: ["python","html","css","js","flask","postgres","sklearn","selenium"], github: "https://github.com/gabrielamaiia01/IA_PI", docker: "https://hub.docker.com/r/henriquesilvaxavier/monitor_rj", desc: "Crime monitoring dashboard for Rio de Janeiro with ML predictions." },
-  { year: 2026, name: "FicLibris", img: "ficlibris.png", tags: "frontend backend", stacks: ["html","css","js","ts","react","sqlite"], github: "https://github.com/HenriqueSilvaXavier/FicLibris", desc: "Virtual library that recommends content based on similarity analysis." },
-  { year: 2026, name: "Bootcamp-films", img: "bootcamp.png", tags: "frontend backend", stacks: ["html","css","js","java","spring","bootstrap"], github: "https://github.com/HenriqueSilvaXavier/bootcamp", desc: "Film management app built with Spring Boot during bootcamp." }
-];
-
-function renderProjects() {
-  const container = document.getElementById('projectsTimeline');
-  if (!container) return;
-  
-  container.innerHTML = '';
-  let lastYear = null;
-  
-  projects.forEach((project, idx) => {
-    if (project.year !== lastYear) {
-      const yearDiv = document.createElement('div');
-      yearDiv.className = 'timeline-year';
-      yearDiv.innerHTML = `<span>${project.year}</span>`;
-      container.appendChild(yearDiv);
-      lastYear = project.year;
-    }
-    
-    const item = document.createElement('div');
-    item.className = 'timeline-item';
-    item.setAttribute('data-tags', project.tags);
-    
-    const dot = document.createElement('div');
-    dot.className = 'timeline-dot';
-    item.appendChild(dot);
-    
-    const card = document.createElement('div');
-    card.className = 'timeline-card fade-up';
-    
-    card.innerHTML = `
-      <h3>${project.name}</h3>
-      <img src="${project.img}" class="${project.isMobile ? 'img-projeto-mobile' : 'img-projeto'}" alt="${project.name}" onerror="this.style.display='none'">
-      <p>${project.desc}</p>
-      <div class="stacks">
-        ${project.stacks.map(s => `<img src="https://skillicons.dev/icons?i=${s}" title="${s}" onerror="this.style.display='none'">`).join('')}
-      </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a href="${project.github}" class="btn-github" target="_blank">View on GitHub</a>
-        ${project.deploy ? `<a href="${project.deploy}" class="btn-github" target="_blank">View Deploy</a>` : ''}
-        ${project.docker ? `<a href="${project.docker}" class="btn-github" target="_blank">View on Dockerhub</a>` : ''}
-      </div>
-    `;
-    
-    item.appendChild(card);
-    container.appendChild(item);
-  });
-  
-  // Aplicar classes left/right após renderizar
+// Selects ONLY .timeline-item elements (not .timeline-year)
+// and alternates left/right in continuous global order,
+// so year breaks don't disrupt the rhythm.
+(function assignSides() {
   const items = document.querySelectorAll('.timeline-item');
   items.forEach((item, index) => {
     item.classList.add(index % 2 === 0 ? 'left' : 'right');
   });
-}
+})();
 
-// Inicializar
-renderMetroMap();
-renderProjects();
+// =============================================
+// FILTERS
+// =============================================
+const buttons = document.querySelectorAll('.filter-btn');
+const items   = document.querySelectorAll('.timeline-item');
 
-// Filtros
-const filterButtons = document.querySelectorAll('.filter-btn');
-const timelineItems = () => document.querySelectorAll('.timeline-item');
-
-function applyFilter(filter) {
-  const items = timelineItems();
-  items.forEach(item => {
-    const tags = item.getAttribute('data-tags') || '';
-    if (filter === 'all' || tags.includes(filter)) {
-      item.style.display = 'block';
-    } else {
-      item.style.display = 'none';
-    }
-  });
-  
-  // Re-alternar sides dos visíveis
-  const visibleItems = [...items].filter(i => i.style.display !== 'none');
-  visibleItems.forEach((item, idx) => {
-    item.classList.remove('left', 'right');
-    item.classList.add(idx % 2 === 0 ? 'left' : 'right');
-  });
-  
-  // Esconder anos sem itens visíveis
-  document.querySelectorAll('.timeline-year').forEach(yearEl => {
-    let next = yearEl.nextElementSibling;
-    let hasVisible = false;
-    while (next && !next.classList.contains('timeline-year')) {
-      if (next.classList.contains('timeline-item') && next.style.display !== 'none') {
-        hasVisible = true;
-        break;
-      }
-      next = next.nextElementSibling;
-    }
-    yearEl.style.display = hasVisible ? 'flex' : 'none';
-  });
-}
-
-filterButtons.forEach(btn => {
+buttons.forEach(btn => {
   btn.addEventListener('click', () => {
-    filterButtons.forEach(b => b.classList.remove('active'));
+    buttons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    applyFilter(btn.dataset.filter);
-  });
-});
+    const filter = btn.dataset.filter;
 
-// Observer para animações fade-up
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
+    items.forEach(item => {
+      if (filter === 'all') {
+        item.style.display = 'block';
+        return;
+      }
+      const tags = item.dataset.tags ? item.dataset.tags.split(' ') : [];
+      item.style.display = tags.includes(filter) ? 'block' : 'none';
+    });
+
+    // Re-alternate sides of VISIBLE items after filtering
+    const visibleItems = [...items].filter(i => i.style.display !== 'none');
+    visibleItems.forEach((item, index) => {
+      item.classList.remove('left', 'right');
+      item.classList.add(index % 2 === 0 ? 'left' : 'right');
+    });
+
+    // Hide year if all items in its group are hidden
+    document.querySelectorAll('.timeline-year').forEach(yearEl => {
+      let next = yearEl.nextElementSibling;
+      let hasVisible = false;
+      while (next && !next.classList.contains('timeline-year')) {
+        if (next.classList.contains('timeline-item') && next.style.display !== 'none') {
+          hasVisible = true;
+          break;
+        }
+        next = next.nextElementSibling;
+      }
+      yearEl.style.display = hasVisible ? 'flex' : 'none';
+    });
   });
 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
-
-<!-- Certificates Section -->
-<section id="certificates" style="max-width:1000px; margin:0 auto; padding:0 20px;">
-  <h2 class="section-title">🏅 Certificates & Achievements</h2>
-  <div class="cert-card fade-up" style="display:flex; flex-direction:column; gap:18px; margin-bottom:20px;">
-    <div style="display:flex; align-items:center; gap:12px;">
-      <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;">
-        🥉
-      </div>
-      <div>
-        <p style="font-weight:600;">Bronze Medal — OBMEP</p>
-        <p style="color:var(--muted); font-size:.9rem;">Brazilian Mathematical Olympiad for Public Schools</p>
-      </div>
-    </div>
-  </div>
-  <div class="cert-card"><img src="voluntariado recnplay.png" class="cert-img" alt="Rec'N'Play Volunteering"><div class="cert-content"><div class="cert-title">Rec'N'Play Volunteering</div><div class="cert-org">Rec'N'Play</div></div></div>
-  <div class="cert-card"><img src="analise de dados.png" class="cert-img" alt="Data Analysis Intensive"><div class="cert-content"><div class="cert-title">Data Analysis Intensive</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
-  <div class="cert-card"><img src="hashtag python.png" class="cert-img" alt="Python Journey"><div class="cert-content"><div class="cert-title">Python Journey</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
-  <div class="cert-card"><img src="rocketseat 1.png" class="cert-img" alt="Rocketseat"><div class="cert-content"><div class="cert-title">Rocketseat Knowledge Trail</div><div class="cert-org">Rocketseat</div></div></div>
-  <div class="cert-card"><img src="certificado deloitte bootcamp java.png" class="cert-img" alt="Deloitte Bootcamp Java"><div class="cert-content"><div class="cert-title">Java Bootcamp</div><div class="cert-org">Deloitte</div></div></div>
-</section>
 
 </body>
 </html>
