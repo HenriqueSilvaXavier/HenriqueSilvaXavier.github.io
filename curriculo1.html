@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume & Portfolio - Henrique Silva Xavier</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#111827;
+  --primary:#22d3ee;
+  --secondary:#a78bfa;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(120deg,#0f172a,#0b1220 40%,#0f172a);
+  color:var(--text);
+}
+
+section{
+  max-width:1000px;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+.section-title{
+  font-size:1.8rem;
+  margin-bottom:30px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:24px;
+}
+
+/* ===== Skills Map com Animação do Metrô ===== */
+.skills-map-wrapper{
+  display:flex;
+  justify-content:center;
+}
+
+.metro-map{
+  width:1000px;
+  max-width:95vw;
+  padding:40px 20px 60px;
+}
+
+/* Estilo base para cada linha do metrô */
+.metro-line{
+  --label-width:140px;
+  --rail-thickness:6px;
+  --icon-size:44px;
+  --icon-offset:22px;
+  --rail-y: calc(var(--icon-offset) + 2px);
+  --line-color: #8b5cf6;
+  
+  position:relative;
+  margin:42px 0;
+  padding-left:var(--label-width);
+}
+
+.line-label{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:var(--label-width);
+  font-size:.75rem;
+  letter-spacing:1px;
+  opacity:.85;
+  font-weight:600;
+  color:var(--line-color);
+  text-shadow:0 0 5px rgba(0,0,0,0.5);
+  z-index:2;
+}
+
+/* Trilho da linha */
+.stations {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 20px 0;
+}
+
+/* linha horizontal */
+.stations::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--line-color);
+  top: 28px;
+  z-index: 0;
+}
+
+/* linha vertical conectando */
+.station::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 40px;
+  background: var(--line-color);
+  top: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* última linha não desce */
+.station:last-child::after {
+  display: none;
+}
+/* Estação */
+.station{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:70px;
+  position:relative;
+  z-index:2;
+}
+
+.station-icon{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(17,24,39,.95);
+  border:3px solid var(--line-color);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  transition:.2s;
+  position:relative;
+  z-index:2;
+}
+
+.station-icon img{
+  width:26px;
+  height:26px;
+}
+
+.station-icon:hover{
+  transform:scale(1.15);
+}
+
+.interchange{
+  border-color:#fff;
+  box-shadow:0 0 0 3px var(--line-color);
+}
+
+.station-label{
+  margin-top:8px;
+  font-size:.65rem;
+  text-align:center;
+  color:var(--muted);
+  line-height:1.2;
+  max-width: 70px;
+  word-break: break-word;
+}
+
+.map-legend{
+  margin-top:20px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+/* ===== TREM ANIMADO (versão do primeiro código) ===== */
+.train-dot {
+  position: absolute;
+  top: calc(var(--rail-y) - 7px);
+  transform: translateY(0);
+  height: 14px;
+  background: var(--line-color);
+  border-radius: 7px;
+  z-index: 10;
+  left: 4px;
+  animation: ride 12s linear infinite;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 3px;
+  box-shadow: 0 0 10px var(--line-color);
+  pointer-events: none;
+}
+
+.train-dot .car { 
+  width: 12px; 
+  height: 8px; 
+  background: rgba(255,255,255,0.35); 
+  border-radius: 2px; 
+}
+
+.train-dot .car:first-child { 
+  background: rgba(255,255,255,0.7); 
+  border-radius: 3px 2px 2px 3px; 
+}
+
+@keyframes ride {
+  0% { left: 4px; opacity: 0; width: 40px; }
+  5% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: calc(100% - 48px); opacity: 0; width: 40px; }
+}
+
+/* Ajuste responsivo para o trem */
+@media (max-width: 768px) {
+  .stations {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(to bottom, var(--line-color), var(--line-color));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 6px 100%;
+  }
+  
+  .train-dot {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 4px;
+    animation: rideVertical 10s linear infinite;
+  }
+  
+  @keyframes rideVertical {
+    0% { top: 4px; opacity: 0; width: 40px; }
+    5% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: calc(100% - 24px); opacity: 0; width: 40px; }
+  }
+}
+
+/* ===== TIMELINE ===== */
+.timeline{
+  position:relative;
+}
+
+/* Central vertical line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(var(--primary), var(--secondary));
+  z-index: 1;
+}
+
+/* ===== YEAR ON THE LINE ===== */
+.timeline-year {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 40px 0;
+  z-index: 3;
+  clear: both;
+}
+
+.timeline-year span {
+  position: relative;
+  z-index: 4;
+  background: var(--bg);
+  border: 2px solid var(--primary);
+  color: var(--text);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 0 16px rgba(34,211,238,.35);
+}
+
+/* ===== ZIG-ZAG ===== */
+.timeline-item{
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+}
+
+/* LEFT = left side of the line (right-aligned text) */
+.timeline-item.left{
+  margin-left: 0;
+  text-align: right;
+}
+
+/* RIGHT = right side of the line (left-aligned text) */
+.timeline-item.right{
+  margin-left: 50%;
+  text-align: left;
+}
+
+.timeline-dot{
+  position:absolute;
+  top:28px;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  box-shadow:0 0 12px rgba(34,211,238,.6);
+  z-index:2;
+}
+
+.timeline-item.left  .timeline-dot{ right:-8px; }
+.timeline-item.right .timeline-dot{ left:-8px; }
+
+.timeline-card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:22px;
+  transition:.3s;
+}
+
+.timeline-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(34,211,238,.4);
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+.stacks{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:14px 0 18px;
+}
+
+.timeline-item.left .stacks {
+  justify-content: flex-end;
+}
+
+.stacks img{
+  width:28px;
+  height:28px;
+  background:#0b1220;
+  padding:4px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.2s;
+}
+
+.stacks img:hover{
+  transform:scale(1.15);
+  border-color:var(--primary);
+}
+
+.btn-github{
+  display:inline-block;
+  font-size:.8rem;
+  padding:8px 14px;
+  border-radius:999px;
+  text-decoration:none;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  color:#0b1220;
+  font-weight:600;
+}
+
+/* ===== FILTERS ===== */
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
+  padding: 0 20px;
+}
+
+.filter-btn{
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);
+  background:transparent;
+  color:var(--text);
+  cursor:pointer;
+  font-size:.8rem;
+  transition:.25s;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  color:#0b1220;
+  border-color:transparent;
+}
+
+.img-projeto{
+  width:80%;
+  margin:14px 0;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.img-projeto-mobile{
+  width:40%;
+  margin:14px 0;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+/* ===== EDUCATION ===== */
+.edu-timeline{
+  position:relative;
+  padding-left:40px;
+  display:flex;
+  flex-direction:column;
+  gap:34px;
+}
+
+.edu-timeline::before{
+  content:"";
+  position:absolute;
+  left:11px;
+  top:4px;
+  bottom:4px;
+  width:3px;
+  background:linear-gradient(var(--primary),var(--secondary));
+}
+
+.edu-item{
+  position:relative;
+}
+
+.edu-dot{
+  position:absolute;
+  left:-36px;
+  top:6px;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  box-shadow:0 0 14px rgba(34,211,238,.6);
+}
+
+.edu-content h3{
+  color:var(--primary);
+  font-size:1.05rem;
+  margin-bottom:6px;
+}
+
+.edu-meta{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+/* ===== CERTIFICATES ===== */
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+}
+#certificates{
+  max-width:400px;
+}
+
+.cert-card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  overflow:hidden;
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+  margin-bottom: 20px;
+}
+
+.cert-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(34,211,238,.5);
+  box-shadow:0 14px 34px rgba(0,0,0,.35);
+}
+
+.cert-img{
+  width:100%;
+  height:150px;
+  background:#0b1220;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  object-fit: cover;
+}
+
+.cert-content{
+  padding:16px;
+}
+
+.cert-title{
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.cert-org{
+  color:var(--primary);
+  font-weight:600;
+  font-size:.9rem;
+  margin-bottom:6px;
+}
+
+.cert-meta{
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+/* ===== HEADER / PROFILE ===== */
+.profile{
+  max-width:1000px;
+  margin:60px auto 20px;
+  padding:0 20px;
+}
+
+.profile-card{
+  background:var(--card);
+  border-radius:20px;
+  padding:32px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.profile-photo{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--primary);
+  box-shadow:0 0 24px rgba(34,211,238,.35);
+}
+
+.profile-info h1{
+  font-size:2rem;
+  margin-bottom:6px;
+}
+
+.profile-role{
+  color:var(--primary);
+  font-weight:600;
+  margin-bottom:14px;
+}
+
+.profile-desc{
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.profile-contacts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px 24px;
+  font-size:.95rem;
+}
+
+.profile-contacts a{
+  color:var(--text);
+  text-decoration:none;
+  border-bottom:1px dashed rgba(255,255,255,.2);
+}
+
+.profile-contacts a:hover{
+  color:var(--primary);
+  border-color:var(--primary);
+}
+
+.linha{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.rede-social-img{
+  width:30px;
+  height:30px;
+  border-radius: 100%;
+}
+
+/* ===== LANGUAGES ===== */
+.idioma-card{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.idioma-item{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.idioma-top{
+  display:flex;
+  justify-content:space-between;
+  font-weight:600;
+}
+
+.nivel{
+  padding:2px 10px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+.nivel.c1{
+  background:rgba(34,211,238,.15);
+  color:var(--primary);
+  border:1px solid rgba(34,211,238,.4);
+}
+
+.nivel.b2{
+  background:rgba(167,139,250,.15);
+  color:var(--secondary);
+  border:1px solid rgba(167,139,250,.4);
+}
+
+.barra{
+  height:10px;
+  background:#0b1220;
+  border-radius:999px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.progresso{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+
+.progresso.c1{ width:85%; }
+.progresso.b2{ width:70%; }
+
+.nivel.b1{
+  background:rgba(99,102,241,.15);
+  color:#6366f1;
+  border:1px solid rgba(99,102,241,.4);
+}
+
+.progresso.b1{ width:55%; }
+
+/* ===== ANIMAÇÃO GLOBAL ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up:nth-child(1){ transition-delay: .1s }
+.fade-up:nth-child(2){ transition-delay: .2s }
+.fade-up:nth-child(3){ transition-delay: .3s }
+.fade-up:nth-child(4){ transition-delay: .4s }
+.fade-up:nth-child(5){ transition-delay: .5s }
+
+/* Pulse nas estações */
+.station-icon {
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,100% {
+    box-shadow: 0 0 0px var(--line-color);
+  }
+  50% {
+    box-shadow: 0 0 12px var(--line-color);
+  }
+}
+
+/* Responsividade */
+@media (max-width:500px){
+  .profile-card{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .profile-contacts{
+    justify-content:center;
+  }
+
+  .linha{
+    justify-content:center;
+  }
+}
+
+@media (max-width: 674px){
+  .timeline::before {
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline-item{
+    width: 100%;
+    padding: 20px 20px 20px 60px;
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right{
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .timeline-dot{
+    left: 12px !important;
+    right: auto !important;
+  }
+
+  .timeline-item.left .stacks{
+    justify-content: flex-start;
+  }
+
+  .img-projeto,
+  .img-projeto-mobile{
+    width: 100%;
+  }
+
+  .timeline-year{
+    justify-content: flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- ================= PROFILE ================= -->
+<section class="profile">
+  <div class="profile-card fade-up">
+    <img src="eu.jpg" alt="Photo of Henrique Silva Xavier" class="profile-photo" onerror="this.src='https://via.placeholder.com/140?text=HSX'">
+    <div class="profile-info">
+      <h1>Henrique Silva Xavier</h1>
+      <div class="profile-role">Junior Full Stack Developer • Looking for a professional opportunity</div>
+      <p class="profile-desc">
+        Full Stack Developer focused on web applications, AI, and data. Hands-on experience in projects with React, Node, Python, and Spring Boot, building complete systems with front-end, back-end, and database. Interested in high-impact solutions using Artificial Intelligence.
+      </p>
+      <p>Localization: Recife, Pernambuco, Brazil</p>
+      <br>
+      <div class="profile-contacts">
+        <span class="linha"><img src="whatsapp 1.png" style="width:20px">(81) 98552-1110</span>
+        <span class="linha">
+          <a href="mailto:henriquesx44@gmail.com">henriquesx44@gmail.com</a>
+        </span>
+        <a href="https://www.linkedin.com/in/henrique-silva-xavier-3a4047241/" target="_blank"><img src="linkedin 1.png" class="rede-social-img" style="width:30px"></a>
+        <a href="https://www.instagram.com/henriquesilvaxavier8/" target="_blank"><img src="instagram 1.png" class="rede-social-img" style="width:30px"></a>
+        <a href="https://github.com/henriquesilvaxavier" target="_blank"><img src="github 1.png" class="rede-social-img" style="width:30px"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education">
+  <h2 class="section-title">🎓 Education</h2>
+  <div class="card fade-up">
+    <div class="edu-timeline">
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div class="edu-content">
+          <h3>Systems Analysis and Development</h3>
+          <p><strong>SENAC</strong></p>
+          <p class="edu-meta">Undergraduate Degree • Completed</p>
+          <p class="edu-meta">Aug/2023 — Dec/2025</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-dot"></div>
+        <div class="edu-content">
+          <h3>High School</h3>
+          <p><strong>CODAI</strong></p>
+          <p class="edu-meta">2020 — 2022</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS MAP ================= -->
+<section id="skills">
+<h2 class="section-title">🚀 Skills Metro Map</h2>
+<div class="card fade-up">
+<div class="skills-map-wrapper">
+<div class="metro-map" id="dynamicMetroMap"></div>
+</div>
+<div class="map-legend">
+  🚆 Each line has a moving train • Stations connect skills across areas
+</div>
+</div>
+</section>
+
+<!-- ================= ENGLISH PROFICIENCY ================= -->
+<section id="languages">
+  <h2 class="section-title">🌍 English — Proficiency</h2>
+  <div class="card idioma-card fade-up">
+    <div class="idioma-item">
+      <div class="idioma-top">
+        <span>Reading</span>
+        <span class="nivel c1">C1</span>
+      </div>
+      <div class="barra"><div class="progresso c1"></div></div>
+    </div>
+    <div class="idioma-item">
+      <div class="idioma-top">
+        <span>Writing</span>
+        <span class="nivel b1">B1</span>
+      </div>
+      <div class="barra"><div class="progresso b1"></div></div>
+    </div>
+    <div class="idioma-item">
+      <div class="idioma-top">
+        <span>Listening</span>
+        <span class="nivel b2">B2</span>
+      </div>
+      <div class="barra"><div class="progresso b2"></div></div>
+    </div>
+    <div class="idioma-item">
+      <div class="idioma-top">
+        <span>Speaking</span>
+        <span class="nivel b2">B2</span>
+      </div>
+      <div class="barra"><div class="progresso b2"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<h2 class="section-title" style="max-width:1000px;margin:60px auto 20px;padding:0 20px;">🗂️ Projects</h2>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="frontend">Front-end</button>
+  <button class="filter-btn" data-filter="backend">Back-end</button>
+  <button class="filter-btn" data-filter="data">Data Science</button>
+  <button class="filter-btn" data-filter="mobile">Mobile</button>
+</div>
+
+<section>
+  <div class="timeline" id="projectsTimeline">
+    <!-- Projects will be populated by JS -->
+  </div>
+</section>
+
+<script>
+// =============================================
+// SKILLS MAP - COM ANIMAÇÃO DO METRÔ (primeiro código)
+// =============================================
+const SKILLS_LINES = [
+  {
+    id: 'AI', label: 'AI', color: '#8b5cf6',
+    stations: [
+      { name: 'Python', icon: 'https://skillicons.dev/icons?i=py', interchange: true },
+      { name: 'TensorFlow', icon: 'https://skillicons.dev/icons?i=tensorflow' },
+      { name: 'Keras', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg' },
+      { name: 'Scikit-Learn', icon: 'https://skillicons.dev/icons?i=scikitlearn' },
+      { name: 'OpenCV', icon: 'https://skillicons.dev/icons?i=opencv' },
+      { name: 'LangChain', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
+      { name: 'Gradio', icon: 'https://cdn.simpleicons.org/gradio/FF7C00' },
+    ]
+  },
+  {
+    id: 'DS', label: 'DATA', color: '#06b6d4',
+    stations: [
+      { name: 'Python', icon: 'https://skillicons.dev/icons?i=py', interchange: true },
+      { name: 'Jupyter', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg' },
+      { name: 'NumPy', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg' },
+      { name: 'Pandas', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg' },
+      { name: 'Matplotlib', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg' },
+      { name: 'Seaborn', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+      { name: 'Power BI', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png' },
+    ]
+  },
+  {
+    id: 'BE', label: 'BACK', color: '#60a5fa',
+    stations: [
+      { name: 'Node.js', icon: 'https://skillicons.dev/icons?i=nodejs' },
+      { name: 'Express', icon: 'https://skillicons.dev/icons?i=express' },
+      { name: 'Django', icon: 'https://skillicons.dev/icons?i=django' },
+      { name: 'Flask', icon: 'https://skillicons.dev/icons?i=flask' },
+      { name: 'Java', icon: 'https://skillicons.dev/icons?i=java' },
+      { name: 'Spring', icon: 'https://skillicons.dev/icons?i=spring' },
+      { name: 'PHP', icon: 'https://skillicons.dev/icons?i=php' },
+      { name: 'Laravel', icon: 'https://skillicons.dev/icons?i=laravel' },
+      { name: 'Prisma ORM', icon: 'https://skillicons.dev/icons?i=prisma', interchange: true },
+      { name: 'Postman', icon: 'https://skillicons.dev/icons?i=postman' },
+    ]
+  },
+  {
+    id: 'FE', label: 'FRONT', color: '#34d399',
+    stations: [
+      { name: 'HTML5', icon: 'https://skillicons.dev/icons?i=html' },
+      { name: 'CSS3', icon: 'https://skillicons.dev/icons?i=css' },
+      { name: 'JavaScript', icon: 'https://skillicons.dev/icons?i=js' },
+      { name: 'React', icon: 'https://skillicons.dev/icons?i=react', interchange: true },
+      { name: 'TypeScript', icon: 'https://skillicons.dev/icons?i=ts' },
+      { name: 'Bootstrap', icon: 'https://skillicons.dev/icons?i=bootstrap' },
+      { name: 'Tailwind', icon: 'https://skillicons.dev/icons?i=tailwind' },
+      { name: 'Chart.js', icon: 'https://cdn.simpleicons.org/chartdotjs/FF6384' },
+    ]
+  },
+  {
+    id: 'DB', label: 'DB', color: '#fbbf24',
+    stations: [
+      { name: 'MongoDB', icon: 'https://skillicons.dev/icons?i=mongodb' },
+      { name: 'MySQL', icon: 'https://skillicons.dev/icons?i=mysql' },
+      { name: 'PostgreSQL', icon: 'https://skillicons.dev/icons?i=postgres' },
+      { name: 'SQLite', icon: 'https://skillicons.dev/icons?i=sqlite' },
+    ]
+  },
+  {
+    id: 'MB', label: 'MOB', color: '#22c55e',
+    stations: [
+      { name: 'React Native', icon: 'https://reactnative.dev/img/header_logo.svg', interchange: true },
+    ]
+  },
+  {
+    id: 'DO', label: 'DEV\nOPS', color: '#f59e0b',
+    stations: [
+      { name: 'Git', icon: 'https://skillicons.dev/icons?i=git' },
+      { name: 'Azure', icon: 'https://skillicons.dev/icons?i=azure' },
+    ]
+  },
+  {
+    id: 'TE', label: 'TEST', color: '#ef4444',
+    stations: [
+      { name: 'Jest', icon: 'https://skillicons.dev/icons?i=jest', interchange: true },
+      { name: 'Selenium', icon: 'https://skillicons.dev/icons?i=selenium' },
+    ]
+  },
+  {
+    id: 'UX', label: 'UX', color: '#f472b6',
+    stations: [
+      { name: 'Figma', icon: 'https://skillicons.dev/icons?i=figma' },
+    ]
+  },
+  {
+    id: 'SS', label: 'SOFT', color: '#fb923c',
+    stations: [
+      { 
+        name: 'Adaptability',
+        svg: `<svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 3v6l4-4M12 21v-6l-4 4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        </svg>`
+      },
+      { 
+        name: 'Persistence',
+        svg: `<svg viewBox="0 0 24 24" fill="none">
+          <path d="M21 12a9 9 0 11-3-6.7" stroke="currentColor" stroke-width="2"/>
+          <path d="M21 3v6h-6" stroke="currentColor" stroke-width="2"/>
+        </svg>`
+      },
+      { 
+        name: 'Teamwork',
+        svg: `<svg viewBox="0 0 24 24" fill="none">
+          <path d="M17 20a4 4 0 10-8 0" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+          <path d="M23 20a4 4 0 00-6-3.46M1 20a4 4 0 016-3.46" stroke="currentColor" stroke-width="2"/>
+        </svg>`
+      },
+      { 
+        name: 'Results-oriented',
+        svg: `<svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="1" fill="currentColor"/>
+        </svg>`
+      },
+      { 
+        name: 'Problem Solving',
+        svg: `<svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+          <path d="M9.09 9a3 3 0 115.82 1c0 2-3 2-3 4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="17" r="1" fill="currentColor"/>
+        </svg>`
+      },
+      { 
+        name: 'Continuous Learning',
+        svg: `<svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        </svg>`
+      },
+      { 
+        name: 'Analytical Thinking',
+        svg: `<svg viewBox="0 0 24 24" fill="none">
+          <path d="M4 19h16M4 15l4-4 4 4 8-8" stroke="currentColor" stroke-width="2"/>
+        </svg>`
+      }
+    ]
+  }
+];
+
+// Renderizar o mapa do metrô com a animação do trem
+function renderMetroMap() {
+  const container = document.getElementById('dynamicMetroMap');
+  if (!container) return;
+  
+  container.innerHTML = '';
+  
+  SKILLS_LINES.forEach((line, idx) => {
+    const lineDiv = document.createElement('div');
+    lineDiv.className = 'metro-line';
+    lineDiv.style.setProperty('--line-color', line.color);
+    
+    // Label da linha
+    const label = document.createElement('div');
+    label.className = 'line-label';
+    label.innerHTML = line.label.replace('\n', '<br>');
+    label.style.color = line.color;
+    lineDiv.appendChild(label);
+    
+    // Container das estações
+    const stationsDiv = document.createElement('div');
+    stationsDiv.className = 'stations';
+    
+    // Trem animado (do primeiro código)
+    const train = document.createElement('div');
+    train.className = 'train-dot';
+    train.style.setProperty('--line-color', line.color);
+    train.style.animationDelay = (idx * 1.5) + 's';
+    for (let i = 0; i < 3; i++) {
+      const car = document.createElement('div');
+      car.className = 'car';
+      train.appendChild(car);
+    }
+    stationsDiv.appendChild(train);
+    
+    // Criar estações
+    line.stations.forEach(station => {
+      const stationDiv = document.createElement('div');
+      stationDiv.className = 'station';
+      
+      const iconDiv = document.createElement('div');
+      iconDiv.className = 'station-icon' + (station.interchange ? ' interchange' : '');
+      iconDiv.style.setProperty('--line-color', line.color);
+      iconDiv.style.borderColor = line.color;
+      
+      if (station.svg) {
+        iconDiv.innerHTML = station.svg;
+      } else if (station.icon) {
+        const img = document.createElement('img');
+        img.src = station.icon;
+        img.alt = station.name;
+        iconDiv.appendChild(img);
+      }
+      
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'station-label';
+      labelSpan.textContent = station.name;
+      
+      stationDiv.appendChild(iconDiv);
+      stationDiv.appendChild(labelSpan);
+      stationsDiv.appendChild(stationDiv);
+    });
+    applySnakeLayout(stationsDiv);
+
+    lineDiv.appendChild(stationsDiv);
+    container.appendChild(lineDiv);
+  });
+
+  function applySnakeLayout(stationsDiv) {
+    const stations = [...stationsDiv.querySelectorAll('.station')];
+
+    let rows = [];
+    let currentRow = [];
+    let lastTop = null;
+
+    stations.forEach(station => {
+      const top = station.offsetTop;
+
+      if (lastTop === null || Math.abs(top - lastTop) < 10) {
+        currentRow.push(station);
+      } else {
+        rows.push(currentRow);
+        currentRow = [station];
+      }
+
+      lastTop = top;
+    });
+
+    if (currentRow.length) rows.push(currentRow);
+
+    // alternar direção
+    rows.forEach((row, index) => {
+      if (index % 2 === 1) {
+        row.reverse().forEach(el => stationsDiv.appendChild(el));
+      }
+    });
+  }
+}
+
+// Projetos
+const projects = [
+  { year: 2024, name: "Nebelfeld Dictionary", img: "Nebelfeld.png", tags: "frontend", stacks: ["html","css","js"], github: "https://github.com/HenriqueSilvaXavier/dicionarioNebelfeld.github.io", deploy: "https://henriquesilvaxavier.github.io/dicionarioNebelfeld.github.io/", desc: "Multilingual dictionary with definitions, synonyms, and pronunciation." },
+  { year: 2024, name: "CEPDistância", img: "CEPDistância.png", tags: "frontend", stacks: ["html","css","js"], github: "https://github.com/HenriqueSilvaXavier/CEPDistancia.github.io", deploy: "https://henriquesilvaxavier.github.io/CEPDistancia.github.io/", desc: "Calculates distance between two Brazilian ZIP codes using ViaCEP API." },
+  { year: 2024, name: "Notex App", img: "notex.png", tags: "mobile", stacks: ["reactnative","typescript","sqlite","prisma"], github: "https://github.com/HenriqueSilvaXavier/Notex-Mobile-PI", desc: "Academic app for Mediotec students to see grades and schedule.", isMobile: true },
+  { year: 2024, name: "Vitae.ai", img: "Vitae.png", tags: "frontend backend", stacks: ["react","python","sqlite","flask"], github: "https://github.com/HenriqueSilvaXavier/Vitae.ai-Residencia", desc: "AI-powered resume analyzer with suggestions and evaluation." },
+  { year: 2025, name: "ToDoList", img: "todo.png", tags: "frontend backend", stacks: ["html","css","js","django"], github: "https://github.com/Elias969/Django_Tarefas.github.io", desc: "Task manager with categories: In Progress, Completed, Not Done." },
+  { year: 2025, name: "Consumo Energetico", img: "consumoenergetico.png", tags: "data", stacks: ["python","gradio","pandas","matplotlib","sklearn","numpy"], github: "https://github.com/HenriqueSilvaXavier/consumo_energetico", deploy: "https://consumo-energetico2-6.onrender.com/", desc: "Energy consumption prediction with AI models and MFA authentication." },
+  { year: 2025, name: "CodeStore", img: "codestore.png", tags: "frontend backend", stacks: ["html","css","js","tailwind","nodejs"], github: "https://github.com/HenriqueSilvaXavier/CodeStore", desc: "E-commerce for IT, gamer and design products." },
+  { year: 2025, name: "Decimal Division Anatomy", img: "decimalDivisionAnatomy.png", tags: "frontend", stacks: ["html","css","js","php"], github: "https://github.com/HenriqueSilvaXavier/Decimal-Division-Anatomy", deploy: "https://henriquesilvaxavier.github.io/Decimal-Division-Anatomy.github.io/", desc: "Visual decimal division simulator with export to image." },
+  { year: 2025, name: "Lojas Henri", img: "lojashenri 1.png", tags: "frontend backend", stacks: ["html","css","js","laravel","python","php","mysql","tailwind","bootstrap"], github: "https://github.com/HenriqueSilvaXavier/LojasHenri-Laravel", desc: "Complete e-commerce platform with AI recommendations." },
+  { year: 2025, name: "Monitor RJ", img: "monitorrj.png", tags: "frontend data backend", stacks: ["python","html","css","js","flask","postgres","sklearn","selenium"], github: "https://github.com/gabrielamaiia01/IA_PI", docker: "https://hub.docker.com/r/henriquesilvaxavier/monitor_rj", desc: "Crime monitoring dashboard for Rio de Janeiro with ML predictions." },
+  { year: 2026, name: "FicLibris", img: "ficlibris.png", tags: "frontend backend", stacks: ["html","css","js","ts","react","sqlite"], github: "https://github.com/HenriqueSilvaXavier/FicLibris", desc: "Virtual library that recommends content based on similarity analysis." },
+  { year: 2026, name: "Bootcamp-films", img: "bootcamp.png", tags: "frontend backend", stacks: ["html","css","js","java","spring","bootstrap"], github: "https://github.com/HenriqueSilvaXavier/bootcamp", desc: "Film management app built with Spring Boot during bootcamp." }
+];
+
+function renderProjects() {
+  const container = document.getElementById('projectsTimeline');
+  if (!container) return;
+  
+  container.innerHTML = '';
+  let lastYear = null;
+  
+  projects.forEach((project, idx) => {
+    if (project.year !== lastYear) {
+      const yearDiv = document.createElement('div');
+      yearDiv.className = 'timeline-year';
+      yearDiv.innerHTML = `<span>${project.year}</span>`;
+      container.appendChild(yearDiv);
+      lastYear = project.year;
+    }
+    
+    const item = document.createElement('div');
+    item.className = 'timeline-item';
+    item.setAttribute('data-tags', project.tags);
+    
+    const dot = document.createElement('div');
+    dot.className = 'timeline-dot';
+    item.appendChild(dot);
+    
+    const card = document.createElement('div');
+    card.className = 'timeline-card fade-up';
+    
+    card.innerHTML = `
+      <h3>${project.name}</h3>
+      <img src="${project.img}" class="${project.isMobile ? 'img-projeto-mobile' : 'img-projeto'}" alt="${project.name}" onerror="this.style.display='none'">
+      <p>${project.desc}</p>
+      <div class="stacks">
+        ${project.stacks.map(s => `<img src="https://skillicons.dev/icons?i=${s}" title="${s}" onerror="this.style.display='none'">`).join('')}
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a href="${project.github}" class="btn-github" target="_blank">View on GitHub</a>
+        ${project.deploy ? `<a href="${project.deploy}" class="btn-github" target="_blank">View Deploy</a>` : ''}
+        ${project.docker ? `<a href="${project.docker}" class="btn-github" target="_blank">View on Dockerhub</a>` : ''}
+      </div>
+    `;
+    
+    item.appendChild(card);
+    container.appendChild(item);
+  });
+  
+  // Aplicar classes left/right após renderizar
+  const items = document.querySelectorAll('.timeline-item');
+  items.forEach((item, index) => {
+    item.classList.add(index % 2 === 0 ? 'left' : 'right');
+  });
+}
+
+// Inicializar
+renderMetroMap();
+renderProjects();
+
+// Filtros
+const filterButtons = document.querySelectorAll('.filter-btn');
+const timelineItems = () => document.querySelectorAll('.timeline-item');
+
+function applyFilter(filter) {
+  const items = timelineItems();
+  items.forEach(item => {
+    const tags = item.getAttribute('data-tags') || '';
+    if (filter === 'all' || tags.includes(filter)) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+  
+  // Re-alternar sides dos visíveis
+  const visibleItems = [...items].filter(i => i.style.display !== 'none');
+  visibleItems.forEach((item, idx) => {
+    item.classList.remove('left', 'right');
+    item.classList.add(idx % 2 === 0 ? 'left' : 'right');
+  });
+  
+  // Esconder anos sem itens visíveis
+  document.querySelectorAll('.timeline-year').forEach(yearEl => {
+    let next = yearEl.nextElementSibling;
+    let hasVisible = false;
+    while (next && !next.classList.contains('timeline-year')) {
+      if (next.classList.contains('timeline-item') && next.style.display !== 'none') {
+        hasVisible = true;
+        break;
+      }
+      next = next.nextElementSibling;
+    }
+    yearEl.style.display = hasVisible ? 'flex' : 'none';
+  });
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter(btn.dataset.filter);
+  });
+});
+
+// Observer para animações fade-up
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+<!-- Certificates Section -->
+<section id="certificates" style="max-width:1000px; margin:0 auto; padding:0 20px;">
+  <h2 class="section-title">🏅 Certificates & Achievements</h2>
+  <div class="cert-card fade-up" style="display:flex; flex-direction:column; gap:18px; margin-bottom:20px;">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;">
+        🥉
+      </div>
+      <div>
+        <p style="font-weight:600;">Bronze Medal — OBMEP</p>
+        <p style="color:var(--muted); font-size:.9rem;">Brazilian Mathematical Olympiad for Public Schools</p>
+      </div>
+    </div>
+  </div>
+  <div class="cert-card"><img src="voluntariado recnplay.png" class="cert-img" alt="Rec'N'Play Volunteering"><div class="cert-content"><div class="cert-title">Rec'N'Play Volunteering</div><div class="cert-org">Rec'N'Play</div></div></div>
+  <div class="cert-card"><img src="analise de dados.png" class="cert-img" alt="Data Analysis Intensive"><div class="cert-content"><div class="cert-title">Data Analysis Intensive</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
+  <div class="cert-card"><img src="hashtag python.png" class="cert-img" alt="Python Journey"><div class="cert-content"><div class="cert-title">Python Journey</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
+  <div class="cert-card"><img src="rocketseat 1.png" class="cert-img" alt="Rocketseat"><div class="cert-content"><div class="cert-title">Rocketseat Knowledge Trail</div><div class="cert-org">Rocketseat</div></div></div>
+  <div class="cert-card"><img src="certificado deloitte bootcamp java.png" class="cert-img" alt="Deloitte Bootcamp Java"><div class="cert-content"><div class="cert-title">Java Bootcamp</div><div class="cert-org">Deloitte</div></div></div>
+</section>
+
+</body>
+</html>

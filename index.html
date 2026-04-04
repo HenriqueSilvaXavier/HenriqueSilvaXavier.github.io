@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Resume & Portfolio</title>
+<title>Resume & Portfolio - Henrique Silva Xavier</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +17,18 @@
   --secondary:#a78bfa;
   --text:#e5e7eb;
   --muted:#94a3b8;
+
+  /* ÁREAS */
+  --ai:#8b5cf6;
+  --data:#06b6d4;
+  --backend:#14532d;
+  --database:#bef264;
+  --frontend:#f97316;
+  --mobile:#ec4899;
+  --ux:#eab308;
+  --devops:#3b82f6;
+  --testing:#ef4444;
+  --soft:#64748b;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -25,6 +37,582 @@ body{
   font-family:'Poppins',sans-serif;
   background:linear-gradient(120deg,#0f172a,#0b1220 40%,#0f172a);
   color:var(--text);
+}
+
+section{
+  max-width:1000px;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+.section-title{
+  font-size:1.8rem;
+  margin-bottom:30px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:24px;
+}
+
+/* ===== ORBIT SYSTEM ===== */
+.skills-orbit-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0 60px;
+}
+
+.skills-orbit-section h2 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: .78rem;
+  color: var(--muted);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.skills-orbit-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.orbit-system {
+  overflow: visible;
+  position: relative;
+  width: 760px;
+  height: 760px;
+  max-width: 95vw;
+  max-height: 95vw;
+}
+
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #000;
+  z-index: 10;
+  font-size: .9rem;
+}
+
+.orbit-system.paused .orbit-ring {
+  animation-play-state: paused !important;
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.08);
+  animation: spin 40s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  from { transform: translate(-50%,-50%) rotate(0deg) }
+  to   { transform: translate(-50%,-50%) rotate(360deg) }
+}
+
+.skill-icon {
+  z-index: 1;
+  pointer-events: all;
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #0b1220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform .2s;
+}
+
+.skill-icon:hover {
+  z-index: 1000;
+  transform: scale(1.2);
+}
+
+.skill-icon img {
+  width: 26px;
+}
+
+.skill-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: #fff;
+  fill: none;
+}
+
+.skill-label {
+  z-index: 2000;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .62rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+  white-space: nowrap;
+  background: rgba(11,18,32,.95);
+  padding: 3px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.skill-icon:hover .skill-label {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Colored borders per category */
+.ai       { border-color: var(--ai); }
+.data     { border-color: var(--data); }
+.backend  { border-color: var(--backend); }
+.frontend { border-color: var(--frontend); }
+.database { border-color: var(--database); }
+.devops   { border-color: var(--devops); }
+.testing  { border-color: var(--testing); }
+.soft     { border-color: var(--soft); }
+.mobile   { border-color: var(--mobile); }
+.ux       { border-color: var(--ux); }
+
+/* use-angle positioning */
+.orbit-ring {
+  --radius: 0px;
+}
+
+.orbit-ring.use-angle .skill-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--angle))
+    translate(var(--radius))
+    rotate(calc(-1 * var(--angle)));
+}
+
+/* LEGEND */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+  margin-top: 28px;
+  max-width: 680px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .7rem;
+  color: var(--muted);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid;
+}
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(var(--primary), var(--secondary));
+  z-index: 1;
+}
+
+.timeline-year {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 40px 0;
+  z-index: 3;
+  clear: both;
+}
+
+.timeline-year span {
+  position: relative;
+  z-index: 4;
+  background: var(--bg);
+  border: 2px solid var(--primary);
+  color: var(--text);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 0 16px rgba(34,211,238,.35);
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+}
+
+.timeline-item.left {
+  margin-left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  margin-left: 50%;
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 28px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,var(--primary),var(--secondary));
+  box-shadow: 0 0 12px rgba(34,211,238,.6);
+  z-index: 2;
+}
+
+.timeline-item.left  .timeline-dot { right: -8px; }
+.timeline-item.right .timeline-dot { left: -8px; }
+
+.timeline-card {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px;
+  padding: 22px;
+  transition: .3s;
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34,211,238,.4);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+
+.stacks {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0 18px;
+}
+
+.timeline-item.left .stacks {
+  justify-content: flex-end;
+}
+
+.stacks img {
+  width: 28px;
+  height: 28px;
+  background: #0b1220;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: .2s;
+}
+
+.stacks img:hover {
+  transform: scale(1.15);
+  border-color: var(--primary);
+}
+
+.btn-github {
+  display: inline-block;
+  font-size: .8rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: linear-gradient(90deg,var(--primary),var(--secondary));
+  color: #0b1220;
+  font-weight: 600;
+}
+
+/* ===== FILTERS ===== */
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.filter-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: .8rem;
+  transition: .25s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: linear-gradient(90deg,var(--primary),var(--secondary));
+  color: #0b1220;
+  border-color: transparent;
+}
+
+.img-projeto {
+  width: 80%;
+  margin: 14px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.img-projeto-mobile {
+  width: 40%;
+  margin: 14px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+/* ===== EDUCATION ===== */
+.edu-timeline {
+  position: relative;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.edu-timeline::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background: linear-gradient(var(--primary),var(--secondary));
+}
+
+.edu-item { position: relative; }
+
+.edu-dot {
+  position: absolute;
+  left: -36px;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,var(--primary),var(--secondary));
+  box-shadow: 0 0 14px rgba(34,211,238,.6);
+}
+
+.edu-content h3 {
+  color: var(--primary);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.edu-meta {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.cert-card {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: .3s;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34,211,238,.5);
+  box-shadow: 0 14px 34px rgba(0,0,0,.35);
+}
+
+.cert-img {
+  width: 100%;
+  height: 150px;
+  background: #0b1220;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  object-fit: cover;
+}
+
+.cert-content { padding: 16px; }
+.cert-title { font-weight: 700; margin-bottom: 6px; }
+.cert-org { color: var(--primary); font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+.cert-meta { color: var(--muted); font-size: .85rem; }
+
+/* ===== PROFILE ===== */
+.profile {
+  max-width: 1000px;
+  margin: 60px auto 20px;
+  padding: 0 20px;
+}
+
+.profile-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.profile-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 24px rgba(34,211,238,.35);
+}
+
+.profile-info h1 { font-size: 2rem; margin-bottom: 6px; }
+
+.profile-role {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.profile-desc { color: var(--muted); margin-bottom: 18px; }
+
+.profile-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  font-size: .95rem;
+}
+
+.profile-contacts a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255,255,255,.2);
+}
+
+.profile-contacts a:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.linha { display: flex; align-items: center; gap: 6px; }
+
+.rede-social-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
+
+/* ===== LANGUAGES ===== */
+.idioma-card { display: flex; flex-direction: column; gap: 22px; }
+.idioma-item { display: flex; flex-direction: column; gap: 8px; }
+
+.idioma-top {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.nivel {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.nivel.c1 { background: rgba(34,211,238,.15); color: var(--primary); border: 1px solid rgba(34,211,238,.4); }
+.nivel.b2 { background: rgba(167,139,250,.15); color: var(--secondary); border: 1px solid rgba(167,139,250,.4); }
+.nivel.b1 { background: rgba(99,102,241,.15); color: #6366f1; border: 1px solid rgba(99,102,241,.4); }
+
+.barra { height: 10px; background: #0b1220; border-radius: 999px; overflow: hidden; border: 1px solid rgba(255,255,255,.06); }
+
+.progresso { height: 100%; border-radius: 999px; background: linear-gradient(90deg,var(--primary),var(--secondary)); }
+.progresso.c1 { width: 85%; }
+.progresso.b2 { width: 70%; }
+.progresso.b1 { width: 55%; }
+
+/* ===== ANIMATIONS ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up:nth-child(1){ transition-delay: .1s }
+.fade-up:nth-child(2){ transition-delay: .2s }
+.fade-up:nth-child(3){ transition-delay: .3s }
+.fade-up:nth-child(4){ transition-delay: .4s }
+.fade-up:nth-child(5){ transition-delay: .5s }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:500px){
+  .profile-card { flex-direction: column; text-align: center; }
+  .profile-contacts { justify-content: center; }
+  .linha { justify-content: center; }
+}
+
+@media (max-width: 674px){
+  .timeline::before { left: 20px; transform: none; }
+
+  .timeline-item {
+    width: 100%;
+    padding: 20px 20px 20px 60px;
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right { margin-left: 0; text-align: left; }
+
+  .timeline-dot { left: 12px !important; right: auto !important; }
+
+  .timeline-item.left .stacks { justify-content: flex-start; }
+
+  .img-projeto,
+  .img-projeto-mobile { width: 100%; }
+
+  .timeline-year { justify-content: flex-start; }
 }
 
 section{
@@ -633,10 +1221,11 @@ section{
 </head>
 
 <body>
+
 <!-- ================= PROFILE ================= -->
 <section class="profile">
-  <div class="profile-card">
-    <img src="eu.jpg" alt="Photo of Henrique Silva Xavier" class="profile-photo">
+  <div class="profile-card fade-up">
+    <img src="eu.jpg" alt="Photo of Henrique Silva Xavier" class="profile-photo" onerror="this.src='https://via.placeholder.com/140?text=HSX'">
     <div class="profile-info">
       <h1>Henrique Silva Xavier</h1>
       <div class="profile-role">Junior Full Stack Developer • Looking for a professional opportunity</div>
@@ -646,13 +1235,13 @@ section{
       <p>Localization: Recife, Pernambuco, Brazil</p>
       <br>
       <div class="profile-contacts">
-        <span class="linha"><img src="whatsapp 1.png">(81) 98552-1110</span>
+        <span class="linha"><img src="whatsapp 1.png" style="width:20px">(81) 98552-1110</span>
         <span class="linha">
           <a href="mailto:henriquesx44@gmail.com">henriquesx44@gmail.com</a>
         </span>
-        <a href="https://www.linkedin.com/in/henrique-silva-xavier-3a4047241/" target="_blank"><img src="linkedin 1.png" class="rede-social-img"></a>
-        <a href="https://www.instagram.com/henriquesilvaxavier8/" target="_blank"><img src="instagram 1.png" class="rede-social-img"></a>
-        <a href="https://github.com/henriquesilvaxavier" target="_blank"><img src="github 1.png" class="rede-social-img"></a>
+        <a href="https://www.linkedin.com/in/henrique-silva-xavier-3a4047241/" target="_blank"><img src="linkedin 1.png" class="rede-social-img" style="width:30px"></a>
+        <a href="https://www.instagram.com/henriquesilvaxavier8/" target="_blank"><img src="instagram 1.png" class="rede-social-img" style="width:30px"></a>
+        <a href="https://github.com/henriquesilvaxavier" target="_blank"><img src="github 1.png" class="rede-social-img" style="width:30px"></a>
       </div>
     </div>
   </div>
@@ -661,7 +1250,7 @@ section{
 <!-- ================= EDUCATION ================= -->
 <section id="education">
   <h2 class="section-title">🎓 Education</h2>
-  <div class="card">
+  <div class="card fade-up">
     <div class="edu-timeline">
       <div class="edu-item">
         <div class="edu-dot"></div>
@@ -687,280 +1276,254 @@ section{
 <!-- ================= CERTIFICATES ================= -->
 <section id="certificates">
   <h2 class="section-title">🏅 Certificates & Achievements</h2>
-
-  <!-- Medal -->
-  <div class="cert-card" style="display:flex; flex-direction:column; gap:18px;">
+  <div class="cert-card fade-up" style="display:flex; flex-direction:column; gap:18px; margin-bottom:20px;">
     <div style="display:flex; align-items:center; gap:12px;">
-      <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;">
-        🥉
-      </div>
+      <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;">🥉</div>
       <div>
         <p style="font-weight:600;">Bronze Medal — OBMEP</p>
         <p style="color:var(--muted); font-size:.9rem;">Brazilian Mathematical Olympiad for Public Schools</p>
       </div>
     </div>
   </div>
-
-  <!-- Volunteering -->
-  <div class="cert-card">
-    <img src="voluntariado recnplay.png" class="cert-img" alt="Rec'N'Play Volunteering">
-    <div class="cert-content">
-      <div class="cert-title">Rec'N'Play Volunteering</div>
-      <div class="cert-org">Rec'N'Play</div>
-    </div>
-  </div>
-
-  <!-- Data Analysis -->
-  <div class="cert-card">
-    <img src="analise de dados.png" class="cert-img" alt="Data Analysis Intensive">
-    <div class="cert-content">
-      <div class="cert-title">Data Analysis Intensive</div>
-      <div class="cert-org">Hashtag Treinamentos</div>
-    </div>
-  </div>
-
-  <!-- Python Journey -->
-  <div class="cert-card">
-    <img src="hashtag python.png" class="cert-img" alt="Python Journey">
-    <div class="cert-content">
-      <div class="cert-title">Python Journey</div>
-      <div class="cert-org">Hashtag Treinamentos</div>
-    </div>
-  </div>
-
-  <!-- Rocketseat -->
-  <div class="cert-card">
-    <img src="rocketseat 1.png" class="cert-img" alt="Rocketseat">
-    <div class="cert-content">
-      <div class="cert-title">Rocketseat Knowledge Trail</div>
-      <div class="cert-org">Rocketseat</div>
-    </div>
-  </div>
-
-  <div class="cert-card">
-    <img src="certificado deloitte bootcamp java.png" class="cert-img" alt="Deloitte Bootcamp Java">
-    <div class="cert-content">
-      <div class="cert-title">Java Bootcamp</div>
-      <div class="cert-org">Deloitte</div>
-    </div>
-  </div>
+  <div class="cert-card"><img src="voluntariado recnplay.png" class="cert-img" alt="Rec'N'Play Volunteering"><div class="cert-content"><div class="cert-title">Rec'N'Play Volunteering</div><div class="cert-org">Rec'N'Play</div></div></div>
+  <div class="cert-card"><img src="analise de dados.png" class="cert-img" alt="Data Analysis Intensive"><div class="cert-content"><div class="cert-title">Data Analysis Intensive</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
+  <div class="cert-card"><img src="hashtag python.png" class="cert-img" alt="Python Journey"><div class="cert-content"><div class="cert-title">Python Journey</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
+  <div class="cert-card"><img src="rocketseat 1.png" class="cert-img" alt="Rocketseat"><div class="cert-content"><div class="cert-title">Rocketseat Knowledge Trail</div><div class="cert-org">Rocketseat</div></div></div>
+  <div class="cert-card"><img src="certificado deloitte bootcamp java.png" class="cert-img" alt="Deloitte Bootcamp Java"><div class="cert-content"><div class="cert-title">Java Bootcamp</div><div class="cert-org">Deloitte</div></div></div>
 </section>
 
-<section id="skills">
-<h2 class="section-title">🚀 Skills</h2>
-<div class="card">
-<div class="skills-map-wrapper">
-<div class="metro-map">
+<!-- ================= SKILLS ORBIT ================= -->
+<div class="skills-orbit-section">
+  <h2>🚀 Habilidades</h2>
+  <p class="subtitle">Quanto mais próxima do centro, maior o nível de domínio. Passe o mouse para ver o nome.</p>
 
-<div class="metro-line" style="--line-color:#8b5cf6">
-  <div class="line-label">ARTIFICIAL INTELLIGENCE</div>
-  <div class="stations">
-    <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=py" width="26"></div><span class="station-label">Python</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=tensorflow" width="26"></div><span class="station-label">TensorFlow</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg" width="26"></div><span class="station-label">Keras</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=scikitlearn" width="26"></div><span class="station-label">Scikit-Learn</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=opencv" width="26"></div><span class="station-label">OpenCV</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.simpleicons.org/langchain/1C3C3C" width="26"></div><span class="station-label">LangChain</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.simpleicons.org/gradio/FF7C00" width="26"></div><span class="station-label">Gradio</span></div>
-  </div>
-</div>
+  <div class="skills-orbit-wrapper">
+    <div class="orbit-system" id="orbitSystem">
 
-<div class="metro-line" style="--line-color:#06b6d4">
-  <div class="line-label">DATA SCIENCE</div>
-  <div class="stations">
-    <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=py" width="26"></div><span class="station-label">Python</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" width="26"></div><span class="station-label">Jupyter</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" width="26"></div><span class="station-label">NumPy</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" width="26"></div><span class="station-label">Pandas</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" width="26"></div><span class="station-label">Matplotlib</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="26"></div><span class="station-label">Seaborn</span></div>
-    <div class="station">
-      <div class="station-icon">
-        <a href="https://app.powerbi.com/home?experience=power-bi" target="_blank" rel="noreferrer">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png" width="26">
-        </a>
+      <div class="orbit-center">CORE</div>
+
+      <!-- SOFT SKILLS - órbita 1 (180px) -->
+      <div class="orbit-ring" style="width:180px;height:180px;">
+        <div class="skill-icon soft" style="top:-26px;left:15%;">
+          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-3-6.7" stroke-width="2"/><path d="M21 3v6h-6" stroke-width="2"/></svg>
+          <span class="skill-label">Persistence</span>
+        </div>
+        <div class="skill-icon soft" style="top:-26px;right:15%;">
+          <svg viewBox="0 0 24 24"><path d="M12 3v6l4-4M12 21v-6l-4 4" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>
+          <span class="skill-label">Adaptability</span>
+        </div>
+        <div class="skill-icon soft" style="right:-26px;top:20%;">
+          <svg viewBox="0 0 24 24"><path d="M4 19h16M4 15l4-4 4 4 8-8" stroke-width="2"/></svg>
+          <span class="skill-label">Analytical</span>
+        </div>
+        <div class="skill-icon soft" style="right:-26px;bottom:20%;">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/></svg>
+          <span class="skill-label">Results</span>
+        </div>
+        <div class="skill-icon soft" style="bottom:-26px;left:40%;">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path d="M9 9a3 3 0 115 1c0 2-3 2-3 4" stroke-width="2"/></svg>
+          <span class="skill-label">Problem Solving</span>
+        </div>
+        <div class="skill-icon soft" style="left:-26px;bottom:20%;">
+          <svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>
+          <span class="skill-label">Continuous Learning</span>
+        </div>
+        <div class="skill-icon soft" style="left:-26px;top:20%;">
+          <svg viewBox="0 0 24 24"><path d="M17 20a4 4 0 10-8 0" stroke-width="2"/><circle cx="12" cy="10" r="4" stroke-width="2"/></svg>
+          <span class="skill-label">Teamwork</span>
+        </div>
       </div>
-      <span class="station-label">Power BI</span>
+
+      <!-- ÓRBITA 2 (280px) -->
+      <div class="orbit-ring" style="width:280px;height:280px;">
+        <div class="skill-icon ai" style="top:-23px;left:42%;">
+          <img src="https://skillicons.dev/icons?i=py"/>
+          <span class="skill-label">Python</span>
+        </div>
+        <div class="skill-icon testing" style="left:-23px;bottom:35%;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/insomnia/insomnia-original.svg"/>
+          <span class="skill-label">Insomnia</span>
+        </div>
+        <div class="skill-icon ux" style="right:-23px;top:38%;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"/>
+          <span class="skill-label">Figma</span>
+        </div>
+        <div class="skill-icon frontend" style="bottom:-23px;left:30%;">
+          <img src="https://skillicons.dev/icons?i=html"/>
+          <span class="skill-label">HTML</span>
+        </div>
+        <div class="skill-icon devops" style="left:-23px;top:35%;">
+          <img src="https://skillicons.dev/icons?i=git"/>
+          <span class="skill-label">Git</span>
+        </div>
+        <div class="skill-icon ai" style="bottom:-23px;right:35%;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"/>
+          <span class="skill-label">Jupyter</span>
+        </div>
+      </div>
+
+      <!-- ÓRBITA 3 (390px) -->
+      <div class="orbit-ring use-angle" style="width:390px;height:390px; --radius:195px;">
+        <div class="skill-icon frontend" style="--angle:0deg;">
+          <img src="https://skillicons.dev/icons?i=css"/>
+          <span class="skill-label">CSS</span>
+        </div>
+        <div class="skill-icon frontend" style="--angle:60deg;">
+          <img src="https://skillicons.dev/icons?i=tailwind"/>
+          <span class="skill-label">Tailwind</span>
+        </div>
+        <div class="skill-icon ai" style="--angle:120deg;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg"/>
+          <span class="skill-label">Scikit-learn</span>
+        </div>
+        <div class="skill-icon frontend" style="--angle:180deg;">
+          <img src="https://skillicons.dev/icons?i=js"/>
+          <span class="skill-label">JavaScript</span>
+        </div>
+        <div class="skill-icon data" style="--angle:240deg;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"/>
+          <span class="skill-label">Pandas</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:300deg;">
+          <img src="https://skillicons.dev/icons?i=java"/>
+          <span class="skill-label">Java</span>
+        </div>
+      </div>
+
+      <!-- ÓRBITA 4 (510px) -->
+      <div class="orbit-ring use-angle" style="width:510px;height:510px; --radius:255px;">
+        <div class="skill-icon frontend" style="--angle:0deg;">
+          <img src="https://skillicons.dev/icons?i=bootstrap"/>
+          <span class="skill-label">Bootstrap</span>
+        </div>
+        <div class="skill-icon frontend" style="--angle:45deg;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chartjs/chartjs-original.svg"/>
+          <span class="skill-label">Chart.js</span>
+        </div>
+        <div class="skill-icon data" style="--angle:90deg;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg"/>
+          <span class="skill-label">Matplotlib</span>
+        </div>
+        <div class="skill-icon data" style="--angle:135deg;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"/>
+          <span class="skill-label">NumPy</span>
+        </div>
+        <div class="skill-icon database" style="--angle:180deg;">
+          <img src="https://skillicons.dev/icons?i=sqlite"/>
+          <span class="skill-label">SQLite</span>
+        </div>
+        <div class="skill-icon database" style="--angle:225deg;">
+          <img src="https://skillicons.dev/icons?i=mysql"/>
+          <span class="skill-label">MySQL</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:270deg;">
+          <img src="https://skillicons.dev/icons?i=flask"/>
+          <span class="skill-label">Flask</span>
+        </div>
+        <div class="skill-icon data" style="--angle:315deg;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png"/>
+          <span class="skill-label">Power BI</span>
+        </div>
+      </div>
+
+      <!-- ÓRBITA 5 (640px) -->
+      <div class="orbit-ring use-angle" style="width:640px;height:640px; --radius:320px;">
+        <div class="skill-icon ai" style="--angle:0deg;">
+          <img src="https://skillicons.dev/icons?i=tensorflow"/>
+          <span class="skill-label">TensorFlow</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:30deg;">
+          <img src="https://skillicons.dev/icons?i=django"/>
+          <span class="skill-label">Django</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:60deg;">
+          <img src="https://skillicons.dev/icons?i=spring"/>
+          <span class="skill-label">Spring</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:90deg;">
+          <img src="https://skillicons.dev/icons?i=php"/>
+          <span class="skill-label">PHP</span>
+        </div>
+        <div class="skill-icon database" style="--angle:120deg;">
+          <img src="https://skillicons.dev/icons?i=postgresql"/>
+          <span class="skill-label">PostgreSQL</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:150deg;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg"/>
+          <span class="skill-label">Prisma</span>
+        </div>
+        <div class="skill-icon mobile" style="--angle:180deg;">
+          <img src="https://skillicons.dev/icons?i=react"/>
+          <span class="skill-label">React Native</span>
+        </div>
+        <div class="skill-icon frontend" style="--angle:210deg;">
+          <img src="https://skillicons.dev/icons?i=react"/>
+          <span class="skill-label">React</span>
+        </div>
+        <div class="skill-icon testing" style="--angle:240deg;">
+          <img src="https://skillicons.dev/icons?i=jest"/>
+          <span class="skill-label">Jest</span>
+        </div>
+        <div class="skill-icon database" style="--angle:270deg;">
+          <img src="https://skillicons.dev/icons?i=mongodb"/>
+          <span class="skill-label">MongoDB</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:300deg;">
+          <img src="https://skillicons.dev/icons?i=laravel"/>
+          <span class="skill-label">Laravel</span>
+        </div>
+        <div class="skill-icon testing" style="--angle:330deg;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"/>
+          <span class="skill-label">Postman</span>
+        </div>
+      </div>
+
+      <!-- ÓRBITA 6 (760px) -->
+      <div class="orbit-ring use-angle" style="width:760px;height:760px; --radius:380px;">
+        <div class="skill-icon ai" style="--angle:0deg;">
+          <img src="https://cdn.simpleicons.org/gradio/FF7C00"/>
+          <span class="skill-label">Gradio</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:72deg;">
+          <img src="https://skillicons.dev/icons?i=nodejs"/>
+          <span class="skill-label">Node.js</span>
+        </div>
+        <div class="skill-icon backend" style="--angle:144deg;">
+          <img src="https://skillicons.dev/icons?i=express"/>
+          <span class="skill-label">Express</span>
+        </div>
+        <div class="skill-icon devops" style="--angle:216deg;">
+          <img src="https://skillicons.dev/icons?i=azure"/>
+          <span class="skill-label">Azure</span>
+        </div>
+        <div class="skill-icon testing" style="--angle:288deg;">
+          <img src="https://skillicons.dev/icons?i=selenium"/>
+          <span class="skill-label">Selenium</span>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
 
-<div class="metro-line" style="--line-color:#60a5fa">
-  <div class="line-label">BACK-END</div>
-  <div class="stations">
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=nodejs" width="26"></div><span class="station-label">Node.js</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=express" width="26"></div><span class="station-label">Express</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=django" width="26"></div><span class="station-label">Django</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=flask" width="26"></div><span class="station-label">Flask</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=java" width="26"></div><span class="station-label">Java</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=spring" width="26"></div><span class="station-label">Spring</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=php" width="26"></div><span class="station-label">PHP</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=laravel" width="26"></div><span class="station-label">Laravel</span></div>
-    <div class="station"><div class="station-icon interchange"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6L3aRhMgDRFOA8N9nZOeLsWYwT-6K6-tKCcncGiIfZ4j5o0WxlaZe-bi&s=10" width="26"></div><span class="station-label">Prisma ORM</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=postman" width="26"></div><span class="station-label">Postman</span></div>
-    <div class="station"><div class="station-icon"><img src="https://s3.amazonaws.com/s3.roaringapps.com/assets/icons/1561251841927-Insomnia.png" width="26"></div><span class="station-label">Insomnia</span></div>
+  <!-- LEGENDA -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--soft);"></div>Soft Skills</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--ai);"></div>AI / ML</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--data);"></div>Data Science</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--frontend);"></div>Frontend</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--backend);"></div>Backend</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--database);"></div>Database</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--devops);"></div>DevOps</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--testing);"></div>Testing</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--mobile);"></div>Mobile</div>
+    <div class="legend-item"><div class="legend-dot" style="border-color:var(--ux);"></div>UX / Design</div>
   </div>
 </div>
-
-<div class="metro-line" style="--line-color:#34d399">
-  <div class="line-label">FRONT-END</div>
-  <div class="stations">
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=html" width="26"></div><span class="station-label">HTML5</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=css" width="26"></div><span class="station-label">CSS3</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=js" width="26"></div><span class="station-label">JavaScript</span></div>
-    <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=react" width="26"></div><span class="station-label">React</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=ts" width="26"></div><span class="station-label">TypeScript</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=bootstrap" width="26"></div><span class="station-label">Bootstrap</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=tailwind" width="26"></div><span class="station-label">Tailwind</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.simpleicons.org/chartdotjs/FF6384" width="26"></div><span class="station-label">Chart.js</span></div>
-    <div class="station"><div class="station-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="26"></div><span class="station-label">CanvasJS</span></div>
-  </div>
-</div>
-
-<div class="metro-line" style="--line-color:#fbbf24">
-  <div class="line-label">DATABASES</div>
-  <div class="stations">
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=mongodb" width="26"></div><span class="station-label">MongoDB</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=mysql" width="26"></div><span class="station-label">MySQL</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=postgres" width="26"></div><span class="station-label">PostgreSQL</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=sqlite" width="26"></div><span class="station-label">SQLite</span></div>
-  </div>
-</div>
-
-<div class="metro-line" style="--line-color:#22c55e">
-  <div class="line-label">MOBILE</div>
-  <div class="stations">
-    <div class="station">
-      <div class="station-icon interchange">
-        <img src="https://reactnative.dev/img/header_logo.svg" width="26">
-      </div>
-      <span class="station-label">React Native</span>
-    </div>
-  </div>
-</div>
-
-<div class="metro-line" style="--line-color:#f59e0b">
-  <div class="line-label">DEVOPS</div>
-  <div class="stations">
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=git" width="26"></div><span class="station-label">Git</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=azure" width="26"></div><span class="station-label">Azure</span></div>
-  </div>
-</div>
-
-<div class="metro-line" style="--line-color:#ef4444">
-  <div class="line-label">TESTING</div>
-  <div class="stations">
-    <div class="station"><div class="station-icon interchange"><img src="https://skillicons.dev/icons?i=jest" width="26"></div><span class="station-label">Jest</span></div>
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=selenium" width="26"></div><span class="station-label">Selenium</span></div>
-  </div>
-</div>
-
-<div class="metro-line" style="--line-color:#f472b6">
-  <div class="line-label">UX</div>
-  <div class="stations">
-    <div class="station"><div class="station-icon"><img src="https://skillicons.dev/icons?i=figma" width="26"></div><span class="station-label">Figma</span></div>
-  </div>
-</div>
-
-<div class="metro-line" style="--line-color:#f43f5e">
-  <div class="line-label">SOFT SKILLS</div>
-  <div class="stations">
-
-    <div class="station">
-      <div class="station-icon">
-        <!-- Adaptability -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3v6l4-4M12 21v-6l-4 4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-        </svg>
-      </div>
-      <span class="station-label">Adaptability</span>
-    </div>
-
-    <div class="station">
-      <div class="station-icon">
-        <!-- Persistence -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M21 12a9 9 0 11-3-6.7" stroke="currentColor" stroke-width="2"/>
-          <path d="M21 3v6h-6" stroke="currentColor" stroke-width="2"/>
-        </svg>
-      </div>
-      <span class="station-label">Persistence</span>
-    </div>
-
-    <div class="station">
-      <div class="station-icon">
-        <!-- Teamwork -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M17 20a4 4 0 10-8 0" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
-          <path d="M23 20a4 4 0 00-6-3.46M1 20a4 4 0 016-3.46" stroke="currentColor" stroke-width="2"/>
-        </svg>
-      </div>
-      <span class="station-label">Teamwork</span>
-    </div>
-
-    <div class="station">
-      <div class="station-icon">
-        <!-- Results-oriented -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="1" fill="currentColor"/>
-        </svg>
-      </div>
-      <span class="station-label">Results-oriented</span>
-    </div>
-
-    <div class="station">
-      <div class="station-icon">
-        <!-- Problem Solving -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-          <path d="M9.09 9a3 3 0 115.82 1c0 2-3 2-3 4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="17" r="1" fill="currentColor"/>
-        </svg>
-      </div>
-      <span class="station-label">Problem Solving</span>
-    </div>
-
-    <div class="station">
-      <div class="station-icon">
-        <!-- Continuous Learning -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2"/>
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-        </svg>
-      </div>
-      <span class="station-label">Continuous Learning</span>
-    </div>
-
-    <div class="station">
-      <div class="station-icon">
-        <!-- Analytical Thinking -->
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M4 19h16M4 15l4-4 4 4 8-8" stroke="currentColor" stroke-width="2"/>
-        </svg>
-      </div>
-      <span class="station-label">Analytical Thinking</span>
-    </div>
-
-  </div>
-</div>
-
-</div>
-</div>
-
-<div class="map-legend">
-  Skills Metro Map • Each line is an area • Stations connect stacks across areas
-</div>
-
-</section>
 
 <!-- ================= ENGLISH PROFICIENCY ================= -->
 <section id="languages">
   <h2 class="section-title">🌍 English — Proficiency</h2>
-  <div class="card idioma-card">
+  <div class="card idioma-card fade-up">
     <div class="idioma-item">
       <div class="idioma-top">
         <span>Reading</span>
@@ -992,6 +1555,7 @@ section{
   </div>
 </section>
 
+<!-- ================= PROJECTS ================= -->
 <h2 class="section-title" style="max-width:1000px;margin:60px auto 20px;padding:0 20px;">🗂️ Projects</h2>
 
 <div class="filters">
@@ -1004,7 +1568,6 @@ section{
 
 <section>
   <div class="timeline">
-
     <div class="timeline-year"><span>2024</span></div>
     <div class="timeline-item" data-tags="frontend">
       <div class="timeline-dot"></div>
@@ -1262,67 +1825,88 @@ section{
         <a href="https://github.com/HenriqueSilvaXavier/bootcamp" class="btn-github">View on GitHub</a>
       </div>
     </div>
-
-  </div><!-- /.timeline -->
+  </div>
 </section>
 
 <script>
-// =============================================
-// SIDE ASSIGNMENT — ignores .timeline-year
-// =============================================
-// Selects ONLY .timeline-item elements (not .timeline-year)
-// and alternates left/right in continuous global order,
-// so year breaks don't disrupt the rhythm.
-(function assignSides() {
+// ===== ORBIT: pause on hover =====
+const orbitSystem = document.getElementById('orbitSystem');
+document.querySelectorAll('.skill-icon').forEach(icon => {
+  icon.addEventListener('mouseenter', () => orbitSystem.classList.add('paused'));
+  icon.addEventListener('mouseleave', () => orbitSystem.classList.remove('paused'));
+});
+
+// ===== FILTERS =====
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+function applyFilter(filter) {
   const items = document.querySelectorAll('.timeline-item');
-  items.forEach((item, index) => {
-    item.classList.add(index % 2 === 0 ? 'left' : 'right');
+  items.forEach(item => {
+    const tags = item.getAttribute('data-tags') || '';
+    item.style.display = (filter === 'all' || tags.includes(filter)) ? 'block' : 'none';
   });
-})();
 
-// =============================================
-// FILTERS
-// =============================================
-const buttons = document.querySelectorAll('.filter-btn');
-const items   = document.querySelectorAll('.timeline-item');
+  const visibleItems = [...items].filter(i => i.style.display !== 'none');
+  visibleItems.forEach((item, idx) => {
+    item.classList.remove('left', 'right');
+    item.classList.add(idx % 2 === 0 ? 'left' : 'right'); // ← aqui!
+  });
 
-buttons.forEach(btn => {
+  document.querySelectorAll('.timeline-year').forEach(yearEl => {
+    let next = yearEl.nextElementSibling;
+    let hasVisible = false;
+    while (next && !next.classList.contains('timeline-year')) {
+      if (next.classList.contains('timeline-item') && next.style.display !== 'none') {
+        hasVisible = true;
+        break;
+      }
+      next = next.nextElementSibling;
+    }
+    yearEl.style.display = hasVisible ? 'flex' : 'none';
+  });
+}
+
+filterButtons.forEach(btn => {
   btn.addEventListener('click', () => {
-    buttons.forEach(b => b.classList.remove('active'));
+    filterButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const filter = btn.dataset.filter;
-
-    items.forEach(item => {
-      if (filter === 'all') {
-        item.style.display = 'block';
-        return;
-      }
-      const tags = item.dataset.tags ? item.dataset.tags.split(' ') : [];
-      item.style.display = tags.includes(filter) ? 'block' : 'none';
-    });
-
-    // Re-alternate sides of VISIBLE items after filtering
-    const visibleItems = [...items].filter(i => i.style.display !== 'none');
-    visibleItems.forEach((item, index) => {
-      item.classList.remove('left', 'right');
-      item.classList.add(index % 2 === 0 ? 'left' : 'right');
-    });
-
-    // Hide year if all items in its group are hidden
-    document.querySelectorAll('.timeline-year').forEach(yearEl => {
-      let next = yearEl.nextElementSibling;
-      let hasVisible = false;
-      while (next && !next.classList.contains('timeline-year')) {
-        if (next.classList.contains('timeline-item') && next.style.display !== 'none') {
-          hasVisible = true;
-          break;
-        }
-        next = next.nextElementSibling;
-      }
-      yearEl.style.display = hasVisible ? 'flex' : 'none';
-    });
+    applyFilter(btn.dataset.filter);
   });
 });
+
+// ===== FADE-UP OBSERVER =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('show');
+  });
+});
+
+// ===== ZIG-ZAG INITIAL LOAD =====
+function applyInitialZigZag() {
+  const items = document.querySelectorAll('.timeline-item');
+  
+  let visibleIndex = 0;
+
+  items.forEach(item => {
+    // ignora itens escondidos (caso futuramente tenha)
+    if (item.style.display === 'none') return;
+
+    item.classList.remove('left', 'right');
+
+    if (visibleIndex % 2 === 0) {
+      item.classList.add('left');
+    } else {
+      item.classList.add('right');
+    }
+
+    visibleIndex++;
+  });
+}
+
+// roda quando a página carrega
+applyInitialZigZag();
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
 </body>
