@@ -402,6 +402,16 @@ section{
   .img-projeto,.img-projeto-mobile{width:100%}
   .timeline-year{justify-content:flex-start}
 }
+
+.legend-item{
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.legend-item.disabled{
+  opacity:0.3;
+  transform:scale(0.9);
+}
 </style>
 </head>
 
@@ -585,17 +595,17 @@ section{
 
   <!-- LEGENDA -->
   <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--soft);"></div>Soft Skills</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--ai);"></div>AI / ML</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--data);"></div>Data Science</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--frontend);"></div>Frontend</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--backend);"></div>Backend</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--database);"></div>Database</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--devops);"></div>DevOps</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--testing);"></div>Testing</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--mobile);"></div>Mobile</div>
-    <div class="legend-item"><div class="legend-dot" style="border-color:var(--ux);"></div>UX / Design</div>
-  </div>
+  <div class="legend-item" data-category="soft"><div class="legend-dot" style="border-color:var(--soft);"></div>Soft Skills</div>
+  <div class="legend-item" data-category="ai"><div class="legend-dot" style="border-color:var(--ai);"></div>AI / ML</div>
+  <div class="legend-item" data-category="data"><div class="legend-dot" style="border-color:var(--data);"></div>Data Science</div>
+  <div class="legend-item" data-category="frontend"><div class="legend-dot" style="border-color:var(--frontend);"></div>Frontend</div>
+  <div class="legend-item" data-category="backend"><div class="legend-dot" style="border-color:var(--backend);"></div>Backend</div>
+  <div class="legend-item" data-category="database"><div class="legend-dot" style="border-color:var(--database);"></div>Database</div>
+  <div class="legend-item" data-category="devops"><div class="legend-dot" style="border-color:var(--devops);"></div>DevOps</div>
+  <div class="legend-item" data-category="testing"><div class="legend-dot" style="border-color:var(--testing);"></div>Testing</div>
+  <div class="legend-item" data-category="mobile"><div class="legend-dot" style="border-color:var(--mobile);"></div>Mobile</div>
+  <div class="legend-item" data-category="ux"><div class="legend-dot" style="border-color:var(--ux);"></div>UX / Design</div>
+</div>
 </div>
 
 <!-- ================= ENGLISH PROFICIENCY ================= -->
@@ -1006,6 +1016,28 @@ function applyInitialZigZag() {
   });
 }
 applyInitialZigZag();
+
+const legendItems = document.querySelectorAll('.legend-item');
+
+legendItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const category = item.dataset.category;
+
+    // alterna estado visual
+    item.classList.toggle('disabled');
+
+    // pega todas as skills dessa categoria
+    const skills = document.querySelectorAll('.skill-icon.' + category);
+
+    skills.forEach(skill => {
+      if (skill.style.display === 'none') {
+        skill.style.display = 'flex';
+      } else {
+        skill.style.display = 'none';
+      }
+    });
+  });
+});
 </script>
 
 </body>
