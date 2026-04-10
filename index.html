@@ -309,6 +309,23 @@ section{
   box-shadow:0 0 14px rgba(34,211,238,.6);
 }
 .edu-content h3{color:var(--primary);font-size:1.05rem;margin-bottom:6px}
+
+.edu-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.edu-logo{
+  width:50px;
+  height:50px;
+  object-fit:contain;
+  border-radius:8px;
+  background:#0b1220;
+  padding:4px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
 .edu-meta{color:var(--muted);font-size:.9rem}
 
 /* ===== CERTIFICATES ===== */
@@ -448,8 +465,15 @@ section{
       <div class="edu-item">
         <div class="edu-dot"></div>
         <div class="edu-content">
-          <h3>Systems Analysis and Development</h3>
-          <p><strong>SENAC</strong></p>
+
+          <div class="edu-header">
+            <img src="https://media.licdn.com/dms/image/v2/D4D0BAQEhXUmDAH1zLA/company-logo_200_200/company-logo_200_200/0/1735823105902/centrouniversitariosenac_logo?e=1777507200&v=beta&t=5SCLYD1wvvYI2fxUzecZOqXbD0mtfF4AanEx2hW-iEg" class="edu-logo" alt="SENAC logo">
+            <div>
+              <h3>Systems Analysis and Development</h3>
+              <p><strong>SENAC</strong></p>
+            </div>
+          </div>
+
           <p class="edu-meta">Undergraduate Degree • Completed</p>
           <p class="edu-meta">Aug/2023 — Dec/2025</p>
         </div>
@@ -457,8 +481,15 @@ section{
       <div class="edu-item">
         <div class="edu-dot"></div>
         <div class="edu-content">
-          <h3>High School</h3>
-          <p><strong>CODAI</strong></p>
+
+          <div class="edu-header">
+            <img src="https://media.licdn.com/dms/image/v2/C4D0BAQF6FfYvFGhTLA/company-logo_200_200/company-logo_200_200/0/1630476763365?e=1777507200&v=beta&t=yCb0wd3TKu_7JQVTzf1rmqRI6i841a6g7JUTOp3GTkk" class="edu-logo" alt="UFRPE logo">
+            <div>
+              <h3>High School</h3>
+              <p><strong>CODAI / UFRPE</strong></p>
+            </div>
+          </div>
+
           <p class="edu-meta">2020 — 2022</p>
         </div>
       </div>
@@ -1039,6 +1070,7 @@ legendItems.forEach(item => {
     });
   });
 });
+
 </script>
 
 </body>
