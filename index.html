@@ -301,7 +301,18 @@ section{
   left:11px;top:4px;bottom:4px;width:3px;
   background:linear-gradient(var(--primary),var(--secondary));
 }
-.edu-item{position:relative}
+.edu-item{
+  position:relative;
+  background:var(--card);border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;padding:22px;transition:.3s;
+}
+
+.edu-item:hover{
+  transform:translateY(-4px);
+  border-color:rgba(34,211,238,.4);
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
 .edu-dot{
   position:absolute;left:-36px;top:6px;
   width:18px;height:18px;border-radius:50%;
