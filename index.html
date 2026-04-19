@@ -225,8 +225,8 @@ section{
   box-shadow:0 0 16px rgba(34,211,238,.35);
 }
 
-.timeline-item{position:relative;width:50%;padding:20px 40px}
-.timeline-item.left{margin-left:0;text-align:right}
+.timeline-item{position:relative;width:56%;padding:20px 40px}
+.timeline-item.left{margin-left:-4%;text-align:right}
 .timeline-item.right{margin-left:50%;text-align:left}
 
 .timeline-dot{
@@ -235,7 +235,7 @@ section{
   background:linear-gradient(135deg,var(--primary),var(--secondary));
   box-shadow:0 0 12px rgba(34,211,238,.6);z-index:2;
 }
-.timeline-item.left  .timeline-dot{right:-8px}
+.timeline-item.left  .timeline-dot{right:11px}
 .timeline-item.right .timeline-dot{left:-8px}
 
 .timeline-card{
@@ -440,6 +440,90 @@ section{
   opacity:0.3;
   transform:scale(0.9);
 }
+
+/* ===== DEVICES (NOTEBOOK + MOBILE) ===== */
+
+.devices-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* permite quebrar automaticamente */
+  width: 100%;
+}
+
+@media (min-width: 674px) and (max-width: 813px) {
+  .devices-container {
+    flex-wrap: wrap !important; /* mantém em linha para telas maiores */
+  }
+}
+@media (max-width: 350px) {
+  .devices-container {
+    flex-wrap: wrap !important; /* mantém em linha para telas maiores */
+  }
+  .timeline-item{width:100%; padding-left: 36px; padding-right: 0px !important;}
+
+}
+/* NOTEBOOK */
+.notebook-container {
+  position: relative;
+  width: clamp(260px, 70vw, 600px);
+
+  aspect-ratio: 16/10; /* mantém consistência */
+}
+/* imagem do notebook */
+.notebook-img {
+  width: 100%;
+  display: block;
+}
+
+/* vídeo dentro do notebook */
+.notebook-video {
+  position: absolute;
+  top: 16.4%;
+  left: 14.55%;
+  width: 71.3%;
+
+  aspect-ratio: 16/9;
+
+  object-fit: contain; /* 🔥 MOSTRA O VÍDEO COMPLETO */
+  background: black;   /* opcional: fundo para não ficar transparente */
+}
+
+@media (min-width: 0px) {
+  .devices-container {
+    flex-wrap: nowrap;
+  }
+}
+
+/* ===== RESPONSIVO EXTRA ===== */
+
+/* CONTAINER DO CELULAR */
+.mobile-container {
+  position: relative;
+  width: 33%;
+}
+
+/* imagem do celular */
+.mobile-img {
+  width: 100%;
+  display: block;
+}
+
+/* vídeo dentro da tela do celular */
+.mobile-video {
+  position: absolute;
+
+  /* AJUSTE FINO (pode precisar calibrar) */
+  top: 2.5%;
+  left: 4%;
+  width: 92%;
+  height: 93%;
+
+  object-fit: contain; /* 🔥 MOSTRA O VÍDEO COMPLETO */
+  background: black;
+  border-radius: 4%;
+}
+
 </style>
 </head>
 
@@ -710,7 +794,22 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Nebelfeld Dictionary</h3>
-        <img src="Nebelfeld.png" class="img-projeto" alt="Nebelfeld Dashboard Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-nebelfeld.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
+              <source src="video-celular-nebelfeld.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>The Nebelfeld Dictionary is a multilingual website that allows you to search for words in different languages, displaying definitions, synonyms and example phrases. It includes spelling correction, pronunciation in different accents and a section with highlighted words.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -728,7 +827,22 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>CEPDistância</h3>
-        <img src="CEPDistância.png" class="img-projeto" alt="CEPDistance Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-cepdistancia.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="cepdistancia-celular.jpeg">
+              <source src="video-celular-cepdistancia.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>The website uses the ViaCEP API to calculate the distance between two CEP codes entered by the user. The background is a world map.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -746,7 +860,15 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Notex App</h3>
-        <img src="notex.png" class="img-projeto-mobile" alt="Notex App Project">
+        <div class="devices-container">
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="notex.png">
+              <source src="video-Notex.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>The project serves as an app for Mediotec students to see their grades, subjects and their respective teachers, schedules, reports and the academic calendar.</p>
         <div class="stacks">
           <img src="https://cms-assets.tutsplus.com/uploads/users/1125/posts/29791/preview_image/RN.jpg" title="React Native">
@@ -780,7 +902,22 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>ToDoList</h3>
-        <img src="todo.png" class="img-projeto" alt="ToDoList Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-toDoList.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="toDoList-celular.jpeg">
+              <source src="video-celular-toDoList.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>A Django project to create, edit, read, and delete tasks, with the categories: In Progress, Completed, and Not Done — and the ability to move tasks between categories.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -798,7 +935,22 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Consumo Energetico</h3>
-        <img src="consumoenergetico.png" class="img-projeto" alt="Consumo Energetico Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-consumoEnergetico.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
+              <source src="video-celular-consumoEnergetico.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>This site was built with Gradio and Pandas, using Pyotp and QRcode to implement sign-in and sign-up with MFA (Multi-Factor Authentication). The objective is to show predictions from AI Scikit-Learn models and Matplotlib charts.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
@@ -820,7 +972,25 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>CodeStore</h3>
-        <img src="codestore.png" class="img-projeto" alt="CodeStore Project">
+        <div class="devices-container">
+          <!-- NOTEBOOK -->
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-codestore.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- CELULAR -->
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
+              <source src="video-celular-codestore.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>This project is an e-commerce web application for IT, gamer and design audiences. Products range from peripherals, devices, cables, and more. Built with JavaScript, HTML, and TailwindCSS, it connects to a backend API to fetch available products.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -839,7 +1009,24 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Decimal Division Anatomy</h3>
-        <img src="decimalDivisionAnatomy.png" class="img-projeto" alt="Decimal Division Anatomy Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-decimalDivisionAnatomy.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- CELULAR -->
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
+              <source src="video-celular-decimalDivisionAnatomy.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>The Decimal Division Anatomy project visually explains decimal division steps, simulating manual long division for non-integer decimals using HTML, CSS, and JavaScript. It also allows exporting the results as an image with html2canvas, serving as an interactive educational tool.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -858,7 +1045,22 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Lojas Henri</h3>
-        <img src="lojashenri 1.png" class="img-projeto" alt="Henri Store Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-lojasHenri.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="lojashenri-thumb.jpeg">
+              <source src="video-celular-lojasHenri.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>The "Henri Store" project is an e-commerce platform that allows users to explore various product categories, such as home appliances, furniture, pet supplies, and more. The site offers features such as search, favorites, and shopping cart, as well as displaying promotions and product reviews.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -873,6 +1075,7 @@ section{
           <img src="https://skillicons.dev/icons?i=mysql" title="MySQL" alt="MySQL">
           <img src="https://skillicons.dev/icons?i=tailwind" title="Tailwind CSS" alt="Tailwind CSS">
           <img src="https://skillicons.dev/icons?i=bootstrap" title="Bootstrap" alt="Bootstrap">
+          <img src="https://skillicons.dev/icons?i=sklearn" title="Scikit-Learn" alt="Scikit-Learn">
         </div>
         <a href="https://github.com/HenriqueSilvaXavier/LojasHenri-Laravel" class="btn-github">View on GitHub</a>
       </div>
@@ -882,7 +1085,22 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Monitor RJ</h3>
-        <img src="monitorrj.png" class="img-projeto" alt="Monitor RJ Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-monitorrj.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="monitorrj-celular.jpeg">
+              <source src="video-celular-monitorrj.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>This project allows users to see insights and dashboards about crimes in the state of Rio de Janeiro. With columns like mcirc (city), cisp, aisp, and risp, it's possible to monitor more closely the most violent localities. It also includes an AI machine learning model to predict the next value of violent lethality based on the data.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
@@ -915,7 +1133,22 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>FicLibris</h3>
-        <img src="ficlibris.png" class="img-projeto" alt="FicLibris Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-ficlibris.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
+              <source src="video-celular-ficlibris.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>A virtual library of movies, books, manga, anime, and series that recommends content based on keywords and works the user has already seen and selected as a base reference. To generate recommendations, the system analyzes the similarity between works by comparing shared words in their synopsis, keywords, and genre.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
@@ -933,7 +1166,22 @@ section{
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <h3>Bootcamp-films</h3>
-        <img src="bootcamp.png" class="img-projeto" alt="Bootcamp-films Project">
+        <div class="devices-container">
+          <div class="notebook-container">
+            <img src="notebook.png" class="notebook-img">
+
+            <video class="notebook-video" controls muted loop>
+              <source src="video-notebook-bootcampFilms.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="mobile-container">
+            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+
+            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
+              <source src="video-celular-bootcampFilms.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
         <p>A film management web application built during a Java bootcamp. It allows users to browse, register, and manage movie entries through a full-stack interface powered by Spring Boot on the backend.</p>
         <div class="stacks">
           <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
