@@ -344,7 +344,6 @@ section{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
   justify-content: center;
-  gap: 20px;
 }
 .cert-card{
   background:var(--card);border:1px solid rgba(255,255,255,.06);
@@ -442,24 +441,7 @@ section{
 }
 
 /* ===== DEVICES (NOTEBOOK + MOBILE) ===== */
-
-.devices-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap; /* permite quebrar automaticamente */
-  width: 100%;
-}
-
-@media (min-width: 674px) and (max-width: 813px) {
-  .devices-container {
-    flex-wrap: wrap !important; /* mantém em linha para telas maiores */
-  }
-}
 @media (max-width: 350px) {
-  .devices-container {
-    flex-wrap: wrap !important; /* mantém em linha para telas maiores */
-  }
   .timeline-item{width:100%; padding-left: 36px; padding-right: 0px !important;}
 
 }
@@ -489,12 +471,6 @@ section{
   background: black;   /* opcional: fundo para não ficar transparente */
 }
 
-@media (min-width: 0px) {
-  .devices-container {
-    flex-wrap: nowrap;
-  }
-}
-
 /* ===== RESPONSIVO EXTRA ===== */
 
 /* CONTAINER DO CELULAR */
@@ -522,6 +498,115 @@ section{
   object-fit: contain; /* 🔥 MOSTRA O VÍDEO COMPLETO */
   background: black;
   border-radius: 4%;
+}
+
+/* ===== DEVICES (NOTEBOOK + MOBILE) ===== */
+
+.devices-container {
+  display: flex;
+  flex-wrap: wrap; /* padrão: quebra */
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 23px;
+}
+
+/* evita quebra estranha */
+.notebook-container,
+.mobile-container {
+  min-width: 0;
+}
+
+/* ===== NOTEBOOK ===== */
+.notebook-container {
+  position: relative;
+  width: 70%;
+  aspect-ratio: 16/10;
+}
+
+.notebook-img {
+  width: 100%;
+  display: block;
+}
+
+.notebook-video {
+  position: absolute;
+  top: 5.6%;
+  left: 14.55%;
+  width: 71.3%;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  background: black;
+}
+
+/* ===== MOBILE ===== */
+.mobile-container {
+  position: relative;
+  width: 30%;
+}
+
+.mobile-img {
+  width: 100%;
+  display: block;
+}
+
+.mobile-video {
+  position: absolute;
+  top: 2.5%;
+  left: 3.7%;
+  width: 92%;
+  height: 93%;
+  object-fit: contain;
+  background: black;
+  border-radius: 4%;
+}
+
+/* ===== ENTRE 350px E 674px (SEU CASO PRINCIPAL) ===== */
+@media (min-width: 350px) and (max-width: 674px) {
+  .devices-container {
+    flex-wrap: nowrap; /* 🔥 lado a lado */
+  }
+
+  .notebook-container {
+    width: 83%;
+  }
+
+  .mobile-container {
+    width: 17%;
+  }
+}
+
+/* ===== MUITO PEQUENO (<350px) ===== */
+@media (max-width: 350px) {
+  .devices-container {
+    flex-wrap: wrap; /* empilha */
+    gap: 20px;
+  }
+
+  .notebook-container {
+    width: 100%;
+  }
+  .mobile-container{
+    width: 70%;
+  }
+}
+
+/* ===== TELAS MAIORES ===== */
+@media (min-width: 675px) {
+  .devices-container {
+    flex-wrap: nowrap;
+  }
+
+  .notebook-container {
+    width: 83%;
+  }
+
+  .mobile-container {
+    width: 17%;
+  }
+  #notex-container {
+    width: 38%;
+  }
 }
 
 </style>
@@ -861,7 +946,7 @@ section{
       <div class="timeline-card">
         <h3>Notex App</h3>
         <div class="devices-container">
-          <div class="mobile-container">
+          <div class="mobile-container" id="notex-container">
             <img src="celular.png" class="mobile-img" alt="Mobile preview">
 
             <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="notex.png">
