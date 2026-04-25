@@ -701,7 +701,19 @@ footer {
     height: 120px;
     border-radius: 20px;
   }
-  .nav-links { display: none; }
+  .nav-links {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 6px;
+
+    /* remove barra feia (opcional) */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .nav-links li {
+    flex: 0 0 auto;
+  }
 
   .timeline::before { left: 20px; transform: none; }
   .timeline-item { width: 100%; padding: 20px 20px 20px 52px; margin-left: 0 !important; text-align: left !important; }
