@@ -3,1301 +3,1233 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Resume & Portfolio - Henrique Silva Xavier</title>
+<title>Henrique Silva Xavier — Developer Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Cabinet+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#0f172a;
-  --card:#111827;
-  --primary:#22d3ee;
-  --secondary:#a78bfa;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --ai:#8b5cf6;
-  --data:#06b6d4;
-  --backend:#14532d;
-  --database:#bef264;
-  --frontend:#f97316;
-  --mobile:#ec4899;
-  --ux:#eab308;
-  --devops:#3b82f6;
-  --testing:#ef4444;
-  --soft:#64748b;
+/* ─────────────────────────────────────────────────
+   TOKENS & RESET
+───────────────────────────────────────────────── */
+:root {
+  --bg:        #080c14;
+  --bg2:       #0d1422;
+  --surface:   #111827;
+  --surface2:  #161f30;
+  --border:    rgba(255,255,255,.07);
+  --border-hi: rgba(99,212,255,.35);
+
+  --cyan:      #22d3ee;
+  --violet:    #a78bfa;
+  --rose:      #f472b6;
+  --lime:      #a3e635;
+  --amber:     #fbbf24;
+  --sky:       #38bdf8;
+
+  --text:      #e8eaf2;
+  --muted:     #8899aa;
+  --dim:       #4a5568;
+
+  /* category colours */
+  --ai:       #a78bfa;
+  --data:     #06b6d4;
+  --backend:  #4ade80;
+  --database: #bef264;
+  --frontend: #fb923c;
+  --devops:   #60a5fa;
+  --testing:  #f87171;
+  --soft:     #94a3b8;
+  --mobile:   #f472b6;
+  --ux:       #fbbf24;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(120deg,#0f172a,#0b1220 40%,#0f172a);
-  color:var(--text);
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
-section{
-  max-width:1000px;
-  margin:60px auto;
-  padding:0 20px;
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .025;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.section-title{
-  font-size:1.8rem;
-  margin-bottom:30px;
+/* ─────────────────────────────────────────────────
+   GLOW ORBS (background ambiance)
+───────────────────────────────────────────────── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.orb1 { width: 600px; height: 600px; top: -200px; left: -200px; background: rgba(34,211,238,.07); }
+.orb2 { width: 500px; height: 500px; bottom: -150px; right: -150px; background: rgba(167,139,250,.07); animation-delay: -6s; }
+.orb3 { width: 400px; height: 400px; top: 40%; left: 40%; background: rgba(244,114,182,.04); animation-delay: -12s; }
+
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(40px,30px) scale(1.1); }
 }
 
-.card{
-  background:var(--card);
-  border-radius:16px;
-  padding:24px;
+/* ─────────────────────────────────────────────────
+   LAYOUT WRAPPER
+───────────────────────────────────────────────── */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-/* ===== ORBIT SYSTEM ===== */
-.skills-orbit-section{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:40px 0 60px;
-  overflow-x:hidden;
-  width:100%;
+section { padding: 80px 0; }
+
+/* ─────────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px);
+  background: rgba(8,12,20,.8);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
 }
 
-.skills-orbit-section h2{
-  margin-bottom:10px;
-  font-size:1.3rem;
-  text-align:center;
+.nav-inner {
+  max-width: 1040px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 58px; gap: 16px;
 }
 
-.subtitle{
-  font-size:.78rem;
-  color:var(--muted);
-  margin-bottom:30px;
-  text-align:center;
-  padding:0 12px;
+.nav-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem; color: var(--cyan);
+  text-decoration: none;
+  letter-spacing: -.5px;
 }
 
-.skills-orbit-wrapper{
-  display:flex;
-  justify-content:center;
-  width:100%;
-  max-width:100vw;
+.nav-links {
+  display: flex; gap: 6px; list-style: none;
 }
 
-.orbit-system{
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .8rem; font-weight: 500;
+  padding: 6px 12px; border-radius: 6px;
+  transition: all .2s;
+  border: 1px solid transparent;
+}
+
+.nav-links a:hover { color: var(--text); background: var(--surface); }
+
+.nav-links a.active {
+  color: var(--cyan);
+  background: rgba(34,211,238,.08);
+  border-color: rgba(34,211,238,.2);
+}
+
+/* ─────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────── */
+.hero {
+  padding: 100px 0 80px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem; color: var(--cyan);
+  background: rgba(34,211,238,.08);
+  border: 1px solid rgba(34,211,238,.2);
+  padding: 4px 12px; border-radius: 999px;
+  margin-bottom: 20px;
+  letter-spacing: .05em;
+}
+
+.hero-eyebrow::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--cyan);
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .2; } }
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  margin-bottom: 16px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  font-size: 1.05rem; color: var(--muted);
+  line-height: 1.65; max-width: 560px;
+  margin-bottom: 32px;
+}
+
+.hero-location {
+  font-family: 'DM Mono', monospace;
+  font-size: .78rem; color: var(--dim);
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.hero-contacts {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+
+.contact-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text); text-decoration: none;
+  font-size: .82rem; font-weight: 500;
+  transition: all .25s;
+}
+
+.contact-pill:hover {
+  border-color: var(--border-hi);
+  background: var(--surface2);
+  transform: translateY(-2px);
+}
+
+.contact-pill img { width: 18px; height: 18px; border-radius: 4px; }
+
+.hero-avatar-wrap {
+  position: relative;
+}
+
+.hero-avatar {
+  width: 180px; height: 180px;
+  border-radius: 24px;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  display: block;
+  position: relative; z-index: 1;
+  box-shadow: 0 0 60px rgba(34,211,238,.15);
+}
+
+.hero-avatar-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(34,211,238,.25), rgba(167,139,250,.25));
+  z-index: 0;
+  animation: rotate-border 6s linear infinite;
+}
+
+@keyframes rotate-border {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.download-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 20px;
+  padding: 11px 22px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  color: #08111f; font-weight: 700; font-size: .85rem;
+  text-decoration: none;
+  transition: all .25s;
+  box-shadow: 0 4px 24px rgba(34,211,238,.25);
+}
+
+.download-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(34,211,238,.35); }
+
+/* ─────────────────────────────────────────────────
+   SECTION HEADINGS
+───────────────────────────────────────────────── */
+.sec-label {
+  font-family: 'DM Mono', monospace;
+  font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 8px;
+}
+
+.sec-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.1; letter-spacing: -.03em;
+  margin-bottom: 48px;
+}
+
+.sec-divider {
+  width: 48px; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  border-radius: 999px; margin-bottom: 48px;
+}
+
+/* ─────────────────────────────────────────────────
+   EDUCATION
+───────────────────────────────────────────────── */
+.edu-grid {
+  display: grid; gap: 20px;
+}
+
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 28px;
+  display: flex; gap: 20px; align-items: flex-start;
+  transition: all .3s;
+  position: relative; overflow: hidden;
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--cyan), var(--violet));
+  border-radius: 3px 0 0 3px;
+  opacity: 0; transition: opacity .3s;
+}
+
+.edu-card:hover { border-color: var(--border-hi); transform: translateY(-3px); }
+.edu-card:hover::before { opacity: 1; }
+
+.edu-logo {
+  width: 52px; height: 52px; border-radius: 12px;
+  object-fit: contain; background: var(--bg2);
+  padding: 6px; border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.edu-body h3 {
+  font-size: 1.05rem; font-weight: 700;
+  margin-bottom: 4px; color: var(--text);
+}
+
+.edu-body .school {
+  color: var(--cyan); font-weight: 600; font-size: .9rem;
+  margin-bottom: 4px;
+}
+
+.edu-body .meta { color: var(--muted); font-size: .85rem; }
+
+/* ─────────────────────────────────────────────────
+   CERTIFICATES
+───────────────────────────────────────────────── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px; overflow: hidden;
+  transition: all .3s;
+}
+
+.cert-card:hover { border-color: var(--border-hi); transform: translateY(-4px); }
+
+.cert-img {
+  width: 100%; height: 140px; object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+
+.cert-body { padding: 16px; }
+.cert-title { font-weight: 700; font-size: .9rem; margin-bottom: 4px; }
+.cert-org { color: var(--cyan); font-size: .8rem; font-weight: 600; }
+
+.cert-medal {
+  height: 140px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  background: linear-gradient(135deg, rgba(34,211,238,.06), rgba(167,139,250,.06));
+  font-size: 2.4rem;
+}
+
+/* ─────────────────────────────────────────────────
+   SKILLS ORBIT
+───────────────────────────────────────────────── */
+.orbit-section {
+  padding: 80px 0;
+  display: flex; flex-direction: column; align-items: center;
+}
+
+.orbit-section .sec-title { text-align: center; margin-bottom: 8px; }
+.orbit-subtitle {
+  font-size: .82rem; color: var(--muted);
+  margin-bottom: 40px; text-align: center;
+}
+
+.orbit-wrapper {
+  display: flex; justify-content: center;
+  width: 100%; max-width: 100vw;
+}
+
+.orbit-system {
   --orb-size: min(760px, 95vw);
   --sf: 1;
-
-  position:relative;
-  width:var(--orb-size);
-  height:var(--orb-size);
-  flex-shrink:0;
-  overflow: visible;
+  position: relative;
+  width: var(--orb-size); height: var(--orb-size);
+  flex-shrink: 0; overflow: visible;
 }
 
-.orbit-center{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:calc(110px * var(--sf));
-  height:calc(110px * var(--sf));
-  font-size:calc(.9rem * var(--sf));
-  border-radius:50%;
-  background:linear-gradient(90deg,var(--primary),var(--secondary));
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;color:#000;
-  z-index:10;
-  white-space:nowrap;
+.orbit-center {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: calc(116px * var(--sf)); height: calc(116px * var(--sf));
+  font-size: calc(.8rem * var(--sf));
+  font-family: 'DM Mono', monospace;
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #060a12;
+  z-index: 10; letter-spacing: .05em;
+  box-shadow: 0 0 48px rgba(34,211,238,.3);
 }
 
-.orbit-system.paused .orbit-ring{
-  animation-play-state:paused!important;
+.orbit-system.paused .orbit-ring { animation-play-state: paused !important; }
+
+.orbit-ring {
+  position: absolute; top: 50%; left: 50%;
+  width: var(--rd); height: var(--rd);
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.18);
+  animation: spin 40s linear infinite;
+  pointer-events: none; overflow: visible;
 }
 
-.orbit-ring{
-  position:absolute;
-  top:50%;left:50%;
-  width:var(--rd);
-  height:var(--rd);
-  transform:translate(-50%,-50%);
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.18);
-  animation:spin 40s linear infinite;
-  pointer-events:none;
-  overflow: visible;
-}
-
-@keyframes spin{
-  from{transform:translate(-50%,-50%) rotate(0deg)}
-  to  {transform:translate(-50%,-50%) rotate(360deg)}
-}
+@keyframes spin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
 
 .skill-icon {
-  width: calc(46px * var(--sf));
-  height: calc(46px * var(--sf));
+  width: calc(46px * var(--sf)); height: calc(46px * var(--sf));
   min-width: 18px; min-height: 18px;
   border-radius: 50%;
-  background: #0b1220;
+  background: var(--bg2);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
   border: 2px solid transparent;
   transition: transform .2s;
   pointer-events: all;
   position: absolute;
-  z-index: 10;
-  overflow: visible;
+  z-index: 10; overflow: visible;
 }
 
-.skill-icon:hover{
-  transform: scale(1.2);
-  z-index: 999999;
-}
-
-.skill-icon img{
-  width:calc(26px * var(--sf));
-  height:calc(26px * var(--sf));
-  min-width:12px;min-height:12px;
-}
-
-.skill-icon svg{
-  width:calc(24px * var(--sf));
-  height:calc(24px * var(--sf));
-  min-width:10px;min-height:10px;
-  stroke:#fff;fill:none;
-}
-
-/* skill-label escondido — tooltip é feito via JS no body */
+.skill-icon:hover { transform: scale(1.25); z-index: 999999; }
+.skill-icon img { width: calc(26px * var(--sf)); height: calc(26px * var(--sf)); min-width: 12px; min-height: 12px; }
+.skill-icon svg { width: calc(22px * var(--sf)); height: calc(22px * var(--sf)); min-width: 10px; min-height: 10px; stroke: var(--muted); fill: none; }
 .skill-label { display: none; }
 
-/* Bordas coloridas por categoria */
-.ai      {border-color:var(--ai)}
-.data    {border-color:var(--data)}
-.backend {border-color:var(--backend)}
-.frontend{border-color:var(--frontend)}
-.database{border-color:var(--database)}
-.devops  {border-color:var(--devops)}
-.testing {border-color:var(--testing)}
-.soft    {border-color:var(--soft)}
-.mobile  {border-color:var(--mobile)}
-.ux      {border-color:var(--ux)}
+.ai      { border-color: var(--ai); }
+.data    { border-color: var(--data); }
+.backend { border-color: var(--backend); }
+.frontend{ border-color: var(--frontend); }
+.database{ border-color: var(--database); }
+.devops  { border-color: var(--devops); }
+.testing { border-color: var(--testing); }
+.soft    { border-color: var(--soft); }
+.mobile  { border-color: var(--mobile); }
+.ux      { border-color: var(--ux); }
 
-.orbit-ring.use-angle .skill-icon{
-  position:absolute;
-  top:50%;left:50%;
-  transform:
-    translate(-50%,-50%)
-    rotate(var(--angle))
-    translateX(calc(var(--rd) / 2))
-    rotate(calc(-1 * var(--angle)));
+.legend {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px 16px; margin-top: 32px;
+  max-width: 680px;
 }
 
-/* Legenda */
-.legend{
-  display:flex;flex-wrap:wrap;justify-content:center;
-  gap:10px 18px;margin-top:28px;
-  max-width:680px;padding:0 12px;
-}
-.legend-item{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)}
-.legend-dot{width:12px;height:12px;border-radius:50%;border:2px solid}
-
-/* ===== TIMELINE ===== */
-.timeline{position:relative}
-
-.timeline::before{
-  content:"";position:absolute;
-  left:50%;top:0;transform:translateX(-50%);
-  width:3px;height:100%;
-  background:linear-gradient(var(--primary),var(--secondary));
-  z-index:1;
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: .72rem; color: var(--muted);
+  cursor: pointer; transition: .2s;
+  padding: 4px 10px; border-radius: 6px;
+  border: 1px solid transparent;
 }
 
-.timeline-year{
-  position:relative;display:flex;justify-content:center;
-  width:100%;margin:40px 0;z-index:3;clear:both;
+.legend-item:hover { color: var(--text); border-color: var(--border); background: var(--surface); }
+.legend-item.disabled { opacity: .3; }
+
+.legend-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid; }
+
+/* ─────────────────────────────────────────────────
+   LANGUAGES
+───────────────────────────────────────────────── */
+.lang-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 32px;
+  display: grid; gap: 22px;
+  max-width: 640px;
 }
 
-.timeline-year span{
-  position:relative;z-index:4;
-  background:var(--bg);border:2px solid var(--primary);
-  color:var(--text);padding:6px 18px;border-radius:999px;
-  font-size:.8rem;font-weight:700;letter-spacing:1px;
-  box-shadow:0 0 16px rgba(34,211,238,.35);
+.lang-item { display: grid; gap: 8px; }
+
+.lang-top {
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 600; font-size: .9rem;
 }
 
-.timeline-item{position:relative;width:56%;padding:20px 40px}
-.timeline-item.left{margin-left:-4%;text-align:right}
-.timeline-item.right{margin-left:50%;text-align:left}
-
-.timeline-dot{
-  position:absolute;top:28px;
-  width:16px;height:16px;border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  box-shadow:0 0 12px rgba(34,211,238,.6);z-index:2;
-}
-.timeline-item.left  .timeline-dot{right:11px}
-.timeline-item.right .timeline-dot{left:-8px}
-
-.timeline-card{
-  background:var(--card);border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;padding:22px;transition:.3s;
-}
-.timeline-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(34,211,238,.4);
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
+.level-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem; padding: 3px 10px; border-radius: 999px;
+  font-weight: 500;
 }
 
-.stacks{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}
-.timeline-item.left .stacks{justify-content:flex-end}
+.level-badge.c1 { background: rgba(34,211,238,.12); color: var(--cyan); border: 1px solid rgba(34,211,238,.3); }
+.level-badge.b2 { background: rgba(167,139,250,.12); color: var(--violet); border: 1px solid rgba(167,139,250,.3); }
+.level-badge.b1 { background: rgba(99,102,241,.12); color: #6366f1; border: 1px solid rgba(99,102,241,.3); }
 
-.stacks img{
-  width:28px;height:28px;background:#0b1220;
-  padding:4px;border-radius:8px;
-  border:1px solid rgba(255,255,255,.08);transition:.2s;
-}
-.stacks img:hover{transform:scale(1.15);border-color:var(--primary)}
+.lang-bar { height: 6px; background: var(--bg2); border-radius: 999px; overflow: hidden; }
+.lang-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--cyan), var(--violet)); }
+.lang-fill.c1 { width: 85%; }
+.lang-fill.b2 { width: 70%; }
+.lang-fill.b1 { width: 55%; }
 
-.btn-github{
-  display:inline-block;font-size:.8rem;padding:8px 14px;
-  border-radius:999px;text-decoration:none;
-  background:linear-gradient(90deg,var(--primary),var(--secondary));
-  color:#0b1220;font-weight:600;
-}
-
-/* ===== FILTERS ===== */
-.filters{
-  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;
-  max-width:1000px;margin-left:auto;margin-right:auto;padding:0 20px;
+/* ─────────────────────────────────────────────────
+   FILTER PILLS
+───────────────────────────────────────────────── */
+.filters {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 48px;
 }
 
-.filter-btn{
-  padding:8px 14px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.08);
-  background:transparent;color:var(--text);
-  cursor:pointer;font-size:.8rem;transition:.25s;
-}
-.filter-btn:hover,.filter-btn.active{
-  background:linear-gradient(90deg,var(--primary),var(--secondary));
-  color:#0b1220;border-color:transparent;
+.filter-btn {
+  padding: 7px 16px; border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface); color: var(--muted);
+  cursor: pointer; font-size: .8rem; font-weight: 500;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  transition: all .2s;
 }
 
-.img-projeto{
-  width:80%;margin:14px 0;border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-}
-.img-projeto-mobile{
-  width:40%;margin:14px 0;border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
+.filter-btn:hover { color: var(--text); border-color: rgba(255,255,255,.15); }
+.filter-btn.active {
+  background: linear-gradient(135deg, rgba(34,211,238,.15), rgba(167,139,250,.15));
+  border-color: rgba(34,211,238,.4); color: var(--cyan);
 }
 
-/* ===== EDUCATION ===== */
-.edu-timeline{
-  position:relative;padding-left:40px;
-  display:flex;flex-direction:column;gap:34px;
-}
-.edu-timeline::before{
-  content:"";position:absolute;
-  left:11px;top:4px;bottom:4px;width:3px;
-  background:linear-gradient(var(--primary),var(--secondary));
-}
-.edu-item{
-  position:relative;
-  background:var(--card);border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;padding:22px;transition:.3s;
+/* ─────────────────────────────────────────────────
+   TIMELINE / PROJECTS
+───────────────────────────────────────────────── */
+.timeline { position: relative; }
+
+.timeline::before {
+  content: '';
+  position: absolute; left: 50%; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(var(--cyan), transparent 90%);
+  transform: translateX(-50%); z-index: 1;
 }
 
-.edu-item:hover{
-  transform:translateY(-4px);
-  border-color:rgba(34,211,238,.4);
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
+.timeline-year {
+  position: relative; display: flex; justify-content: center;
+  width: 100%; margin: 48px 0; z-index: 3; clear: both;
 }
 
-.edu-dot{
-  position:absolute;left:-36px;top:6px;
-  width:18px;height:18px;border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  box-shadow:0 0 14px rgba(34,211,238,.6);
-}
-.edu-content h3{color:var(--primary);font-size:1.05rem;margin-bottom:6px}
-
-.edu-header{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.timeline-year span {
+  font-family: 'DM Mono', monospace;
+  font-size: .75rem; font-weight: 500; letter-spacing: .1em;
+  background: var(--bg); border: 1px solid var(--border-hi);
+  color: var(--cyan); padding: 6px 20px; border-radius: 999px;
+  box-shadow: 0 0 24px rgba(34,211,238,.2);
+  position: relative; z-index: 4;
 }
 
-.edu-logo{
-  width:50px;
-  height:50px;
-  object-fit:contain;
-  border-radius:8px;
-  background:#0b1220;
-  padding:4px;
-  border:1px solid rgba(255,255,255,.08);
+.timeline-item { position: relative; width: 56%; padding: 20px 40px; }
+.timeline-item.left { margin-left: -4%; text-align: right; }
+.timeline-item.right { margin-left: 50%; text-align: left; }
+
+.timeline-dot {
+  position: absolute; top: 28px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 16px var(--cyan);
+  z-index: 2;
 }
 
-.edu-meta{color:var(--muted);font-size:.9rem}
+.timeline-item.left  .timeline-dot { right: 15px; }
+.timeline-item.right .timeline-dot { left: -5px; }
 
-/* ===== CERTIFICATES ===== */
-.cert-container{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 280px));
-  justify-content: center;
-}
-.cert-card{
-  background:var(--card);border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;overflow:hidden;transition:.3s;
-  display:flex;flex-direction:column;margin-bottom:20px;
-  padding: 16px 10px;
-}
-.cert-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(34,211,238,.5);
-  box-shadow:0 14px 34px rgba(0,0,0,.35);
-}
-.cert-img{
-  width:100%;height:150px;background:#0b1220;
-  border-bottom:1px solid rgba(255,255,255,.06);object-fit:cover;
-}
-.cert-content{padding:16px}
-.cert-title{font-weight:700;margin-bottom:6px}
-.cert-org{color:var(--primary);font-weight:600;font-size:.9rem;margin-bottom:6px}
-.cert-meta{color:var(--muted);font-size:.85rem}
-
-/* ===== PROFILE ===== */
-.profile{max-width:1000px;margin:60px auto 20px;padding:0 20px}
-
-.profile-card{
-  background:var(--card);border-radius:20px;padding:32px;
-  display:flex;align-items:center;gap:28px;
-  border:1px solid rgba(255,255,255,.06);
-}
-.profile-photo{
-  width:140px;height:140px;border-radius:50%;object-fit:cover;
-  border:3px solid var(--primary);
-  box-shadow:0 0 24px rgba(34,211,238,.35);
-}
-.profile-info h1{font-size:2rem;margin-bottom:6px}
-.profile-role{color:var(--primary);font-weight:600;margin-bottom:14px}
-.profile-desc{color:var(--muted);margin-bottom:18px}
-.profile-contacts{display:flex;flex-wrap:wrap;gap:14px 24px;font-size:.95rem}
-.profile-contacts a{
-  color:var(--text);text-decoration:none;
-  border-bottom:1px dashed rgba(255,255,255,.2);
-}
-.profile-contacts a:hover{color:var(--primary);border-color:var(--primary)}
-.linha{display:flex;align-items:center;gap:6px}
-.rede-social-img{width:30px;height:30px;border-radius:100%}
-
-/* ===== LANGUAGES ===== */
-.idioma-card{display:flex;flex-direction:column;gap:22px}
-.idioma-item{display:flex;flex-direction:column;gap:8px}
-.idioma-top{display:flex;justify-content:space-between;font-weight:600}
-.nivel{padding:2px 10px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.5px}
-.nivel.c1{background:rgba(34,211,238,.15);color:var(--primary);border:1px solid rgba(34,211,238,.4)}
-.nivel.b2{background:rgba(167,139,250,.15);color:var(--secondary);border:1px solid rgba(167,139,250,.4)}
-.nivel.b1{background:rgba(99,102,241,.15);color:#6366f1;border:1px solid rgba(99,102,241,.4)}
-.barra{height:10px;background:#0b1220;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
-.progresso{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--secondary))}
-.progresso.c1{width:85%}
-.progresso.b2{width:70%}
-.progresso.b1{width:55%}
-
-/* ===== ANIMATIONS ===== */
-.fade-up{opacity:0;transform:translateY(30px);transition:all 0.8s ease}
-.fade-up.show{opacity:1;transform:translateY(0)}
-.fade-up:nth-child(1){transition-delay:.1s}
-.fade-up:nth-child(2){transition-delay:.2s}
-.fade-up:nth-child(3){transition-delay:.3s}
-.fade-up:nth-child(4){transition-delay:.4s}
-.fade-up:nth-child(5){transition-delay:.5s}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:500px){
-  .profile-card{flex-direction:column;text-align:center}
-  .profile-contacts{justify-content:center}
-  .linha{justify-content:center}
+/* PROJECT CARD */
+.proj-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 26px;
+  transition: all .3s;
 }
 
-@media(max-width:674px){
-  .timeline::before{left:20px;transform:none}
-  .timeline-item{width:100%;padding:20px 20px 20px 60px;margin-left:0!important;text-align:left!important}
-  .timeline-item.left,.timeline-item.right{margin-left:0;text-align:left}
-  .timeline-dot{left:12px!important;right:auto!important}
-  .timeline-item.left .stacks{justify-content:flex-start}
-  .img-projeto,.img-projeto-mobile{width:100%}
-  .timeline-year{justify-content:flex-start}
+.proj-card:hover {
+  border-color: var(--border-hi);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.3);
 }
 
-.legend-item{
-  cursor:pointer;
-  transition:0.2s;
+.proj-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem; margin-bottom: 14px;
+  letter-spacing: -.02em;
 }
 
-.legend-item.disabled{
-  opacity:0.3;
-  transform:scale(0.9);
-}
+.proj-desc { color: var(--muted); font-size: .88rem; line-height: 1.65; margin-bottom: 18px; }
 
-/* ===== DEVICES (NOTEBOOK + MOBILE) ===== */
-@media (max-width: 350px) {
-  .timeline-item{width:100%; padding-left: 36px; padding-right: 0px !important;}
-
-}
-/* NOTEBOOK */
-.notebook-container {
-  position: relative;
-  width: clamp(260px, 70vw, 600px);
-
-  aspect-ratio: 16/10; /* mantém consistência */
-}
-/* imagem do notebook */
-.notebook-img {
-  width: 100%;
-  display: block;
-}
-
-/* vídeo dentro do notebook */
-.notebook-video {
-  position: absolute;
-  top: 16.4%;
-  left: 14.55%;
-  width: 71.3%;
-
-  aspect-ratio: 16/9;
-
-  object-fit: contain; /* 🔥 MOSTRA O VÍDEO COMPLETO */
-  background: black;   /* opcional: fundo para não ficar transparente */
-}
-
-/* ===== RESPONSIVO EXTRA ===== */
-
-/* CONTAINER DO CELULAR */
-.mobile-container {
-  position: relative;
-  width: 33%;
-}
-
-/* imagem do celular */
-.mobile-img {
-  width: 100%;
-  display: block;
-}
-
-/* vídeo dentro da tela do celular */
-.mobile-video {
-  position: absolute;
-
-  /* AJUSTE FINO (pode precisar calibrar) */
-  top: 2.5%;
-  left: 4%;
-  width: 92%;
-  height: 93%;
-
-  object-fit: contain; /* 🔥 MOSTRA O VÍDEO COMPLETO */
-  background: black;
-  border-radius: 4%;
-}
-
-/* ===== DEVICES (NOTEBOOK + MOBILE) ===== */
-
+/* device mocks */
 .devices-container {
-  display: flex;
-  flex-wrap: wrap; /* padrão: quebra */
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  margin-top: 12px;
-  margin-bottom: 23px;
+  display: flex; flex-wrap: nowrap;
+  justify-content: center; align-items: flex-start;
+  width: 100%; margin: 16px 0 20px; gap: 0;
 }
 
-/* evita quebra estranha */
-.notebook-container,
-.mobile-container {
-  min-width: 0;
-}
-
-/* ===== NOTEBOOK ===== */
-.notebook-container {
-  position: relative;
-  width: 70%;
-  aspect-ratio: 16/10;
-}
-
-.notebook-img {
-  width: 100%;
-  display: block;
-}
-
+.notebook-container { position: relative; width: 83%; aspect-ratio: 16/10; }
+.notebook-img { width: 100%; display: block; }
 .notebook-video {
-  position: absolute;
-  top: 2.8%;
-  left: 14.55%;
-  width: 71.3%;
-  aspect-ratio: 16/9;
-  object-fit: contain;
-  background: black;
+  position: absolute; top: 2.8%; left: 14.55%;
+  width: 71.3%; aspect-ratio: 16/9;
+  object-fit: contain; background: #000;
 }
 
-/* ===== MOBILE ===== */
-.mobile-container {
-  position: relative;
-  width: 30%;
-}
-
-.mobile-img {
-  width: 100%;
-  display: block;
-}
-
+.mobile-container { position: relative; width: 17%; }
+#notex-container { width: 38%; }
+.mobile-img { width: 100%; display: block; }
 .mobile-video {
-  position: absolute;
-  top: 2.5%;
-  left: 3.7%;
-  width: 92%;
-  height: 93%;
-  object-fit: contain;
-  background: black;
+  position: absolute; top: 2.5%; left: 3.7%;
+  width: 92%; height: 93%;
+  object-fit: contain; background: #000;
   border-radius: 4%;
 }
 
-/* ===== ENTRE 350px E 674px (SEU CASO PRINCIPAL) ===== */
-@media (min-width: 350px) and (max-width: 674px) {
-  .devices-container {
-    flex-wrap: nowrap; /* 🔥 lado a lado */
+.stacks {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin: 14px 0 18px;
+}
+
+.timeline-item.left .stacks { justify-content: flex-end; }
+
+.stacks img {
+  width: 30px; height: 30px;
+  background: var(--bg2); padding: 4px;
+  border-radius: 8px; border: 1px solid var(--border);
+  transition: .2s;
+}
+
+.stacks img:hover { transform: scale(1.15); border-color: rgba(34,211,238,.4); }
+
+.proj-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.timeline-item.left .proj-links { justify-content: flex-end; }
+
+.btn-gh {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .78rem; font-weight: 600;
+  padding: 7px 14px; border-radius: 8px;
+  text-decoration: none; transition: all .2s;
+}
+
+.btn-gh.primary {
+  background: linear-gradient(135deg, rgba(34,211,238,.15), rgba(167,139,250,.15));
+  border: 1px solid rgba(34,211,238,.3); color: var(--cyan);
+}
+
+.btn-gh.secondary {
+  background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+}
+
+.btn-gh:hover { transform: translateY(-2px); }
+.btn-gh.primary:hover { border-color: var(--cyan); }
+.btn-gh.secondary:hover { border-color: rgba(255,255,255,.2); color: var(--text); }
+
+.img-projeto { width: 80%; margin: 14px 0; border-radius: 12px; border: 1px solid var(--border); }
+
+/* ─────────────────────────────────────────────────
+   SCROLL ANIMATIONS
+───────────────────────────────────────────────── */
+.fade-up { opacity: 0; transform: translateY(24px); transition: all .7s cubic-bezier(.16,1,.3,1); }
+.fade-up.show { opacity: 1; transform: translateY(0); }
+
+/* ─────────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px; text-align: center;
+  color: var(--dim); font-size: .78rem;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ─────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero {
+    grid-template-columns: 1fr;
   }
 
-  .notebook-container {
-    width: 83%;
+  .desktop-avatar {
+    display: none;
   }
 
-  .mobile-container {
-    width: 17%;
+  .mobile-avatar {
+    display: flex !important;
+    justify-content: center;
+    margin: 16px 0 20px;
   }
-  #notex-container {
-    width: 38%;
+  .mobile-avatar .hero-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+  }
+  .nav-links { display: none; }
+
+  .timeline::before { left: 20px; transform: none; }
+  .timeline-item { width: 100%; padding: 20px 20px 20px 52px; margin-left: 0 !important; text-align: left !important; }
+  .timeline-item.left .stacks, .timeline-item.left .proj-links { justify-content: flex-start; }
+  .timeline-dot { left: 14px !important; right: auto !important; }
+  .timeline-year { justify-content: flex-start; }
+
+  .devices-container { flex-wrap: nowrap; }
+  .notebook-container { width: 83%; }
+  .mobile-container { width: 17%; }
+}
+
+@media (max-width: 380px) {
+  .timeline-item { padding-left: 40px !important; }
+  .devices-container { flex-direction: column; align-items: center;}
+    .notebook-container{ width: 100%; }
+    .mobile-container{ width: 45%; margin-top: 20px;}
+}
+
+@media (max-width: 310px) {
+  .proj-card{
+    padding: 4px;
+  }
+  .timeline-item { padding-right: 0px !important; }
+  #projects{
+    padding-left: 0 !important;
   }
 }
 
-/* ===== MUITO PEQUENO (<350px) ===== */
-@media (max-width: 350px) {
-  .devices-container {
-    flex-wrap: wrap; /* empilha */
-    gap: 20px;
-  }
-
-  .notebook-container {
-    width: 100%;
-  }
-  .mobile-container{
-    width: 70%;
-  }
-  #notex-container {
-    width: 38%;
-  }
+.mobile-avatar {
+  display: none;
+  display: none;
+  position: relative; /* IMPORTANTE */
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
-/* ===== TELAS MAIORES ===== */
-@media (min-width: 675px) {
-  .devices-container {
-    flex-wrap: nowrap;
-  }
-
-  .notebook-container {
-    width: 83%;
-  }
-
-  .mobile-container {
-    width: 17%;
-  }
-  #notex-container {
-    width: 38%;
-  }
+.mobile-avatar .hero-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
 
-@media (max-width: 425px) {
-  .timeline-item{
-    padding-left: 40px !important;
-    padding-right: 10px !important;
-  }
+.mobile-avatar::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* ocupa exatamente o mesmo tamanho */
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(34,211,238,.25), rgba(167,139,250,.25));
+  z-index: 0;
+  animation: rotate-border 6s linear infinite;
+}
+
+.mobile-avatar .hero-avatar {
+  position: relative;
+  z-index: 1;
 }
 </style>
 </head>
-
 <body>
-<!-- ================= PROFILE ================= -->
-<section class="profile">
-  <div class="profile-card fade-up">
-    <img src="eu.jpg" alt="Photo of Henrique Silva Xavier" class="profile-photo" onerror="this.src='https://via.placeholder.com/140?text=HSX'">
-    <div class="profile-info">
-      <h1>Henrique Silva Xavier</h1>
-      <div class="profile-role">Junior Full Stack Developer • Looking for a professional opportunity</div>
-      <p class="profile-desc">
-        Full Stack Developer focused on web applications, AI, and data. Hands-on experience in projects with React, Node, Python, and Spring Boot, building complete systems with front-end, back-end, and database. Interested in high-impact solutions using Artificial Intelligence.
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">HSX</a>
+    <ul class="nav-links">
+      <li><a href="#hero">Apresentation</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#languages">Languages</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<div class="wrapper">
+  <div class="hero fade-up" id="hero">
+    <div>
+      <div class="hero-eyebrow">Available for opportunities</div>
+      <h1>Henrique<br><em>Silva Xavier</em></h1>
+      <div class="hero-avatar-wrap mobile-avatar">
+        <img src="eu.jpg" alt="Henrique Silva Xavier" class="hero-avatar">
+      </div>
+      <p class="hero-sub">
+        Full Stack Developer focused on web applications, AI, and data. Experience with React, Node, Python, and Spring Boot — building complete systems from front to back. Passionate about high-impact solutions with Artificial Intelligence.
       </p>
-      <p>Localization: Recife, Pernambuco, Brazil</p>
-      <br>
-      <div class="profile-contacts">
-        <span class="linha"><img src="whatsapp 1.png" style="width:20px">(81) 98552-1110</span>
-        <span class="linha"><a href="mailto:henriquesx44@gmail.com">henriquesx44@gmail.com</a></span>
-        <a href="https://www.linkedin.com/in/henrique-silva-xavier-3a4047241/" target="_blank"><img src="linkedin 1.png" class="rede-social-img" style="width:30px"></a>
-        <a href="https://www.instagram.com/henriquesilvaxavier8/" target="_blank"><img src="instagram 1.png" class="rede-social-img" style="width:30px"></a>
-        <a href="https://github.com/henriquesilvaxavier" target="_blank"><img src="github 1.png" class="rede-social-img" style="width:30px"></a>
+      <div class="hero-location">📍 Recife, Pernambuco, Brazil</div>
+      <div class="hero-contacts">
+        <span class="contact-pill">
+          <img src="whatsapp 1.png" alt="WhatsApp" onerror="this.style.display='none'">
+          (81) 98552-1110
+        </span>
+        <a href="mailto:henriquesx44@gmail.com" class="contact-pill">✉ henriquesx44@gmail.com</a>
+        <a href="https://www.linkedin.com/in/henrique-silva-xavier-3a4047241/" target="_blank" class="contact-pill">
+          <img src="linkedin 1.png" alt="LinkedIn" onerror="this.style.display='none'"> LinkedIn
+        </a>
+        <a href="https://github.com/henriquesilvaxavier" target="_blank" class="contact-pill">
+          <img src="github 1.png" alt="GitHub" onerror="this.style.display='none'"> GitHub
+        </a>
+        <a href="https://www.instagram.com/henriquesilvaxavier8/" target="_blank" class="contact-pill">
+          <img src="instagram 1.png" alt="Instagram" onerror="this.style.display='none'"> Instagram
+        </a>
       </div>
+      <a href="curriculo-img.png" download="Henrique_Silva_Xavier_CV.png" class="download-btn">
+        ↓ Download Resume
+      </a>
+    </div>
+    <div class="hero-avatar-wrap desktop-avatar">
+      <img src="eu.jpg" alt="Henrique Silva Xavier" class="hero-avatar">
     </div>
   </div>
-  <!-- BOTÃO DOWNLOAD CURRÍCULO -->
-<div style="margin:20px 0;">
-  <a href="curriculo-img.png" download="Henrique_Silva_Xavier_CV.png" 
-     style="
-       display:inline-block;
-       padding:10px 20px;
-       border-radius:999px;
-       background:linear-gradient(90deg,#22d3ee,#a78bfa);
-       color:hsl(220, 49%, 8%);
-       text-decoration:none;
-       font-family:Poppins,sans-serif;
-       transition:0.3s;
-     "
-     onmouseover="this.style.transform='scale(1.05)'"
-     onmouseout="this.style.transform='scale(1)'"
-  >
-    📄 Download Resume (Image)
-  </a>
 </div>
 
-</section>
-
-<!-- ================= EDUCATION ================= -->
-<section id="education">
-  <h2 class="section-title">🎓 Education</h2>
-  <div class="card fade-up">
-    <div class="edu-timeline">
-      <div class="edu-item">
-        <div class="edu-dot"></div>
-        <div class="edu-content">
-
-          <div class="edu-header">
-            <img src="https://media.licdn.com/dms/image/v2/D4D0BAQEhXUmDAH1zLA/company-logo_200_200/company-logo_200_200/0/1735823105902/centrouniversitariosenac_logo?e=1777507200&v=beta&t=5SCLYD1wvvYI2fxUzecZOqXbD0mtfF4AanEx2hW-iEg" class="edu-logo" alt="SENAC logo">
-            <div>
-              <h3>Systems Analysis and Development</h3>
-              <p><strong>SENAC</strong></p>
-            </div>
-          </div>
-
-          <p class="edu-meta">Undergraduate Degree • Completed</p>
-          <p class="edu-meta">Aug/2023 — Dec/2025</p>
+<!-- ═════════════════════════ EDUCATION ═════════════════════════ -->
+<div class="wrapper" id="education">
+  <section>
+    <p class="sec-label">Background</p>
+    <h2 class="sec-title">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-up">
+        <img src="https://media.licdn.com/dms/image/v2/D4D0BAQEhXUmDAH1zLA/company-logo_200_200/company-logo_200_200/0/1735823105902/centrouniversitariosenac_logo?e=1777507200&v=beta&t=5SCLYD1wvvYI2fxUzecZOqXbD0mtfF4AanEx2hW-iEg" class="edu-logo" alt="SENAC">
+        <div class="edu-body">
+          <h3>Systems Analysis and Development</h3>
+          <div class="school">SENAC</div>
+          <div class="meta">Associate Degree</div>
+          <div class="meta">Aug 2023 — Dec 2025</div>
         </div>
       </div>
-      <div class="edu-item">
-        <div class="edu-dot"></div>
-        <div class="edu-content">
-
-          <div class="edu-header">
-            <img src="https://media.licdn.com/dms/image/v2/C4D0BAQF6FfYvFGhTLA/company-logo_200_200/company-logo_200_200/0/1630476763365?e=1777507200&v=beta&t=yCb0wd3TKu_7JQVTzf1rmqRI6i841a6g7JUTOp3GTkk" class="edu-logo" alt="UFRPE logo">
-            <div>
-              <h3>High School</h3>
-              <p><strong>CODAI / UFRPE</strong></p>
-            </div>
-          </div>
-
-          <p class="edu-meta">2020 — 2022</p>
+      <div class="edu-card fade-up">
+        <img src="https://media.licdn.com/dms/image/v2/C4D0BAQF6FfYvFGhTLA/company-logo_200_200/company-logo_200_200/0/1630476763365?e=1777507200&v=beta&t=yCb0wd3TKu_7JQVTzf1rmqRI6i841a6g7JUTOp3GTkk" class="edu-logo" alt="UFRPE">
+        <div class="edu-body">
+          <h3>High School</h3>
+          <div class="school">CODAI / UFRPE</div>
+          <div class="meta">2020 — 2022</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= CERTIFICATES ================= -->
-<section id="certificates">
-  <h2 class="section-title">🏅 Certificates & Achievements</h2>
-  <div class="cert-container">
-  <div class="cert-card fade-up" style="display:flex;flex-direction:column;gap:18px;margin-bottom:20px;">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div style="align-items: center; justify-content: center;">
-        <p style="font-weight:600;">Bronze Medal — OBMEP</p>
-        <p style="color:var(--muted);font-size:.9rem;margin-bottom: 16px;">Brazilian Mathematical Olympiad for Public Schools</p>
-        <div style="margin: 0 auto; width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1220;">🥉</div>
-      </div>
-    </div>
-  </div>
-  <div class="cert-card"><img src="voluntariado recnplay.png" class="cert-img" alt="Rec'N'Play Volunteering"><div class="cert-content"><div class="cert-title">Rec'N'Play Volunteering</div><div class="cert-org">Rec'N'Play</div></div></div>
-  <div class="cert-card"><img src="analise de dados.png" class="cert-img" alt="Data Analysis Intensive"><div class="cert-content"><div class="cert-title">Data Analysis Intensive</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
-  <div class="cert-card"><img src="hashtag python.png" class="cert-img" alt="Python Journey"><div class="cert-content"><div class="cert-title">Python Journey</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
-  <div class="cert-card"><img src="rocketseat 1.png" class="cert-img" alt="Rocketseat"><div class="cert-content"><div class="cert-title">Rocketseat Knowledge Trail</div><div class="cert-org">Rocketseat</div></div></div>
-  <div class="cert-card"><img src="certificado deloitte bootcamp java.png" class="cert-img" alt="Deloitte Bootcamp Java"><div class="cert-content"><div class="cert-title">Java Bootcamp</div><div class="cert-org">Deloitte</div></div></div>
-</div>
-</section>
-
-<!-- ================= SKILLS ORBIT ================= -->
-<div class="skills-orbit-section">
-  <h2>🚀 Skills</h2>
-  <p class="subtitle">The closer to the center, the higher the level of mastery. Hover over the icons to see the names.</p>
-
-  <div class="skills-orbit-wrapper">
-    <div class="orbit-system" id="orbitSystem">
-
-      <div class="orbit-center">KNOWLEDGE</div>
-
-      <!-- ÓRBITA 1 — soft skills -->
-      <div class="orbit-ring" id="ring1" data-base-d="180">
-        <div class="skill-icon soft" data-a="270">
-          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-3-6.7" stroke-width="2"/><path d="M21 3v6h-6" stroke-width="2"/></svg>
-          <span class="skill-label">Persistence</span>
-        </div>
-        <div class="skill-icon soft" data-a="315">
-          <svg viewBox="0 0 24 24"><path d="M12 3v6l4-4M12 21v-6l-4 4" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>
-          <span class="skill-label">Adaptability</span>
-        </div>
-        <div class="skill-icon soft" data-a="0">
-          <svg viewBox="0 0 24 24"><path d="M4 19h16M4 15l4-4 4 4 8-8" stroke-width="2"/></svg>
-          <span class="skill-label">Analytical</span>
-        </div>
-        <div class="skill-icon soft" data-a="45">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/></svg>
-          <span class="skill-label">Results-oriented</span>
-        </div>
-        <div class="skill-icon soft" data-a="90">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path d="M9 9a3 3 0 115 1c0 2-3 2-3 4" stroke-width="2"/></svg>
-          <span class="skill-label">Problem Solving</span>
-        </div>
-        <div class="skill-icon soft" data-a="135">
-          <svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>
-          <span class="skill-label">Continuous Learning</span>
-        </div>
-        <div class="skill-icon soft" data-a="180">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M17 20a4 4 0 10-8 0" stroke="currentColor" stroke-width="2"/>
-            <circle cx="12" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
-            <path d="M23 20a4 4 0 00-6-3.46M1 20a4 4 0 016-3.46" stroke="currentColor" stroke-width="2"/>
-          </svg>
-          <span class="skill-label">Teamwork</span>
-        </div>
-      </div>
-
-      <!-- ÓRBITA 2 — 280px -->
-      <div class="orbit-ring" id="ring2" data-base-d="280">
-        <div class="skill-icon ai" data-a="270"><img src="https://skillicons.dev/icons?i=py"/><span class="skill-label">Python</span></div>
-        <div class="skill-icon testing" data-a="210"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/insomnia/insomnia-original.svg"/><span class="skill-label">Insomnia</span></div>
-        <div class="skill-icon ux" data-a="30"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"/><span class="skill-label">Figma</span></div>
-        <div class="skill-icon frontend" data-a="90"><img src="https://skillicons.dev/icons?i=html"/><span class="skill-label">HTML</span></div>
-        <div class="skill-icon devops" data-a="150"><img src="https://skillicons.dev/icons?i=git"/><span class="skill-label">Git</span></div>
-        <div class="skill-icon ai" data-a="330"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"/><span class="skill-label">Jupyter</span></div>
-      </div>
-
-      <!-- ÓRBITA 3 — 390px -->
-      <div class="orbit-ring" id="ring3" data-base-d="390">
-        <div class="skill-icon frontend" data-a="0"><img src="https://skillicons.dev/icons?i=css"/><span class="skill-label">CSS</span></div>
-        <div class="skill-icon frontend" data-a="60"><img src="https://skillicons.dev/icons?i=tailwind"/><span class="skill-label">Tailwind</span></div>
-        <div class="skill-icon ai" data-a="120"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg"/><span class="skill-label">Scikit-learn</span></div>
-        <div class="skill-icon frontend" data-a="180"><img src="https://skillicons.dev/icons?i=js"/><span class="skill-label">JavaScript</span></div>
-        <div class="skill-icon data" data-a="240"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"/><span class="skill-label">Pandas</span></div>
-        <div class="skill-icon backend" data-a="300"><img src="https://skillicons.dev/icons?i=java"/><span class="skill-label">Java</span></div>
-      </div>
-
-      <!-- ÓRBITA 4 — 510px -->
-      <div class="orbit-ring" id="ring4" data-base-d="510">
-        <div class="skill-icon frontend" data-a="0"><img src="https://skillicons.dev/icons?i=bootstrap"/><span class="skill-label">Bootstrap</span></div>
-        <div class="skill-icon frontend" data-a="45"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chartjs/chartjs-original.svg"/><span class="skill-label">Chart.js</span></div>
-        <div class="skill-icon data" data-a="90"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg"/><span class="skill-label">Matplotlib</span></div>
-        <div class="skill-icon data" data-a="135"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"/><span class="skill-label">NumPy</span></div>
-        <div class="skill-icon database" data-a="180"><img src="https://skillicons.dev/icons?i=sqlite"/><span class="skill-label">SQLite</span></div>
-        <div class="skill-icon database" data-a="225"><img src="https://skillicons.dev/icons?i=mysql"/><span class="skill-label">MySQL</span></div>
-        <div class="skill-icon backend" data-a="270"><img src="https://skillicons.dev/icons?i=flask"/><span class="skill-label">Flask</span></div>
-        <div class="skill-icon data" data-a="315"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png"/><span class="skill-label">Power BI</span></div>
-      </div>
-
-      <!-- ÓRBITA 5 — 640px -->
-      <div class="orbit-ring" id="ring5" data-base-d="640">
-        <div class="skill-icon ai" data-a="0"><img src="https://skillicons.dev/icons?i=tensorflow"/><span class="skill-label">TensorFlow</span></div>
-        <div class="skill-icon backend" data-a="30"><img src="https://skillicons.dev/icons?i=django"/><span class="skill-label">Django</span></div>
-        <div class="skill-icon backend" data-a="60"><img src="https://skillicons.dev/icons?i=spring"/><span class="skill-label">Spring</span></div>
-        <div class="skill-icon backend" data-a="90"><img src="https://skillicons.dev/icons?i=php"/><span class="skill-label">PHP</span></div>
-        <div class="skill-icon database" data-a="120"><img src="https://skillicons.dev/icons?i=postgresql"/><span class="skill-label">PostgreSQL</span></div>
-        <div class="skill-icon backend" data-a="150"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg"/><span class="skill-label">Prisma</span></div>
-        <div class="skill-icon mobile" data-a="180"><img src="https://skillicons.dev/icons?i=react"/><span class="skill-label">React Native</span></div>
-        <div class="skill-icon frontend" data-a="210"><img src="https://skillicons.dev/icons?i=react"/><span class="skill-label">React</span></div>
-        <div class="skill-icon testing" data-a="240"><img src="https://skillicons.dev/icons?i=jest"/><span class="skill-label">Jest</span></div>
-        <div class="skill-icon database" data-a="270"><img src="https://skillicons.dev/icons?i=mongodb"/><span class="skill-label">MongoDB</span></div>
-        <div class="skill-icon backend" data-a="300"><img src="https://skillicons.dev/icons?i=laravel"/><span class="skill-label">Laravel</span></div>
-        <div class="skill-icon testing" data-a="330"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"/><span class="skill-label">Postman</span></div>
-      </div>
-
-      <!-- ÓRBITA 6 — 760px -->
-      <div class="orbit-ring" id="ring6" data-base-d="760">
-        <div class="skill-icon ai" data-a="0"><img src="https://cdn.simpleicons.org/gradio/FF7C00"/><span class="skill-label">Gradio</span></div>
-        <div class="skill-icon backend" data-a="72"><img src="https://skillicons.dev/icons?i=nodejs"/><span class="skill-label">Node.js</span></div>
-        <div class="skill-icon backend" data-a="144"><img src="https://skillicons.dev/icons?i=express"/><span class="skill-label">Express</span></div>
-        <div class="skill-icon devops" data-a="216"><img src="https://skillicons.dev/icons?i=azure"/><span class="skill-label">Azure</span></div>
-        <div class="skill-icon testing" data-a="288"><img src="https://skillicons.dev/icons?i=selenium"/><span class="skill-label">Selenium</span></div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- LEGENDA -->
-  <div class="legend">
-  <div class="legend-item" data-category="soft"><div class="legend-dot" style="border-color:var(--soft);"></div>Soft Skills</div>
-  <div class="legend-item" data-category="ai"><div class="legend-dot" style="border-color:var(--ai);"></div>AI / ML</div>
-  <div class="legend-item" data-category="data"><div class="legend-dot" style="border-color:var(--data);"></div>Data Science</div>
-  <div class="legend-item" data-category="frontend"><div class="legend-dot" style="border-color:var(--frontend);"></div>Frontend</div>
-  <div class="legend-item" data-category="backend"><div class="legend-dot" style="border-color:var(--backend);"></div>Backend</div>
-  <div class="legend-item" data-category="database"><div class="legend-dot" style="border-color:var(--database);"></div>Database</div>
-  <div class="legend-item" data-category="devops"><div class="legend-dot" style="border-color:var(--devops);"></div>DevOps</div>
-  <div class="legend-item" data-category="testing"><div class="legend-dot" style="border-color:var(--testing);"></div>Testing</div>
-  <div class="legend-item" data-category="mobile"><div class="legend-dot" style="border-color:var(--mobile);"></div>Mobile</div>
-  <div class="legend-item" data-category="ux"><div class="legend-dot" style="border-color:var(--ux);"></div>UX / Design</div>
-</div>
+  </section>
 </div>
 
-<!-- ================= ENGLISH PROFICIENCY ================= -->
-<section id="languages">
-  <h2 class="section-title">🌍 English — Proficiency</h2>
-  <div class="card idioma-card fade-up">
-    <div class="idioma-item">
-      <div class="idioma-top"><span>Reading</span><span class="nivel c1">C1</span></div>
-      <div class="barra"><div class="progresso c1"></div></div>
+<!-- ═════════════════════════ CERTIFICATES ═════════════════════════ -->
+<div class="wrapper" id="certificates">
+  <section>
+    <p class="sec-label">Achievements</p>
+    <h2 class="sec-title">Certificates</h2>
+    <div class="cert-grid">
+      <div class="cert-card fade-up">
+        <div class="cert-medal">🥉</div>
+        <div class="cert-body">
+          <div class="cert-title">Bronze Medal — OBMEP</div>
+          <div class="cert-org">Brazilian Mathematical Olympiad</div>
+        </div>
+      </div>
+      <div class="cert-card fade-up"><img src="voluntariado recnplay.png" class="cert-img" alt="Rec'N'Play"><div class="cert-body"><div class="cert-title">Rec'N'Play Volunteering</div><div class="cert-org">Rec'N'Play</div></div></div>
+      <div class="cert-card fade-up"><img src="analise de dados.png" class="cert-img" alt="Data Analysis"><div class="cert-body"><div class="cert-title">Data Analysis Intensive</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
+      <div class="cert-card fade-up"><img src="hashtag python.png" class="cert-img" alt="Python"><div class="cert-body"><div class="cert-title">Python Journey</div><div class="cert-org">Hashtag Treinamentos</div></div></div>
+      <div class="cert-card fade-up"><img src="rocketseat 1.png" class="cert-img" alt="Rocketseat"><div class="cert-body"><div class="cert-title">Rocketseat Knowledge Trail</div><div class="cert-org">Rocketseat</div></div></div>
+      <div class="cert-card fade-up"><img src="certificado deloitte bootcamp java.png" class="cert-img" alt="Deloitte"><div class="cert-body"><div class="cert-title">Java Bootcamp</div><div class="cert-org">Deloitte</div></div></div>
     </div>
-    <div class="idioma-item">
-      <div class="idioma-top"><span>Writing</span><span class="nivel b1">B1</span></div>
-      <div class="barra"><div class="progresso b1"></div></div>
-    </div>
-    <div class="idioma-item">
-      <div class="idioma-top"><span>Listening</span><span class="nivel b2">B2</span></div>
-      <div class="barra"><div class="progresso b2"></div></div>
-    </div>
-    <div class="idioma-item">
-      <div class="idioma-top"><span>Speaking</span><span class="nivel b2">B2</span></div>
-      <div class="barra"><div class="progresso b2"></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PROJECTS ================= -->
-<h2 class="section-title" style="max-width:1000px;margin:60px auto 20px;padding:0 20px;">🗂️ Projects</h2>
-
-<div class="filters">
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="frontend">Front-end</button>
-  <button class="filter-btn" data-filter="backend">Back-end</button>
-  <button class="filter-btn" data-filter="data">Data Science</button>
-  <button class="filter-btn" data-filter="mobile">Mobile</button>
+  </section>
 </div>
 
-<section>
-  <div class="timeline">
-    <div class="timeline-year"><span>2024</span></div>
-    <div class="timeline-item" data-tags="frontend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>Nebelfeld Dictionary</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
+<!-- ═════════════════════════ SKILLS ═════════════════════════ -->
+<div id="skills">
+  <div class="orbit-section">
+    <div class="wrapper" style="width:100%;text-align:center;">
+      <p class="sec-label">Expertise</p>
+      <h2 class="sec-title">Skills</h2>
+      <p class="orbit-subtitle">Closer to the center = higher mastery. Hover icons to see names.</p>
+    </div>
 
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-nebelfeld.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
+    <div class="orbit-wrapper">
+      <div class="orbit-system" id="orbitSystem">
+        <div class="orbit-center">KNOWLEDGE</div>
 
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
-              <source src="video-celular-nebelfeld.mp4" type="video/mp4">
-            </video>
-          </div>
+        <!-- ring 1 soft skills -->
+        <div class="orbit-ring" id="ring1" data-base-d="180">
+          <div class="skill-icon soft" data-a="270"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-3-6.7" stroke-width="2"/><path d="M21 3v6h-6" stroke-width="2"/></svg><span class="skill-label">Persistence</span></div>
+          <div class="skill-icon soft" data-a="315"><svg viewBox="0 0 24 24"><path d="M12 3v6l4-4M12 21v-6l-4 4" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg><span class="skill-label">Adaptability</span></div>
+          <div class="skill-icon soft" data-a="0"><svg viewBox="0 0 24 24"><path d="M4 19h16M4 15l4-4 4 4 8-8" stroke-width="2"/></svg><span class="skill-label">Analytical</span></div>
+          <div class="skill-icon soft" data-a="45"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/></svg><span class="skill-label">Results-oriented</span></div>
+          <div class="skill-icon soft" data-a="90"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path d="M9 9a3 3 0 115 1c0 2-3 2-3 4" stroke-width="2"/></svg><span class="skill-label">Problem Solving</span></div>
+          <div class="skill-icon soft" data-a="135"><svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12" stroke-width="2"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg><span class="skill-label">Continuous Learning</span></div>
+          <div class="skill-icon soft" data-a="180"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17 20a4 4 0 10-8 0" stroke-width="2"/><circle cx="12" cy="10" r="4" stroke-width="2"/><path d="M23 20a4 4 0 00-6-3.46M1 20a4 4 0 016-3.46" stroke-width="2"/></svg><span class="skill-label">Teamwork</span></div>
         </div>
-        <p>The Nebelfeld Dictionary is a multilingual website that allows you to search for words in different languages, displaying definitions, synonyms and example phrases. It includes spelling correction, pronunciation in different accents and a section with highlighted words.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
+
+        <!-- ring 2 -->
+        <div class="orbit-ring" id="ring2" data-base-d="280">
+          <div class="skill-icon ai" data-a="270"><img src="https://skillicons.dev/icons?i=py"/><span class="skill-label">Python</span></div>
+          <div class="skill-icon testing" data-a="210"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/insomnia/insomnia-original.svg"/><span class="skill-label">Insomnia</span></div>
+          <div class="skill-icon ux" data-a="30"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"/><span class="skill-label">Figma</span></div>
+          <div class="skill-icon frontend" data-a="90"><img src="https://skillicons.dev/icons?i=html"/><span class="skill-label">HTML</span></div>
+          <div class="skill-icon devops" data-a="150"><img src="https://skillicons.dev/icons?i=git"/><span class="skill-label">Git</span></div>
+          <div class="skill-icon ai" data-a="330"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"/><span class="skill-label">Jupyter</span></div>
         </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://github.com/HenriqueSilvaXavier/dicionarioNebelfeld.github.io" class="btn-github">View on GitHub</a>
-          <a href="https://henriquesilvaxavier.github.io/dicionarioNebelfeld.github.io/" target="_blank" class="btn-github">View Deploy</a>
+
+        <!-- ring 3 -->
+        <div class="orbit-ring" id="ring3" data-base-d="390">
+          <div class="skill-icon frontend" data-a="0"><img src="https://skillicons.dev/icons?i=css"/><span class="skill-label">CSS</span></div>
+          <div class="skill-icon frontend" data-a="60"><img src="https://skillicons.dev/icons?i=tailwind"/><span class="skill-label">Tailwind</span></div>
+          <div class="skill-icon ai" data-a="120"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg"/><span class="skill-label">Scikit-learn</span></div>
+          <div class="skill-icon frontend" data-a="180"><img src="https://skillicons.dev/icons?i=js"/><span class="skill-label">JavaScript</span></div>
+          <div class="skill-icon data" data-a="240"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"/><span class="skill-label">Pandas</span></div>
+          <div class="skill-icon backend" data-a="300"><img src="https://skillicons.dev/icons?i=java"/><span class="skill-label">Java</span></div>
+        </div>
+
+        <!-- ring 4 -->
+        <div class="orbit-ring" id="ring4" data-base-d="510">
+          <div class="skill-icon frontend" data-a="0"><img src="https://skillicons.dev/icons?i=bootstrap"/><span class="skill-label">Bootstrap</span></div>
+          <div class="skill-icon frontend" data-a="45"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chartjs/chartjs-original.svg"/><span class="skill-label">Chart.js</span></div>
+          <div class="skill-icon data" data-a="90"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg"/><span class="skill-label">Matplotlib</span></div>
+          <div class="skill-icon data" data-a="135"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"/><span class="skill-label">NumPy</span></div>
+          <div class="skill-icon database" data-a="180"><img src="https://skillicons.dev/icons?i=sqlite"/><span class="skill-label">SQLite</span></div>
+          <div class="skill-icon database" data-a="225"><img src="https://skillicons.dev/icons?i=mysql"/><span class="skill-label">MySQL</span></div>
+          <div class="skill-icon backend" data-a="270"><img src="https://skillicons.dev/icons?i=flask"/><span class="skill-label">Flask</span></div>
+          <div class="skill-icon data" data-a="315"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png"/><span class="skill-label">Power BI</span></div>
+        </div>
+
+        <!-- ring 5 -->
+        <div class="orbit-ring" id="ring5" data-base-d="640">
+          <div class="skill-icon ai" data-a="0"><img src="https://skillicons.dev/icons?i=tensorflow"/><span class="skill-label">TensorFlow</span></div>
+          <div class="skill-icon backend" data-a="30"><img src="https://skillicons.dev/icons?i=django"/><span class="skill-label">Django</span></div>
+          <div class="skill-icon backend" data-a="60"><img src="https://skillicons.dev/icons?i=spring"/><span class="skill-label">Spring</span></div>
+          <div class="skill-icon backend" data-a="90"><img src="https://skillicons.dev/icons?i=php"/><span class="skill-label">PHP</span></div>
+          <div class="skill-icon database" data-a="120"><img src="https://skillicons.dev/icons?i=postgresql"/><span class="skill-label">PostgreSQL</span></div>
+          <div class="skill-icon backend" data-a="150"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg"/><span class="skill-label">Prisma</span></div>
+          <div class="skill-icon mobile" data-a="180"><img src="https://skillicons.dev/icons?i=react"/><span class="skill-label">React Native</span></div>
+          <div class="skill-icon frontend" data-a="210"><img src="https://skillicons.dev/icons?i=react"/><span class="skill-label">React</span></div>
+          <div class="skill-icon testing" data-a="240"><img src="https://skillicons.dev/icons?i=jest"/><span class="skill-label">Jest</span></div>
+          <div class="skill-icon database" data-a="270"><img src="https://skillicons.dev/icons?i=mongodb"/><span class="skill-label">MongoDB</span></div>
+          <div class="skill-icon backend" data-a="300"><img src="https://skillicons.dev/icons?i=laravel"/><span class="skill-label">Laravel</span></div>
+          <div class="skill-icon testing" data-a="330"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"/><span class="skill-label">Postman</span></div>
+        </div>
+
+        <!-- ring 6 -->
+        <div class="orbit-ring" id="ring6" data-base-d="760">
+          <div class="skill-icon ai" data-a="0"><img src="https://cdn.simpleicons.org/gradio/FF7C00"/><span class="skill-label">Gradio</span></div>
+          <div class="skill-icon backend" data-a="72"><img src="https://skillicons.dev/icons?i=nodejs"/><span class="skill-label">Node.js</span></div>
+          <div class="skill-icon backend" data-a="144"><img src="https://skillicons.dev/icons?i=express"/><span class="skill-label">Express</span></div>
+          <div class="skill-icon devops" data-a="216"><img src="https://skillicons.dev/icons?i=azure"/><span class="skill-label">Azure</span></div>
+          <div class="skill-icon testing" data-a="288"><img src="https://skillicons.dev/icons?i=selenium"/><span class="skill-label">Selenium</span></div>
         </div>
       </div>
     </div>
 
-    <div class="timeline-item" data-tags="frontend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>CEPDistância</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-cepdistancia.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="cepdistancia-celular.jpeg">
-              <source src="video-celular-cepdistancia.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>The website uses the ViaCEP API to calculate the distance between two CEP codes entered by the user. The background is a world map.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://github.com/HenriqueSilvaXavier/CEPDistancia.github.io" class="btn-github">View on GitHub</a>
-          <a href="https://henriquesilvaxavier.github.io/CEPDistancia.github.io/" target="_blank" class="btn-github">View Deploy</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item" data-tags="mobile">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>Notex App</h3>
-        <div class="devices-container">
-          <div class="mobile-container" id="notex-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="notex.png">
-              <source src="video-notex.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>The project serves as an app for Mediotec students to see their grades, subjects and their respective teachers, schedules, reports and the academic calendar.</p>
-        <div class="stacks">
-          <img src="https://cms-assets.tutsplus.com/uploads/users/1125/posts/29791/preview_image/RN.jpg" title="React Native">
-          <img src="https://skillicons.dev/icons?i=typescript" title="TypeScript" alt="TypeScript">
-          <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
-          <img src="https://skillicons.dev/icons?i=prisma" title="Prisma" alt="Prisma">
-        </div>
-        <a href="https://github.com/HenriqueSilvaXavier/Notex-Mobile-PI" class="btn-github">View on GitHub</a>
-      </div>
-    </div>
-
-    <div class="timeline-item" data-tags="frontend backend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>Vitae.ai</h3>
-        <img src="Vitae.png" class="img-projeto" alt="Vitae.ai Project">
-        <p>A front-end that communicates with an AI that analyzes resumes sent by the user, gives improvement suggestions and evaluates them.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=react" title="React" alt="React">
-          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
-          <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
-          <img src="https://skillicons.dev/icons?i=flask" title="Flask" alt="Flask">
-        </div>
-        <a href="https://github.com/HenriqueSilvaXavier/Vitae.ai-Residencia" class="btn-github">View on GitHub</a>
-      </div>
-    </div>
-
-    <div class="timeline-year"><span>2025</span></div>
-
-    <div class="timeline-item" data-tags="frontend backend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>ToDoList</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-toDoList.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="toDoList-celular.jpeg">
-              <source src="video-celular-toDoList.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>A Django project to create, edit, read, and delete tasks, with the categories: In Progress, Completed, and Not Done — and the ability to move tasks between categories.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
-          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
-          <img src="https://skillicons.dev/icons?i=django" title="Django" alt="Django">
-          <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
-        </div>
-        <a href="https://github.com/Elias969/Django_Tarefas.github.io" class="btn-github">View on GitHub</a>
-      </div>
-    </div>
-
-    <div class="timeline-item" data-tags="data">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>Consumo Energetico</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-consumoEnergetico.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
-              <source src="video-celular-consumoEnergetico.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>This site was built with Gradio and Pandas, using Pyotp and QRcode to implement sign-in and sign-up with MFA (Multi-Factor Authentication). The objective is to show predictions from AI Scikit-Learn models and Matplotlib charts.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGmhRoEHG6jt0ZCtTf39On6QihNKVDYKGCdw&s" title="Gradio" alt="Gradio">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRYs547v2gOR_xdllUqcUxfq25_7TeDqTrLg&s" title="Pandas" alt="Pandas">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/250px-Matplotlib_icon.svg.png" title="Matplotlib" alt="Matplotlib">
-          <img src="https://skillicons.dev/icons?i=sklearn" title="Scikit-Learn" alt="Scikit-Learn">
-          <img src="https://img.icons8.com/color/1200/numpy.jpg" title="Numpy" alt="Numpy">
-          <img src="https://yt3.googleusercontent.com/XNIcd1v2bK-ST8XcAGuDJshPImz1W88I2gWpKgtTxTGCXn2LDUBhViufHpv1u5j0B4mr574=s900-c-k-c0x00ffffff-no-rj" title="Plotly" alt="Plotly">
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://github.com/HenriqueSilvaXavier/consumo_energetico" class="btn-github">View on GitHub</a>
-          <a href="https://consumo-energetico2-6.onrender.com/" target="_blank" class="btn-github">View Deploy</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item" data-tags="frontend backend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>CodeStore</h3>
-        <div class="devices-container">
-          <!-- NOTEBOOK -->
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-codestore.mp4" type="video/mp4">
-            </video>
-          </div>
-
-          <!-- CELULAR -->
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
-              <source src="video-celular-codestore.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>This project is an e-commerce web application for IT, gamer and design audiences. Products range from peripherals, devices, cables, and more. Built with JavaScript, HTML, and TailwindCSS, it connects to a backend API to fetch available products.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
-          <img src="https://skillicons.dev/icons?i=tailwind" title="TailwindCSS" alt="TailwindCSS">
-          <img src="https://skillicons.dev/icons?i=nodejs" title="Node.js" alt="Node.js">
-          <img src="https://skillicons.dev/icons?i=express" title="Express" alt="Express">
-          <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
-        </div>
-        <a href="https://github.com/HenriqueSilvaXavier/CodeStore" class="btn-github">View on GitHub</a>
-      </div>
-    </div>
-
-    <div class="timeline-item" data-tags="frontend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>Decimal Division Anatomy</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-decimalDivisionAnatomy.mp4" type="video/mp4">
-            </video>
-          </div>
-
-          <!-- CELULAR -->
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
-              <source src="video-celular-decimalDivisionAnatomy.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>The Decimal Division Anatomy project visually explains decimal division steps, simulating manual long division for non-integer decimals using HTML, CSS, and JavaScript. It also allows exporting the results as an image with html2canvas, serving as an interactive educational tool.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
-          <img src="https://skillicons.dev/icons?i=php" title="PHP" alt="PHP">
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://github.com/HenriqueSilvaXavier/Decimal-Division-Anatomy" class="btn-github">View on GitHub</a>
-          <a href="https://henriquesilvaxavier.github.io/Decimal-Division-Anatomy.github.io/" target="_blank" class="btn-github">View Deploy</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-item" data-tags="frontend backend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>Lojas Henri</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-lojasHenri.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="lojashenri-thumb.jpeg">
-              <source src="video-celular-lojasHenri.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>The "Henri Store" project is an e-commerce platform that allows users to explore various product categories, such as home appliances, furniture, pet supplies, and more. The site offers features such as search, favorites, and shopping cart, as well as displaying promotions and product reviews.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
-          <img src="https://skillicons.dev/icons?i=laravel" title="Laravel" alt="Laravel">
-          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
-          <img src="https://skillicons.dev/icons?i=php" title="PHP" alt="PHP">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRYs547v2gOR_xdllUqcUxfq25_7TeDqTrLg&s" title="Pandas" alt="Pandas">
-          <img src="https://img.icons8.com/color/1200/numpy.jpg" title="Numpy" alt="Numpy">
-          <img src="https://miro.medium.com/0*zKRz1UgqpOZ4bvuA" title="NLTK" alt="NLTK">
-          <img src="https://skillicons.dev/icons?i=mysql" title="MySQL" alt="MySQL">
-          <img src="https://skillicons.dev/icons?i=tailwind" title="Tailwind CSS" alt="Tailwind CSS">
-          <img src="https://skillicons.dev/icons?i=bootstrap" title="Bootstrap" alt="Bootstrap">
-          <img src="https://skillicons.dev/icons?i=sklearn" title="Scikit-Learn" alt="Scikit-Learn">
-        </div>
-        <a href="https://github.com/HenriqueSilvaXavier/LojasHenri-Laravel" class="btn-github">View on GitHub</a>
-      </div>
-    </div>
-
-    <div class="timeline-item" data-tags="frontend data backend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>Monitor RJ</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-monitorrj.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="monitorrj-celular.jpeg">
-              <source src="video-celular-monitorrj.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>This project allows users to see insights and dashboards about crimes in the state of Rio de Janeiro. With columns like mcirc (city), cisp, aisp, and risp, it's possible to monitor more closely the most violent localities. It also includes an AI machine learning model to predict the next value of violent lethality based on the data.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=py" title="Python" alt="Python">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
-          <img src="https://skillicons.dev/icons?i=flask" title="Flask" alt="Flask">
-          <img src="https://skillicons.dev/icons?i=postgres" title="PostgreSQL" alt="PostgreSQL">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRYs547v2gOR_xdllUqcUxfq25_7TeDqTrLg&s" title="Pandas" alt="Pandas">
-          <img src="https://skillicons.dev/icons?i=sklearn" title="Scikit-Learn" alt="Scikit-Learn">
-          <img src="https://img.icons8.com/color/1200/numpy.jpg" title="Numpy" alt="Numpy">
-          <img src="https://geopandas.org/en/v0.14.3/_images/geopandas_icon_green.png" title="GeoPandas" alt="GeoPandas">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/250px-Matplotlib_icon.svg.png" title="Matplotlib" alt="Matplotlib">
-          <img src="https://pbs.twimg.com/profile_images/758905296416681984/_GD1-XrU_400x400.jpg" title="ChartJS" alt="ChartJS">
-          <img src="https://avatars.githubusercontent.com/u/139423088?s=280&v=4" title="OpenRouter" alt="OpenRouter">
-          <img src="https://skillicons.dev/icons?i=selenium" title="Selenium" alt="Selenium">
-          <img src="https://skillicons.dev/icons?i=jest" title="Jest" alt="Jest">
-          <img src="https://skillicons.dev/icons?i=docker" title="Docker" alt="Docker">
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="https://github.com/gabrielamaiia01/IA_PI" class="btn-github">View on GitHub</a>
-          <a href="https://hub.docker.com/r/henriquesilvaxavier/monitor_rj" target="_blank" class="btn-github">View on Dockerhub</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="timeline-year"><span>2026</span></div>
-
-    <div class="timeline-item" data-tags="frontend backend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>FicLibris</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-ficlibris.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
-              <source src="video-celular-ficlibris.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>A virtual library of movies, books, manga, anime, and series that recommends content based on keywords and works the user has already seen and selected as a base reference. To generate recommendations, the system analyzes the similarity between works by comparing shared words in their synopsis, keywords, and genre.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
-          <img src="https://skillicons.dev/icons?i=ts" title="TypeScript" alt="TypeScript">
-          <img src="https://skillicons.dev/icons?i=react" title="React" alt="React">
-          <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite" alt="SQLite">
-        </div>
-        <a href="https://github.com/HenriqueSilvaXavier/FicLibris" class="btn-github">View on GitHub</a>
-      </div>
-    </div>
-
-    <div class="timeline-item" data-tags="frontend backend">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <h3>Bootcamp-films</h3>
-        <div class="devices-container">
-          <div class="notebook-container">
-            <img src="notebook.png" class="notebook-img">
-
-            <video class="notebook-video" controls muted loop>
-              <source src="video-notebook-bootcampFilms.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="mobile-container">
-            <img src="celular.png" class="mobile-img" alt="Mobile preview">
-
-            <video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback">
-              <source src="video-celular-bootcampFilms.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <p>A film management web application built during a Java bootcamp. It allows users to browse, register, and manage movie entries through a full-stack interface powered by Spring Boot on the backend.</p>
-        <div class="stacks">
-          <img src="https://skillicons.dev/icons?i=html" title="HTML" alt="HTML">
-          <img src="https://skillicons.dev/icons?i=css" title="CSS" alt="CSS">
-          <img src="https://skillicons.dev/icons?i=js" title="JavaScript" alt="JavaScript">
-          <img src="https://skillicons.dev/icons?i=java" title="Java" alt="Java">
-          <img src="https://skillicons.dev/icons?i=spring" title="Spring" alt="Spring">
-          <img src="https://skillicons.dev/icons?i=bootstrap" title="Bootstrap" alt="Bootstrap">
-          <img src="https://marcphilipp.de/img/junit5-logo.png" title="JUnit" alt="JUnit">
-        </div>
-        <a href="https://github.com/HenriqueSilvaXavier/bootcamp" class="btn-github">View on GitHub</a>
-      </div>
+    <div class="legend">
+      <div class="legend-item" data-category="soft"><div class="legend-dot" style="border-color:var(--soft)"></div>Soft Skills</div>
+      <div class="legend-item" data-category="ai"><div class="legend-dot" style="border-color:var(--ai)"></div>AI / ML</div>
+      <div class="legend-item" data-category="data"><div class="legend-dot" style="border-color:var(--data)"></div>Data Science</div>
+      <div class="legend-item" data-category="frontend"><div class="legend-dot" style="border-color:var(--frontend)"></div>Frontend</div>
+      <div class="legend-item" data-category="backend"><div class="legend-dot" style="border-color:var(--backend)"></div>Backend</div>
+      <div class="legend-item" data-category="database"><div class="legend-dot" style="border-color:var(--database)"></div>Database</div>
+      <div class="legend-item" data-category="devops"><div class="legend-dot" style="border-color:var(--devops)"></div>DevOps</div>
+      <div class="legend-item" data-category="testing"><div class="legend-dot" style="border-color:var(--testing)"></div>Testing</div>
+      <div class="legend-item" data-category="mobile"><div class="legend-dot" style="border-color:var(--mobile)"></div>Mobile</div>
+      <div class="legend-item" data-category="ux"><div class="legend-dot" style="border-color:var(--ux)"></div>UX / Design</div>
     </div>
   </div>
-</section>
+</div>
 
+<!-- ═════════════════════════ LANGUAGES ═════════════════════════ -->
+<div class="wrapper" id="languages">
+  <section>
+    <p class="sec-label">Communication</p>
+    <h2 class="sec-title">English Proficiency</h2>
+    <div class="lang-card fade-up">
+      <div class="lang-item">
+        <div class="lang-top"><span>Reading</span><span class="level-badge c1">C1</span></div>
+        <div class="lang-bar"><div class="lang-fill c1"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-top"><span>Listening</span><span class="level-badge b2">B2</span></div>
+        <div class="lang-bar"><div class="lang-fill b2"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-top"><span>Speaking</span><span class="level-badge b2">B2</span></div>
+        <div class="lang-bar"><div class="lang-fill b2"></div></div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-top"><span>Writing</span><span class="level-badge b1">B1</span></div>
+        <div class="lang-bar"><div class="lang-fill b1"></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════════════════════ PROJECTS ═════════════════════════ -->
+<div class="wrapper" id="projects">
+  <section>
+    <p class="sec-label">Work</p>
+    <h2 class="sec-title">Projects</h2>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="frontend">Front-end</button>
+      <button class="filter-btn" data-filter="backend">Back-end</button>
+      <button class="filter-btn" data-filter="data">Data Science</button>
+      <button class="filter-btn" data-filter="mobile">Mobile</button>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-year"><span>2024</span></div>
+
+      <div class="timeline-item" data-tags="frontend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>Nebelfeld Dictionary</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-nebelfeld.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback"><source src="video-celular-nebelfeld.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">Multilingual website to search words in different languages — definitions, synonyms, example phrases, spelling correction, pronunciation in different accents, and highlighted words section.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=html" title="HTML"><img src="https://skillicons.dev/icons?i=css" title="CSS"><img src="https://skillicons.dev/icons?i=js" title="JavaScript">
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/HenriqueSilvaXavier/dicionarioNebelfeld.github.io" class="btn-gh primary">GitHub</a>
+            <a href="https://henriquesilvaxavier.github.io/dicionarioNebelfeld.github.io/" target="_blank" class="btn-gh secondary">Deploy ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="frontend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>CEPDistância</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-cepdistancia.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="cepdistancia-celular.jpeg"><source src="video-celular-cepdistancia.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">Uses the ViaCEP API to calculate the distance between two Brazilian ZIP codes entered by the user, over a world map background.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=html" title="HTML"><img src="https://skillicons.dev/icons?i=css" title="CSS"><img src="https://skillicons.dev/icons?i=js" title="JavaScript">
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/HenriqueSilvaXavier/CEPDistancia.github.io" class="btn-gh primary">GitHub</a>
+            <a href="https://henriquesilvaxavier.github.io/CEPDistancia.github.io/" target="_blank" class="btn-gh secondary">Deploy ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="mobile">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>Notex App</h3>
+          <div class="devices-container" style="justify-content:center;">
+            <div class="mobile-container" id="notex-container" style="width:38%"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="notex.png"><source src="video-notex.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">App for Mediotec students to view grades, subjects, teachers, schedules, academic reports, and the calendar.</p>
+          <div class="stacks">
+            <img src="https://cms-assets.tutsplus.com/uploads/users/1125/posts/29791/preview_image/RN.jpg" title="React Native">
+            <img src="https://skillicons.dev/icons?i=typescript" title="TypeScript">
+            <img src="https://skillicons.dev/icons?i=sqlite" title="SQLite">
+            <img src="https://skillicons.dev/icons?i=prisma" title="Prisma">
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/HenriqueSilvaXavier/Notex-Mobile-PI" class="btn-gh primary">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="frontend backend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>Vitae.ai</h3>
+          <img src="Vitae.png" class="img-projeto" alt="Vitae.ai">
+          <p class="proj-desc">A React front-end that communicates with an AI backend to analyze resumes, give improvement suggestions, and rate them.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=react" title="React"><img src="https://skillicons.dev/icons?i=py" title="Python"><img src="https://skillicons.dev/icons?i=sqlite" title="SQLite"><img src="https://skillicons.dev/icons?i=flask" title="Flask">
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/HenriqueSilvaXavier/Vitae.ai-Residencia" class="btn-gh primary">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-year"><span>2025</span></div>
+
+      <div class="timeline-item" data-tags="frontend backend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>ToDoList</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-toDoList.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="toDoList-celular.jpeg"><source src="video-celular-toDoList.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">Django project to create, edit, read and delete tasks with three categories — In Progress, Completed, and Not Done — and the ability to move tasks between them.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=html"><img src="https://skillicons.dev/icons?i=css"><img src="https://skillicons.dev/icons?i=js"><img src="https://skillicons.dev/icons?i=py"><img src="https://skillicons.dev/icons?i=django"><img src="https://skillicons.dev/icons?i=sqlite">
+          </div>
+          <div class="proj-links"><a href="https://github.com/Elias969/Django_Tarefas.github.io" class="btn-gh primary">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="data">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>Consumo Energético</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-consumoEnergetico.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback"><source src="video-celular-consumoEnergetico.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">Built with Gradio and Pandas, using Pyotp and QRcode for MFA sign-in/sign-up. Displays predictions from Scikit-Learn models and Matplotlib charts.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=py"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGmhRoEHG6jt0ZCtTf39On6QihNKVDYKGCdw&s" title="Gradio"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRYs547v2gOR_xdllUqcUxfq25_7TeDqTrLg&s" title="Pandas"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/250px-Matplotlib_icon.svg.png" title="Matplotlib"><img src="https://skillicons.dev/icons?i=sklearn"><img src="https://img.icons8.com/color/1200/numpy.jpg" title="Numpy"><img src="https://yt3.googleusercontent.com/XNIcd1v2bK-ST8XcAGuDJshPImz1W88I2gWpKgtTxTGCXn2LDUBhViufHpv1u5j0B4mr574=s900-c-k-c0x00ffffff-no-rj" title="Plotly">
+          </div>
+          <div class="proj-links"><a href="https://github.com/HenriqueSilvaXavier/consumo_energetico" class="btn-gh primary">GitHub</a><a href="https://consumo-energetico2-6.onrender.com/" target="_blank" class="btn-gh secondary">Deploy ↗</a></div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="frontend backend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>CodeStore</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-codestore.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback"><source src="video-celular-codestore.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">E-commerce web app for IT, gamer, and design audiences. Peripherals, devices, cables and more — built with Tailwind and a Node/Express/SQLite backend API.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=html"><img src="https://skillicons.dev/icons?i=css"><img src="https://skillicons.dev/icons?i=js"><img src="https://skillicons.dev/icons?i=tailwind"><img src="https://skillicons.dev/icons?i=nodejs"><img src="https://skillicons.dev/icons?i=express"><img src="https://skillicons.dev/icons?i=sqlite">
+          </div>
+          <div class="proj-links"><a href="https://github.com/HenriqueSilvaXavier/CodeStore" class="btn-gh primary">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="frontend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>Decimal Division Anatomy</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-decimalDivisionAnatomy.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback"><source src="video-celular-decimalDivisionAnatomy.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">Visually explains decimal division steps, simulating manual long division for non-integer decimals. Export results as image with html2canvas. Interactive educational tool.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=html"><img src="https://skillicons.dev/icons?i=css"><img src="https://skillicons.dev/icons?i=js"><img src="https://skillicons.dev/icons?i=php">
+          </div>
+          <div class="proj-links"><a href="https://github.com/HenriqueSilvaXavier/Decimal-Division-Anatomy" class="btn-gh primary">GitHub</a><a href="https://henriquesilvaxavier.github.io/Decimal-Division-Anatomy.github.io/" target="_blank" class="btn-gh secondary">Deploy ↗</a></div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="frontend backend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>Lojas Henri</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-lojasHenri.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="lojashenri-thumb.jpeg"><source src="video-celular-lojasHenri.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">E-commerce platform across multiple categories — home appliances, furniture, pet supplies and more. Features search, favorites, cart, promotions, and product reviews. Laravel + ML-powered recommendations.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=html"><img src="https://skillicons.dev/icons?i=css"><img src="https://skillicons.dev/icons?i=js"><img src="https://skillicons.dev/icons?i=laravel"><img src="https://skillicons.dev/icons?i=py"><img src="https://skillicons.dev/icons?i=php"><img src="https://skillicons.dev/icons?i=mysql"><img src="https://skillicons.dev/icons?i=tailwind"><img src="https://skillicons.dev/icons?i=bootstrap"><img src="https://skillicons.dev/icons?i=sklearn">
+          </div>
+          <div class="proj-links"><a href="https://github.com/HenriqueSilvaXavier/LojasHenri-Laravel" class="btn-gh primary">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="frontend data backend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>Monitor RJ</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-monitorrj.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback" poster="monitorrj-celular.jpeg"><source src="video-celular-monitorrj.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">Dashboards and insights about crime in Rio de Janeiro. Monitors violent localities by city, precinct, and region. Includes an ML model to predict future violent lethality. Deployed via Docker.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=py"><img src="https://skillicons.dev/icons?i=html"><img src="https://skillicons.dev/icons?i=css"><img src="https://skillicons.dev/icons?i=js"><img src="https://skillicons.dev/icons?i=flask"><img src="https://skillicons.dev/icons?i=postgres"><img src="https://skillicons.dev/icons?i=sklearn"><img src="https://skillicons.dev/icons?i=selenium"><img src="https://skillicons.dev/icons?i=jest"><img src="https://skillicons.dev/icons?i=docker">
+          </div>
+          <div class="proj-links"><a href="https://github.com/gabrielamaiia01/IA_PI" class="btn-gh primary">GitHub</a><a href="https://hub.docker.com/r/henriquesilvaxavier/monitor_rj" target="_blank" class="btn-gh secondary">DockerHub ↗</a></div>
+        </div>
+      </div>
+
+      <div class="timeline-year"><span>2026</span></div>
+
+      <div class="timeline-item" data-tags="frontend backend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>FicLibris</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-ficlibris.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback"><source src="video-celular-ficlibris.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">Virtual library of movies, books, manga, anime, and series that recommends content based on keywords and works the user has already seen. Similarity analyzed via synopsis, keywords, and genre comparison.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=html"><img src="https://skillicons.dev/icons?i=css"><img src="https://skillicons.dev/icons?i=js"><img src="https://skillicons.dev/icons?i=ts"><img src="https://skillicons.dev/icons?i=react"><img src="https://skillicons.dev/icons?i=sqlite">
+          </div>
+          <div class="proj-links"><a href="https://github.com/HenriqueSilvaXavier/FicLibris" class="btn-gh primary">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-tags="frontend backend">
+        <div class="timeline-dot"></div>
+        <div class="proj-card">
+          <h3>Bootcamp-films</h3>
+          <div class="devices-container">
+            <div class="notebook-container"><img src="notebook.png" class="notebook-img"><video class="notebook-video" controls muted loop><source src="video-notebook-bootcampFilms.mp4" type="video/mp4"></video></div>
+            <div class="mobile-container"><img src="celular.png" class="mobile-img"><video class="mobile-video" controls disablepictureinpicture controlslist="noremoteplayback"><source src="video-celular-bootcampFilms.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="proj-desc">Film management web app built during a Java bootcamp. Browse, register, and manage movie entries through a full-stack interface powered by Spring Boot on the backend.</p>
+          <div class="stacks">
+            <img src="https://skillicons.dev/icons?i=html"><img src="https://skillicons.dev/icons?i=css"><img src="https://skillicons.dev/icons?i=js"><img src="https://skillicons.dev/icons?i=java"><img src="https://skillicons.dev/icons?i=spring"><img src="https://skillicons.dev/icons?i=bootstrap"><img src="https://marcphilipp.de/img/junit5-logo.png" title="JUnit">
+          </div>
+          <div class="proj-links"><a href="https://github.com/HenriqueSilvaXavier/bootcamp" class="btn-gh primary">GitHub</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <div class="wrapper">
+    <span>henrique silva xavier · recife, br · 2026</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
 <script>
-// ===== ORBIT: SISTEMA DE ESCALA RESPONSIVA =====
+// ── Orbit responsive ──
 const orbitSystem = document.getElementById('orbitSystem');
 
 function updateOrbit() {
@@ -1325,56 +1257,33 @@ function updateOrbit() {
     });
   });
 }
-
 updateOrbit();
 window.addEventListener('resize', updateOrbit);
 
-// ===== TOOLTIP GLOBAL — filho direto do body =====
-// Assim nenhum stacking context das órbitas pode escondê-lo.
+// ── Tooltip ──
 const tooltip = document.createElement('div');
-tooltip.style.cssText = [
-  'position:fixed',
-  'background:rgba(11,18,32,.95)',
-  'color:#e5e7eb',
-  'padding:4px 10px',
-  'border-radius:4px',
-  'border:1px solid rgba(255,255,255,.15)',
-  'font-family:Poppins,sans-serif',
-  'font-size:.72rem',
-  'white-space:nowrap',
-  'pointer-events:none',
-  'opacity:0',
-  'transition:opacity .15s',
-  'z-index:2147483647',
-  'top:0',
-  'left:0',
-].join(';');
+tooltip.style.cssText = 'position:fixed;background:rgba(8,12,20,.95);color:#e8eaf2;padding:5px 11px;border-radius:6px;border:1px solid rgba(34,211,238,.3);font-family:DM Mono,monospace;font-size:.7rem;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:2147483647;top:0;left:0;';
 document.body.appendChild(tooltip);
 
 orbitSystem.querySelectorAll('.skill-icon').forEach(icon => {
-  const labelEl = icon.querySelector('.skill-label');
-  const name = labelEl ? labelEl.textContent.trim() : '';
+  const name = icon.querySelector('.skill-label')?.textContent.trim() || '';
+  icon.addEventListener('mouseenter', () => { orbitSystem.classList.add('paused'); tooltip.textContent = name; tooltip.style.opacity = '1'; });
+  icon.addEventListener('mousemove', e => { tooltip.style.left = (e.clientX + 14) + 'px'; tooltip.style.top = (e.clientY - 34) + 'px'; });
+  icon.addEventListener('mouseleave', () => { orbitSystem.classList.remove('paused'); tooltip.style.opacity = '0'; });
+});
 
-  icon.addEventListener('mouseenter', () => {
-    orbitSystem.classList.add('paused');
-    if (!name) return;
-    tooltip.textContent = name;
-    tooltip.style.opacity = '1';
-  });
-
-  icon.addEventListener('mousemove', e => {
-    // Posiciona o tooltip 14px à direita e 34px acima do cursor
-    tooltip.style.left = (e.clientX + 14) + 'px';
-    tooltip.style.top  = (e.clientY - 34) + 'px';
-  });
-
-  icon.addEventListener('mouseleave', () => {
-    orbitSystem.classList.remove('paused');
-    tooltip.style.opacity = '0';
+// ── Legend toggle ──
+document.querySelectorAll('.legend-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const cat = item.dataset.category;
+    item.classList.toggle('disabled');
+    document.querySelectorAll('.skill-icon.' + cat).forEach(skill => {
+      skill.style.display = skill.style.display === 'none' ? 'flex' : 'none';
+    });
   });
 });
 
-// ===== FILTERS =====
+// ── Filters ──
 const filterButtons = document.querySelectorAll('.filter-btn');
 
 function applyFilter(filter) {
@@ -1384,22 +1293,19 @@ function applyFilter(filter) {
     item.style.display = (filter === 'all' || tags.includes(filter)) ? 'block' : 'none';
   });
 
-  const visibleItems = [...items].filter(i => i.style.display !== 'none');
-  visibleItems.forEach((item, idx) => {
-    item.classList.remove('left', 'right');
+  const visible = [...items].filter(i => i.style.display !== 'none');
+  visible.forEach((item, idx) => {
+    item.classList.remove('left','right');
     item.classList.add(idx % 2 === 0 ? 'left' : 'right');
   });
 
-  document.querySelectorAll('.timeline-year').forEach(yearEl => {
-    let next = yearEl.nextElementSibling;
-    let hasVisible = false;
+  document.querySelectorAll('.timeline-year').forEach(yr => {
+    let next = yr.nextElementSibling; let has = false;
     while (next && !next.classList.contains('timeline-year')) {
-      if (next.classList.contains('timeline-item') && next.style.display !== 'none') {
-        hasVisible = true; break;
-      }
+      if (next.classList.contains('timeline-item') && next.style.display !== 'none') { has = true; break; }
       next = next.nextElementSibling;
     }
-    yearEl.style.display = hasVisible ? 'flex' : 'none';
+    yr.style.display = has ? 'flex' : 'none';
   });
 }
 
@@ -1411,47 +1317,43 @@ filterButtons.forEach(btn => {
   });
 });
 
-// ===== FADE-UP =====
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+// Initial zig-zag
+let vi = 0;
+document.querySelectorAll('.timeline-item').forEach(item => {
+  if (item.style.display === 'none') return;
+  item.classList.remove('left','right');
+  item.classList.add(vi % 2 === 0 ? 'left' : 'right');
+  vi++;
 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// ===== ZIG-ZAG INITIAL =====
-function applyInitialZigZag() {
-  let visibleIndex = 0;
-  document.querySelectorAll('.timeline-item').forEach(item => {
-    if (item.style.display === 'none') return;
-    item.classList.remove('left', 'right');
-    item.classList.add(visibleIndex % 2 === 0 ? 'left' : 'right');
-    visibleIndex++;
+// ── Fade-up on scroll ──
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+// Hero immediate
+document.querySelector('.hero').classList.add('show');
+
+// ── Active nav highlight ──
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
   });
-}
-applyInitialZigZag();
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
-const legendItems = document.querySelectorAll('.legend-item');
-
-legendItems.forEach(item => {
-  item.addEventListener('click', () => {
-    const category = item.dataset.category;
-
-    // alterna estado visual
-    item.classList.toggle('disabled');
-
-    // pega todas as skills dessa categoria
-    const skills = document.querySelectorAll('.skill-icon.' + category);
-
-    skills.forEach(skill => {
-      if (skill.style.display === 'none') {
-        skill.style.display = 'flex';
-      } else {
-        skill.style.display = 'none';
-      }
-    });
-  });
+['hero','education','certificates','skills','languages','projects'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) sectionObserver.observe(el);
 });
 
 </script>
-
 </body>
 </html>
