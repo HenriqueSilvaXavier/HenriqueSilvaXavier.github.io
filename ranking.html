@@ -1,0 +1,345 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.container{padding:1.5rem 0}
+.top3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;align-items:end}
+.podium-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem;position:relative}
+.podium-card.gold{border-top:3px solid #c8960c}
+.podium-card.silver{border-top:3px solid #888780}
+.podium-card.bronze{border-top:3px solid #7c4f1e}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-size:13px;font-weight:500;margin-bottom:8px}
+.rank-badge.gold{background:#faeeda;color:#633806}
+.rank-badge.silver{background:#F1EFE8;color:#2C2C2A}
+.rank-badge.bronze{background:#FAECE7;color:#4A1B0C}
+.proj-name{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.proj-year{font-size:11px;color:var(--color-text-tertiary);margin-bottom:8px}
+.score-bar-wrap{background:var(--color-background-secondary);border-radius:4px;height:6px;margin-bottom:8px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;transition:width 1.1s ease}
+.score-num{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.score-sub{font-size:11px;color:var(--color-text-secondary)}/100
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500}
+.tag.ai{background:#EEEDFE;color:#3C3489}
+.tag.data{background:#E1F5EE;color:#085041}
+.tag.front{background:#E6F1FB;color:#0C447C}
+.tag.back{background:#FAECE7;color:#4A1B0C}
+.tag.mobile{background:#FBEAF0;color:#72243E}
+.tag.ux{background:#FAEEDA;color:#633806}
+.highlight-text{font-size:11px;color:var(--color-text-secondary);margin-top:6px;line-height:1.5}
+.list-section{display:flex;flex-direction:column;gap:8px}
+.list-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:11px 14px;display:flex;align-items:center;gap:12px}
+.list-card.highlight-card{border-color:var(--color-border-secondary)}
+.list-rank{font-size:13px;font-weight:500;color:var(--color-text-tertiary);min-width:22px}
+.list-info{flex:1;min-width:0}
+.list-name{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.list-desc{font-size:12px;color:var(--color-text-secondary);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-score{font-size:14px;font-weight:500;color:var(--color-text-primary);white-space:nowrap}
+.list-bar-wrap{background:var(--color-background-secondary);border-radius:3px;height:4px;width:72px;overflow:hidden;flex-shrink:0}
+.list-bar{height:100%;border-radius:3px;transition:width 1.1s ease}
+.section-title{font-size:11px;color:var(--color-text-secondary);margin-bottom:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
+.this-badge{font-size:10px;padding:2px 8px;border-radius:4px;background:#EAF3DE;color:#27500A;font-weight:500;margin-left:6px;vertical-align:middle}
+</style>
+
+<div class="container">
+
+<div class="top3">
+  <div class="podium-card silver" style="margin-top:24px">
+    <div class="rank-badge silver">2</div>
+    <div class="proj-name">Monitor RJ</div>
+    <div class="proj-year">2025</div>
+    <div class="score-bar-wrap"><div class="score-bar" style="width:0%;background:#888780" data-w="95"></div></div>
+    <div><span class="score-num">95</span><span class="score-sub"> /100</span></div>
+    <div class="tags">
+      <span class="tag data">Data</span><span class="tag ai">ML/AI</span><span class="tag front">Frontend</span><span class="tag back">Backend</span>
+    </div>
+    <div class="highlight-text">Dashboard crime RJ + ML preditivo + LLM + Docker + testes</div>
+  </div>
+
+  <div class="podium-card gold">
+    <div class="rank-badge gold">1</div>
+    <div class="proj-name">Portfólio / Currículo</div>
+    <div class="proj-year">2026 · Este site</div>
+    <div class="score-bar-wrap"><div class="score-bar" style="width:0%;background:#c8960c" data-w="98"></div></div>
+    <div><span class="score-num">98</span><span class="score-sub"> /100</span></div>
+    <div class="tags">
+      <span class="tag front">Frontend</span><span class="tag ux">UX/Design</span>
+    </div>
+    <div class="highlight-text">Órbita de skills, timeline, partículas CSS, design system próprio, responsivo e animado</div>
+  </div>
+
+  <div class="podium-card bronze" style="margin-top:44px">
+    <div class="rank-badge bronze">3</div>
+    <div class="proj-name">Lojas Henri</div>
+    <div class="proj-year">2025</div>
+    <div class="score-bar-wrap"><div class="score-bar" style="width:0%;background:#7c4f1e" data-w="88"></div></div>
+    <div><span class="score-num">88</span><span class="score-sub"> /100</span></div>
+    <div class="tags">
+      <span class="tag front">Frontend</span><span class="tag back">Backend</span><span class="tag ai">ML/AI</span>
+    </div>
+    <div class="highlight-text">E-commerce + recomendação NearestNeighbors + Laravel + NLTK</div>
+  </div>
+</div>
+
+<div class="section-title">Classificação completa — 13 itens</div>
+<div class="list-section" id="list"></div>
+
+</div>
+
+<h2 class="sr-only">Gráfico de linha mostrando a pontuação dos projetos de Henrique ao longo do tempo, de 2024 a 2026.</h2>
+
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;font-size:12px;color:var(--color-text-secondary);">
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:#185FA5"></span>Frontend</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:#085041"></span>Data Science</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:#534AB7"></span>Frontend + Backend</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:#993556"></span>Mobile</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:2px;background:#633806"></span>Portfólio</span>
+</div>
+
+<div style="position:relative;width:100%;height:400px;">
+  <canvas id="tlChart" role="img" aria-label="Linha do tempo dos projetos com pontuação no eixo Y e tempo no eixo X, na ordem em que aparecem no portfólio.">
+    Projetos em ordem: Nebelfeld 56, CEPDistância 40, Notex App 70, Vitae.ai 74, ToDoList 60, Consumo Energético 83, CodeStore 72, Decimal Division 53, Lojas Henri 88, Monitor RJ 95, FicLibris 80, Bootcamp-films 65, Portfólio 98.
+  </canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const pts = [
+  {label:"Nebelfeld Dictionary", score:56, year:"2024", color:"#185FA5"},
+  {label:"CEPDistância",         score:40, year:"2024", color:"#185FA5"},
+  {label:"Notex App",            score:70, year:"2024", color:"#993556"},
+  {label:"Vitae.ai",             score:74, year:"2024", color:"#534AB7"},
+  {label:"ToDoList",             score:60, year:"2025", color:"#534AB7"},
+  {label:"Consumo Energético",   score:83, year:"2025", color:"#085041"},
+  {label:"CodeStore",            score:72, year:"2025", color:"#534AB7"},
+  {label:"Decimal Division",     score:53, year:"2025", color:"#185FA5"},
+  {label:"Lojas Henri",          score:88, year:"2025", color:"#534AB7"},
+  {label:"Monitor RJ",           score:95, year:"2025", color:"#085041"},
+  {label:"FicLibris",            score:80, year:"2026", color:"#534AB7"},
+  {label:"Bootcamp-films",       score:65, year:"2026", color:"#534AB7"},
+  {label:"Portfólio",            score:98, year:"2026", color:"#633806"},
+];
+
+const yearColors = {"2024":"rgba(24,95,165,0.08)","2025":"rgba(83,74,183,0.06)","2026":"rgba(99,56,6,0.08)"};
+
+new Chart(document.getElementById('tlChart'), {
+  type: 'line',
+  data: {
+    labels: pts.map(p => p.label),
+    datasets: [{
+      label: 'Pontuação',
+      data: pts.map(p => p.score),
+      borderColor: '#888780',
+      borderWidth: 2,
+      borderDash: [],
+      tension: 0.35,
+      fill: false,
+      pointBackgroundColor: pts.map(p => p.color),
+      pointBorderColor: pts.map(p => p.color),
+      pointRadius: 7,
+      pointHoverRadius: 9,
+      pointBorderWidth: 0,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          title: ctx => pts[ctx[0].dataIndex].label,
+          label: ctx => `Pontuação: ${ctx.parsed.y}  ·  ${pts[ctx.dataIndex].year}`
+        },
+        backgroundColor: '#fff',
+        titleColor: '#2C2C2A',
+        bodyColor: '#5F5E5A',
+        borderColor: '#D3D1C7',
+        borderWidth: 1,
+        padding: 10,
+        cornerRadius: 8,
+      },
+      annotation: {}
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: '#888780',
+          font: { size: 11 },
+          maxRotation: 42,
+          minRotation: 42,
+          autoSkip: false,
+        },
+        grid: { color: 'rgba(136,135,128,0.12)' },
+        border: { color: 'rgba(136,135,128,0.2)' }
+      },
+      y: {
+        min: 30,
+        max: 100,
+        ticks: {
+          color: '#888780',
+          font: { size: 11 },
+          stepSize: 10,
+          callback: v => v
+        },
+        grid: { color: 'rgba(136,135,128,0.12)' },
+        border: { color: 'rgba(136,135,128,0.2)' },
+        title: {
+          display: true,
+          text: 'Pontuação',
+          color: '#888780',
+          font: { size: 11 }
+        }
+      }
+    }
+  }
+});
+</script>
+
+<div style="display:flex;gap:24px;margin-top:16px;font-size:11px;color:var(--color-text-tertiary);">
+  <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:32px;height:2px;background:repeating-linear-gradient(90deg,#185FA5 0,#185FA5 4px,transparent 4px,transparent 8px)"></span>2024</span>
+  <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:32px;height:2px;background:repeating-linear-gradient(90deg,#534AB7 0,#534AB7 4px,transparent 4px,transparent 8px)"></span>2025</span>
+  <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:32px;height:2px;background:repeating-linear-gradient(90deg,#633806 0,#633806 4px,transparent 4px,transparent 8px)"></span>2026</span>
+</div>
+
+
+<script>
+
+
+const projects = [
+  {rank:4,  name:"Consumo Energético",         year:2025, score:83, desc:"ML preditivo + MFA TOTP/QRCode + Gradio + Plotly",                       tags:["data","ai"],           color:"#1D9E75"},
+  {rank:5,  name:"FicLibris",                   year:2026, score:80, desc:"Biblioteca virtual com recomendação por similaridade de sinopse",         tags:["front","back"],        color:"#378ADD"},
+  {rank:6,  name:"Vitae.ai",                    year:2024, score:74, desc:"Análise de currículos com IA · React + Flask + SQLite",                   tags:["front","back","ai"],   color:"#534AB7"},
+  {rank:7,  name:"CodeStore",                   year:2025, score:72, desc:"E-commerce full-stack · Node/Express/Tailwind/SQLite",                    tags:["front","back"],        color:"#378ADD"},
+  {rank:8,  name:"Notex App",                   year:2024, score:70, desc:"App mobile para estudantes · React Native + Prisma + SQLite",             tags:["mobile"],              color:"#993556"},
+  {rank:9,  name:"Bootcamp-films",              year:2026, score:65, desc:"CRUD de filmes com Spring Boot + JUnit",                                  tags:["front","back"],        color:"#D85A30"},
+  {rank:10, name:"ToDoList",                    year:2025, score:60, desc:"Gerenciador de tarefas · Django + SQLite + 3 categorias",                 tags:["front","back"],        color:"#D85A30"},
+  {rank:11, name:"Nebelfeld Dictionary",        year:2024, score:56, desc:"Dicionário multilíngue com pronúncia, sinônimos e correção ortográfica",  tags:["front"],               color:"#185FA5"},
+  {rank:12, name:"Decimal Division Anatomy",    year:2025, score:53, desc:"Visualizador de divisão decimal + exportação html2canvas",                tags:["front"],               color:"#185FA5"},
+  {rank:13, name:"CEPDistância",                year:2024, score:40, desc:"Distância entre CEPs via ViaCEP API · HTML/CSS/JS puro",                  tags:["front"],               color:"#185FA5"},
+];
+
+const tagLabels = {front:"Frontend",back:"Backend",ai:"AI/ML",data:"Data",mobile:"Mobile",ux:"UX"};
+const list = document.getElementById('list');
+
+projects.forEach(p => {
+  const tagHTML = p.tags.map(t=>`<span class="tag ${t}">${tagLabels[t]}</span>`).join(' ');
+  const d = document.createElement('div');
+  d.className = 'list-card';
+  d.innerHTML = `
+    <div class="list-rank">${p.rank}</div>
+    <div class="list-info">
+      <div class="list-name">${p.name} <span style="font-size:11px;color:var(--color-text-tertiary);font-weight:400">${p.year}</span></div>
+      <div class="list-desc">${p.desc}</div>
+      <div style="margin-top:5px;display:flex;gap:4px;flex-wrap:wrap">${tagHTML}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0">
+      <div class="list-score">${p.score}</div>
+      <div class="list-bar-wrap"><div class="list-bar" style="width:0%;background:${p.color}" data-w="${p.score}"></div></div>
+    </div>
+  `;
+  list.appendChild(d);
+});
+
+setTimeout(() => {
+  document.querySelectorAll('[data-w]').forEach(el => {
+    el.style.width = el.dataset.w + '%';
+  });
+}, 120);
+
+const ctx = document.getElementById('projectsChart');
+
+if (ctx) {
+
+  const timeline = document.querySelector('.timeline');
+  let currentYear = null;
+  const ordered = [];
+
+  const scoreMap = {
+    "Monitor RJ": 95,
+    "Portfólio / Currículo": 98,
+    "Lojas Henri": 88,
+    "Consumo Energético": 83,
+    "FicLibris": 80,
+    "Vitae.ai": 74,
+    "CodeStore": 72,
+    "Notex App": 70,
+    "Bootcamp-films": 65,
+    "ToDoList": 60,
+    "Nebelfeld Dictionary": 56,
+    "Decimal Division Anatomy": 53,
+    "CEPDistância": 40
+  };
+
+  timeline?.childNodes.forEach(el => {
+    if (el.nodeType !== 1) return;
+
+    if (el.classList.contains('timeline-year')) {
+      currentYear = parseInt(el.textContent.trim());
+    }
+
+    if (el.classList.contains('timeline-item')) {
+      const name = el.querySelector('h3')?.textContent.trim();
+      const score = scoreMap[name];
+
+      if (name && score !== undefined) {
+        ordered.push({
+          name,
+          year: currentYear,
+          score
+        });
+      }
+    }
+  });
+
+  const labels = ordered.map(p => p.year);
+  const data = ordered.map(p => p.score);
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Linha do tempo dos projetos',
+        data,
+        borderColor: '#378ADD',
+        backgroundColor: 'rgba(55,138,221,0.1)',
+        tension: 0.4,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: { color: '#aaa' }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              const p = ordered[ctx.dataIndex];
+              return `${p.name} (${p.year}) - ${p.score}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#aaa' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        },
+        y: {
+          min: 0,
+          max: 100,
+          ticks: { color: '#aaa' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
+    }
+  });
+}
+</script>
