@@ -47,7 +47,11 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
 body {
   font-family: 'Cabinet Grotesk', sans-serif;
   background: var(--bg);
@@ -601,6 +605,8 @@ nav::after {
   width: 100%; max-width: 100vw;
   overflow: hidden;
   padding-block: clamp(40px, 8vw, 80px);
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .orbit-system {
@@ -608,7 +614,9 @@ nav::after {
   --sf: 1;
   position: relative;
   width: var(--orb-size); height: var(--orb-size);
-  flex-shrink: 0; overflow: visible;
+  flex-shrink: 0; 
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vw - 40px);
 }
 
 .orbit-center {
@@ -630,36 +638,6 @@ nav::after {
   text-shadow: 0 0 10px rgba(79,195,247,.8);
 }
 
-/* Corona — radiates equally in all directions like a real star */
-.orbit-center::before {
-  content: '';
-  position: absolute;
-  inset: -12px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(79,195,247,.35) 0%,
-    rgba(79,195,247,.18) 40%,
-    rgba(79,195,247,.06) 70%,
-    transparent 100%
-  );
-  animation: corona-pulse 3s ease-in-out infinite;
-  z-index: -1;
-}
-/* Second outer corona ring */
-.orbit-center::after {
-  content: '';
-  position: absolute;
-  inset: -28px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    transparent 30%,
-    rgba(79,195,247,.07) 55%,
-    rgba(79,195,247,.03) 75%,
-    transparent 100%
-  );
-  animation: corona-pulse 3s ease-in-out infinite reverse;
-  z-index: -1;
-}
 @keyframes corona-pulse {
   0%,100% { transform: scale(1); opacity: .6; }
   50% { transform: scale(1.15); opacity: 1; }
@@ -1102,6 +1080,12 @@ footer::before {
 .mobile-avatar .hero-avatar { position: relative; z-index: 1; }
 
 #full-name { display: flex; flex-wrap: wrap; gap: 9px; }
+
+@media (pointer: coarse) {
+  #cursor, #cursor-dot { display: none; }
+  body { cursor: auto; }
+  /* remover cursor:none dos elementos interativos */
+}
 </style>
 </head>
 <body>
@@ -1719,23 +1703,65 @@ updateOrbit();
 window.addEventListener('resize', updateOrbit);
 
 /* ── Skill tooltip ── */
+/* ── Skill tooltip CORRIGIDO ── */
 const tooltip = document.getElementById('skill-tooltip');
+let tooltipTimeout = null;
 
 orbitSystem.querySelectorAll('.skill-icon').forEach(icon => {
   const name = icon.querySelector('.skill-label')?.textContent.trim() || '';
-  icon.addEventListener('mouseenter', () => {
+  
+  // Se não tem nome, não continua
+  if (!name) return;
+
+  // MOUSE: hover para mostrar
+  icon.addEventListener('mouseenter', (e) => {
     orbitSystem.classList.add('paused');
     tooltip.textContent = name;
     tooltip.style.opacity = '1';
-  });
-  icon.addEventListener('mousemove', e => {
+    // Posiciona no mouse
     tooltip.style.left = (e.clientX + 16) + 'px';
-    tooltip.style.top  = (e.clientY - 36) + 'px';
+    tooltip.style.top = (e.clientY - 36) + 'px';
   });
+  
+  icon.addEventListener('mousemove', (e) => {
+    // Só reposiciona se o tooltip estiver visível
+    if (tooltip.style.opacity === '1') {
+      tooltip.style.left = (e.clientX + 16) + 'px';
+      tooltip.style.top = (e.clientY - 36) + 'px';
+    }
+  });
+  
   icon.addEventListener('mouseleave', () => {
     orbitSystem.classList.remove('paused');
     tooltip.style.opacity = '0';
   });
+
+  // TOUCH (mobile): tap para mostrar e esconder após 2s
+  icon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    // Cancela timeout anterior se existir
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
+    
+    tooltip.textContent = name;
+    const rect = icon.getBoundingClientRect();
+    tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+    tooltip.style.top = (rect.top - 40) + 'px';
+    tooltip.style.opacity = '1';
+    
+    // Esconde após 2 segundos
+    tooltipTimeout = setTimeout(() => {
+      tooltip.style.opacity = '0';
+    }, 2000);
+  });
+});
+
+// Clica em qualquer lugar da tela fecha o tooltip no mobile
+document.body.addEventListener('click', (e) => {
+  // Se clicou fora de um ícone, esconde o tooltip
+  if (!e.target.closest('.skill-icon')) {
+    tooltip.style.opacity = '0';
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
+  }
 });
 
 /* ── Legend toggle ── */
