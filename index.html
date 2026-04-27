@@ -183,9 +183,10 @@ section { padding: 80px 0; }
 ───────────────────────────────────────────────── */
 nav {
   position: sticky; top: 0; z-index: 100;
-  backdrop-filter: blur(24px) saturate(1.4);
-  background: rgba(3,5,15,.75);
-  border-bottom: 1px solid rgba(79,195,247,.12);
+  backdrop-filter: blur(20px);
+  background: rgba(8,12,20,.8);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
 }
 
 /* scanline effect on nav */
@@ -203,17 +204,10 @@ nav::after {
 }
 
 .nav-brand {
-  font-family: 'DM Mono', monospace;
-  font-size: 1rem; color: var(--cyan);
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem; color: var(--cyan);
   text-decoration: none;
-  letter-spacing: .25em;
-  text-shadow: 0 0 20px rgba(79,195,247,.6);
-  position: relative;
-}
-.nav-brand::before {
-  content: '◈ ';
-  opacity: .7;
-  animation: blink 2s ease-in-out infinite;
+  letter-spacing: -.5px;
 }
 
 .nav-links {
