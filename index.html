@@ -810,16 +810,23 @@ nav::after {
 
 .timeline::before {
   content: '';
-  position: absolute; left: 50%; top: 0; bottom: 0;
-  width: 1px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+
+  width: 2px; /* mais grossa */
+
   background: linear-gradient(180deg,
     transparent,
-    rgba(79,195,247,.3) 5%,
-    rgba(79,195,247,.15) 50%,
-    rgba(179,157,219,.2) 80%,
+    rgba(79,195,247,.6) 10%,
+    rgba(79,195,247,.4) 50%,
+    rgba(179,157,219,.5) 80%,
     transparent
   );
-  transform: translateX(-50%); z-index: 1;
+
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 .timeline-year {
