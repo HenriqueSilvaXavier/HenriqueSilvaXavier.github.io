@@ -186,11 +186,18 @@ section { padding: 80px 0; }
    NAV — SPACE STATION HUD
 ───────────────────────────────────────────────── */
 nav {
-  position: sticky; top: 0; z-index: 100;
+  position: fixed; top: 0; z-index: 100;
   backdrop-filter: blur(20px);
   background: rgba(8,12,20,.8);
   border-bottom: 1px solid var(--border);
   padding: 0 24px;
+  width: 100%;
+}
+
+.nav-inner {
+  max-width: 1040px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 58px; gap: 16px;
 }
 
 /* scanline effect on nav */
@@ -199,12 +206,6 @@ nav::after {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(79,195,247,.015) 2px, rgba(79,195,247,.015) 4px);
   pointer-events: none;
-}
-
-.nav-inner {
-  max-width: 1040px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 58px; gap: 16px;
 }
 
 .nav-brand {
